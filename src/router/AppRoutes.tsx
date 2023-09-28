@@ -24,7 +24,7 @@ export const AppRoutes = () => {
     // }
 
     if (!isAuthenticated) {
-      return <Navigate to="/loginReact/Login" />;
+      return <Navigate to="/login/Login" />;
     }
     return children;
   };
@@ -34,12 +34,12 @@ export const AppRoutes = () => {
       <AuthProvider>
         <CadastroProvider>
           <Routes>
-            <Route path="loginReact/login" element={<LoginPage />} />
+            <Route path="login/login" element={<LoginPage />} />
 
-            <Route path="loginReact/cadastro" element={<CadastroPage />} />
+            <Route path="login/cadastro" element={<CadastroPage />} />
 
             <Route
-              path="loginReact/*"
+              path="login/*"
               element={
                 <Private>
                   <HomePage />

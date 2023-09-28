@@ -69,7 +69,7 @@ export const LoginPage = () => {
           <span style={{ color: "var(--error)", margin: "0px" }}>{error}</span>
         )}
 
-        <Link to={"/loginReact/cadastro"} style={{ textDecoration: "none" }}>
+        <Link to={"/login/cadastro"} style={{ textDecoration: "none" }}>
           <Slink value="Sign up" />
         </Link>
       </Wrapper>

@@ -58,7 +58,7 @@ export const CadastroProvider = ({ children }: CadastroProviderProps) => {
         localStorage.setItem("users_db", JSON.stringify([{ email, password }]));
       }
       alert("Sucesso no cadastro!");
-      return navigate("/loginReact/login");
+      return navigate("/login/login");
     } else {
       return setError("Os dados informados não conferem!");
     }

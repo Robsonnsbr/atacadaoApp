@@ -113,7 +113,7 @@ export const CadastroPage = () => {
 
         {!error && <span style={{ color: "transparent" }}>#gambiarra#</span>}
         {error && <span style={{ color: "var(--error)" }}>{error}</span>}
-        <Link to={"/loginReact/Login"} style={{ textDecoration: "none" }}>
+        <Link to={"/login/Login"} style={{ textDecoration: "none" }}>
           <Slink value={"log in"} />
         </Link>
       </Wrapper>

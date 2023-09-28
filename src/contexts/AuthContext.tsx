@@ -63,7 +63,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         );
         if (hasUser) {
           setToken(recoveredToken);
-          navigate("/loginReact");
+          navigate("/login");
         }
       }
     })();
@@ -99,7 +99,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
           const currentUser: User = hasUser[0];
           setUser(currentUser);
           setToken(token);
-          navigate("/loginReact");
+          navigate("/login");
           return;
         } else {
           setError("Email ou senha incorretos");
@@ -142,7 +142,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       setError("Token/Users not found");
     }
 
-    navigate("/loginReact/*");
+    navigate("/login/*");
   };
 
   const deleteUser = () => {
@@ -166,7 +166,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       setError("Token/Users not found");
     }
 
-    navigate("/loginReact/*");
+    navigate("/login/*");
   };
 
   return (
