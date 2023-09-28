@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 type User = {
   id?: string;
-  email?: string;
+  mat?: string;
   password?: string;
   token?: string;
 };
@@ -13,7 +13,7 @@ interface IPropsAuth {
   token: string | null;
   user: User | null;
   loading?: boolean;
-  login: (email: string, password: string) => void;
+  login: (mat: string, password: string) => void;
   logout: () => void;
   deleteUser: () => void;
   error: null | string;
@@ -59,11 +59,11 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       const recoveredUser = await localStorage.getItem("users_db");
       if (recoveredToken && recoveredUser) {
         const hasUser = JSON.parse(recoveredUser).filter(
-          (user: User) => user.email === JSON.parse(recoveredToken).email
+          (user: User) => user.mat === JSON.parse(recoveredToken).mat
         );
         if (hasUser) {
           setToken(recoveredToken);
-          navigate("/login");
+          navigate("/AppCollector");
         }
       }
     })();
@@ -85,24 +85,24 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     return;
   };
 
-  const login = async (email: string, password: string) => {
+  const login = async (mat: string, password: string) => {
     const recoveredUsers = localStorage.getItem("users_db");
     if (recoveredUsers) {
       const hasRecoveredUsers = JSON.parse(recoveredUsers);
       const hasUser = hasRecoveredUsers.filter(
-        (user: User) => user.email === email
+        (user: User) => user.mat === mat
       );
       if (hasUser.length) {
-        if (hasUser[0].email === email && hasUser[0].password === password) {
+        if (hasUser[0].mat === mat && hasUser[0].password === password) {
           const token = Math.random().toString(36).substring(2);
-          localStorage.setItem("token", JSON.stringify({ email, token }));
+          localStorage.setItem("token", JSON.stringify({ mat, token }));
           const currentUser: User = hasUser[0];
           setUser(currentUser);
           setToken(token);
-          navigate("/login");
+          navigate("/AppCollector");
           return;
         } else {
-          setError("Email ou senha incorretos");
+          setError("mat ou senha incorretos");
           setTimeout(() => {
             setError(null);
           }, 5000);
@@ -131,7 +131,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     if (items) {
       const { token, users } = items;
 
-      const index = users.findIndex((user: User) => user.email === token.email);
+      const index = users.findIndex((user: User) => user.mat === token.mat);
 
       if (index !== -1) {
         localStorage.removeItem("token");
@@ -142,7 +142,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       setError("Token/Users not found");
     }
 
-    navigate("/login/*");
+    navigate("/AppCollector/*");
   };
 
   const deleteUser = () => {
@@ -151,14 +151,14 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     const items = getItems();
     if (items) {
       const { token, users } = items;
-      const index = users.findIndex((user: User) => user.email === token.email);
+      const index = users.findIndex((user: User) => user.mat === token.mat);
 
       if (index !== -1) {
         const currentUser: User = users[index];
         users.splice(index, 1);
         localStorage.removeItem("token");
         localStorage.setItem("users_db", JSON.stringify(users));
-        alert(`Usuário ${currentUser.email} Excluído com sucesso!`);
+        alert(`Usuário ${currentUser.mat} Excluído com sucesso!`);
       } else {
         setError("Index not found");
       }
@@ -166,7 +166,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       setError("Token/Users not found");
     }
 
-    navigate("/login/*");
+    navigate("/AppCollector/*");
   };
 
   return (

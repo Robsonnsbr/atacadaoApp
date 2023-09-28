@@ -16,7 +16,7 @@ export const CadastroPage = () => {
   const { cadastro, error } = useContext(CadastroContext);
 
   const navigate = useNavigate();
-  const [email, setEmail] = useState("");
+  const [mat, setMat] = useState("");
   const [password, setPassword] = useState("");
   const [confirmEmail, setConfirmEmail] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -36,7 +36,7 @@ export const CadastroPage = () => {
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault(),
-      cadastro(email, confirmEmail, password, confirmPassword);
+      cadastro(mat, confirmEmail, password, confirmPassword);
   };
 
   if (isAuthenticated) {
@@ -49,27 +49,27 @@ export const CadastroPage = () => {
         <h1>CADASTRO DO SISTEMA</h1>
         <Form onSubmit={(e) => handleSubmit(e)} method={"post"}>
           <ContainerField>
-            <label htmlFor="email">E-mail:</label>
+            <label htmlFor="mat">Matricula:</label>
             <input
               autoFocus
               className="block"
               autoComplete="nope"
-              type="email"
-              id="email"
-              placeholder="e-mail"
-              value={email.toLowerCase()}
-              onChange={(event) => setEmail(event.target.value)}
+              type="text"
+              id="mat"
+              placeholder="matricula"
+              value={mat.toLowerCase()}
+              onChange={(event) => setMat(event.target.value)}
               required
             />
           </ContainerField>
           <ContainerField>
-            <label htmlFor="ConfirmarEmail">Confirmar e-mail:</label>
+            <label htmlFor="confirmarMat">Confirmar matricula:</label>
             <input
               className="block"
               autoComplete="nope"
-              type="email"
-              id="ConfirmarEmail"
-              placeholder="confirmar e-mail"
+              type="text"
+              id="confirmarMat"
+              placeholder="confirmar matricula"
               value={confirmEmail.toLowerCase()}
               onChange={(event) => setConfirmEmail(event.target.value)}
               required
@@ -89,12 +89,12 @@ export const CadastroPage = () => {
             />
           </ContainerField>
           <ContainerField>
-            <label htmlFor="ConfirmarPassword">Confirmar senha:</label>
+            <label htmlFor="confirmarPassword">Confirmar senha:</label>
             <input
               className="block"
               type="password"
-              name="ConfirmarPassword"
-              id="ConfirmarPassword"
+              name="confirmarPassword"
+              id="confirmarPassword"
               value={password}
               onChange={(event) => setPassword(event.target.value)}
               placeholder="senha"
@@ -113,7 +113,7 @@ export const CadastroPage = () => {
 
         {!error && <span style={{ color: "transparent" }}>#gambiarra#</span>}
         {error && <span style={{ color: "var(--error)" }}>{error}</span>}
-        <Link to={"/login/Login"} style={{ textDecoration: "none" }}>
+        <Link to={"/AppCollector/Login"} style={{ textDecoration: "none" }}>
           <Slink value={"log in"} />
         </Link>
       </Wrapper>

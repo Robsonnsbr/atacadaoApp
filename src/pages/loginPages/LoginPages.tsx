@@ -10,7 +10,7 @@ import {
   Wrapper,
 } from "../../components";
 import { Link } from "react-router-dom";
-import { createSession } from "../../services/api";
+// import { createSession } from "../../services/api";
 
 export const LoginPage = () => {
   const { isAuthenticated, login, error } = useContext(AuthContext);
@@ -19,22 +19,23 @@ export const LoginPage = () => {
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault(), login(email, password);
-    createSession(email, password);
+    // createSession(email, password);
   };
 
   return (
     <Page>
       <Wrapper>
-        <h1>LOGIN DO SISTEMA</h1>
+        <h1>COLLECTOR SYSTEM LOGIN</h1>
         <Form onSubmit={(e) => handleSubmit(e)} method={"post"}>
           <ContainerField>
-            <label htmlFor="email">E-mail:</label>
+            <label htmlFor="mat">Matricula:</label>
             <input
               autoFocus
               autoComplete="true"
-              type="email"
-              id="email"
-              placeholder="e-mail"
+              type="text"
+              id="mat"
+              placeholder="matricula"
+              maxLength={15}
               value={email.toLowerCase()}
               onChange={(event) => setEmail(event.target.value)}
               required
@@ -69,7 +70,7 @@ export const LoginPage = () => {
           <span style={{ color: "var(--error)", margin: "0px" }}>{error}</span>
         )}
 
-        <Link to={"/login/cadastro"} style={{ textDecoration: "none" }}>
+        <Link to={"/AppCollector/cadastro"} style={{ textDecoration: "none" }}>
           <Slink value="Sign up" />
         </Link>
       </Wrapper>

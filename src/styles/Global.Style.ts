@@ -2,12 +2,13 @@ import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
 :root {
-    --primary: #494949;
-    --secondary:  #ccc;
-    --third: #aaa;
-    --on-primary: #fafafa;
+    --primary: #fafafa;
+    --secondary:  #ebebeb;
+    --third: #f63;
+    --fourth: #093;
+    --on-primary: #fff;
     --on-secondary: #000504;
-    --buttonEnter: #5cb86f;
+    --buttonEnter: #093;
     --buttonDelete: #b85c5c;
     --error: #f00;
 }
@@ -31,7 +32,7 @@ body {
     display: flex;
     justify-content: center;
     align-content: center;
-    background-color: #494949;
+    background-color: #fafafa;
     min-height: 100vh;
     overflow: auto;
     font-family: system-ui, -apple-system, BlinkMacSystemFont,

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledForm = styled.form`
-  color: var(--on-secondary);
+  color: var(--on-primary);
   display: flex;
   justify-content: center;
   align-items: center;

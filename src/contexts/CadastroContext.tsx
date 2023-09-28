@@ -5,7 +5,7 @@ import { User } from "../@types/User";
 interface IPropsCadastro {
   error: null | string;
   cadastro: (
-    email: string,
+    mat: string,
     password: string,
     confirmEmail: string,
     confirmPassword: string
@@ -30,35 +30,35 @@ export const CadastroProvider = ({ children }: CadastroProviderProps) => {
   const [error, setError] = useState<null | string>(null);
 
   const cadastro = async (
-    email: string,
-    confirmEmail: string,
+    mat: string,
+    confirmMat: string,
     password: string,
     confirmePassword: string
   ) => {
-    if (email === confirmEmail && password === confirmePassword) {
+    if (mat === confirmMat && password === confirmePassword) {
       setError(null);
       const recoveredUsers = localStorage.getItem("users_db");
 
       if (recoveredUsers) {
         const hasRecoveredUsers = JSON.parse(recoveredUsers);
         const hasUser = hasRecoveredUsers.filter(
-          (user: User) => user.email === email
+          (user: User) => user.mat === mat
         );
 
         if (hasUser.length > 0) {
-          return setError("Email já cadastrado!");
+          return setError("Matricula já cadastrado!");
         }
       }
 
       if (recoveredUsers) {
         const parsedRecoveredUsers = JSON.parse(recoveredUsers);
-        parsedRecoveredUsers.push({ email, password });
+        parsedRecoveredUsers.push({ mat, password });
         localStorage.setItem("users_db", JSON.stringify(parsedRecoveredUsers));
       } else {
-        localStorage.setItem("users_db", JSON.stringify([{ email, password }]));
+        localStorage.setItem("users_db", JSON.stringify([{ mat, password }]));
       }
       alert("Sucesso no cadastro!");
-      return navigate("/login/login");
+      return navigate("/AppCollector/login");
     } else {
       return setError("Os dados informados não conferem!");
     }

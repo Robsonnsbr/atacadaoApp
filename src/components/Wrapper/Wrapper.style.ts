@@ -14,7 +14,7 @@ export const StyledWrapper = styled.section`
 
   & h1 {
     margin: 10px;
-    color: var(--on-secondary);
+    color: var(-fourth);
     text-shadow: 1px 1px 2px #0000006f;
   }
 `;

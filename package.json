@@ -1,6 +1,6 @@
 {
-  "homepage": "https://robsonnsbr.github.io/login/",
-  "name": "collectormanager",
+  "homepage": "https://robsonnsbr.github.io/AppCollector/",
+  "name": "loginreact",
   "private": true,
   "version": "0.0.0",
   "type": "module",
