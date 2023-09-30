@@ -27,6 +27,7 @@ export const GlobalStyle = createGlobalStyle`
     box-sizing: inherit;
 }
 
+
 html,
 body {
     display: flex;
@@ -39,6 +40,17 @@ body {
         'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans',
         'Helvetica Neue', sans-serif;
 }
+
+//background
+html,
+body {
+    background: url("atacadao-background.jpg") no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+}
+
 
 body::-webkit-scrollbar {
     width: 6px;
