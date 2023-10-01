@@ -102,7 +102,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
           navigate("/AppCollector");
           return;
         } else {
-          setError("mat ou senha incorretos");
+          setError("Matrícula ou Senha incorretos");
           setTimeout(() => {
             setError(null);
           }, 5000);

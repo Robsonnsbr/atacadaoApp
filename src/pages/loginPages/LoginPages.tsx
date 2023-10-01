@@ -67,7 +67,15 @@ export const LoginPage = () => {
           </span>
         )}
         {error && !isAuthenticated && (
-          <span style={{ color: "var(--error)", margin: "0px" }}>{error}</span>
+          <span
+            style={{
+              color: "var(--error)",
+              margin: "0px",
+              textShadow: "0 0 1px rgb(0,0,0, 0.3)",
+            }}
+          >
+            {error}
+          </span>
         )}
 
         <Link to={"/AppCollector/cadastro"} style={{ textDecoration: "none" }}>
