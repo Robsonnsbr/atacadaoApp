@@ -1,21 +1,23 @@
 import { useState, useContext } from "react";
-import { AuthContext } from "../../contexts/AuthContext";
+// import { AuthContext } from "../../contexts/AuthContext";
 import { CadastroContext } from "../../contexts/CadastroContext";
 import {
   Button,
   ContainerField,
   Form,
-  Page,
+  Main,
+  NaveBar,
+  PageContent,
   Slink,
   Wrapper,
 } from "../../components";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export const CadastroPage = () => {
-  const { isAuthenticated } = useContext(AuthContext);
+  // const { isAuthenticated } = useContext(AuthContext);
   const { cadastro, error } = useContext(CadastroContext);
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [mat, setMat] = useState("");
   const [password, setPassword] = useState("");
   const [confirmEmail, setConfirmEmail] = useState("");
@@ -39,84 +41,87 @@ export const CadastroPage = () => {
       cadastro(mat, confirmEmail, password, confirmPassword);
   };
 
-  if (isAuthenticated) {
-    navigate("/");
-  }
+  // if (isAuthenticated) {
+  //   navigate("/");
+  // }
 
   return (
-    <Page>
-      <Wrapper>
-        <h1>CADASTRO DO SISTEMA</h1>
-        <Form onSubmit={(e) => handleSubmit(e)} method={"post"}>
-          <ContainerField>
-            <label htmlFor="mat">Matricula:</label>
-            <input
-              autoFocus
-              className="block"
-              autoComplete="nope"
-              type="text"
-              id="mat"
-              placeholder="matricula"
-              value={mat.toLowerCase()}
-              onChange={(event) => setMat(event.target.value)}
-              required
-            />
-          </ContainerField>
-          <ContainerField>
-            <label htmlFor="confirmarMat">Confirmar matricula:</label>
-            <input
-              className="block"
-              autoComplete="nope"
-              type="text"
-              id="confirmarMat"
-              placeholder="confirmar matricula"
-              value={confirmEmail.toLowerCase()}
-              onChange={(event) => setConfirmEmail(event.target.value)}
-              required
-            />
-          </ContainerField>
-          <ContainerField>
-            <label htmlFor="password">Senha:</label>
-            <input
-              className="block"
-              type="password"
-              name="password"
-              id="password"
-              value={confirmPassword}
-              onChange={(event) => setConfirmPassword(event.target.value)}
-              placeholder="confirmar senha"
-              required
-            />
-          </ContainerField>
-          <ContainerField>
-            <label htmlFor="confirmarPassword">Confirmar senha:</label>
-            <input
-              className="block"
-              type="password"
-              name="confirmarPassword"
-              id="confirmarPassword"
-              value={password}
-              onChange={(event) => setPassword(event.target.value)}
-              placeholder="senha"
-              required
-            />
-          </ContainerField>
+    <PageContent>
+      <NaveBar />
+      <Main>
+        <Wrapper>
+          <h1>CADASTRO DO SISTEMA</h1>
+          <Form onSubmit={(e) => handleSubmit(e)} method={"post"}>
+            <ContainerField>
+              <label htmlFor="mat">Matricula:</label>
+              <input
+                autoFocus
+                className="block"
+                autoComplete="nope"
+                type="text"
+                id="mat"
+                placeholder="matricula"
+                value={mat.toLowerCase()}
+                onChange={(event) => setMat(event.target.value)}
+                required
+              />
+            </ContainerField>
+            <ContainerField>
+              <label htmlFor="confirmarMat">Confirmar matricula:</label>
+              <input
+                className="block"
+                autoComplete="nope"
+                type="text"
+                id="confirmarMat"
+                placeholder="confirmar matricula"
+                value={confirmEmail.toLowerCase()}
+                onChange={(event) => setConfirmEmail(event.target.value)}
+                required
+              />
+            </ContainerField>
+            <ContainerField>
+              <label htmlFor="password">Senha:</label>
+              <input
+                className="block"
+                type="password"
+                name="password"
+                id="password"
+                value={confirmPassword}
+                onChange={(event) => setConfirmPassword(event.target.value)}
+                placeholder="confirmar senha"
+                required
+              />
+            </ContainerField>
+            <ContainerField>
+              <label htmlFor="confirmarPassword">Confirmar senha:</label>
+              <input
+                className="block"
+                type="password"
+                name="confirmarPassword"
+                id="confirmarPassword"
+                value={password}
+                onChange={(event) => setPassword(event.target.value)}
+                placeholder="senha"
+                required
+              />
+            </ContainerField>
 
-          <Button
-            backgroundcolor="var(--buttonEnter)"
-            type={"submit"}
-            id={"btnSubmit"}
-            name={"btnSubmit"}
-            value={"Cadastrar"}
-          />
-        </Form>
+            <Button
+              backgroundcolor="var(--buttonEnter)"
+              type={"submit"}
+              id={"btnSubmit"}
+              name={"btnSubmit"}
+              value={"Cadastrar"}
+            />
+          </Form>
 
-        {!error && <span style={{ color: "transparent" }}>#gambiarra#</span>}
-        {error && <span style={{ color: "var(--error)" }}>{error}</span>}
-        <Link to={"/AppCollector/Login"} style={{ textDecoration: "none" }}>
-          <Slink value={"log in"} />
-        </Link>
-      </Wrapper>
-    </Page>
+          {!error && <span style={{ color: "transparent" }}>#gambiarra#</span>}
+          {error && <span style={{ color: "var(--error)" }}>{error}</span>}
+          <Link to={"/AppCollector/Login"} style={{ textDecoration: "none" }}>
+            <Slink value={"log in"} />
+          </Link>
+        </Wrapper>
+      </Main>
+    </PageContent>
   );
 };

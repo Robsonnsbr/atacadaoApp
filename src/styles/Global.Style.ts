@@ -36,6 +36,7 @@ body {
     display: flex;
     justify-content: center;
     align-content: center;
+
     background-color: #fafafa;
     min-height: 100vh;
     overflow: auto;

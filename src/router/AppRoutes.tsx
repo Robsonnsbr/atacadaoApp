@@ -6,9 +6,10 @@ import {
 } from "react-router-dom";
 import { useContext } from "react";
 
-import { CadastroPage, HomePage, LoginPage } from "../pages";
+import { CadastroPage, HomePage, LoginPages } from "../pages";
 import { AuthProvider, AuthContext } from "../contexts/AuthContext";
 import { CadastroProvider } from "../contexts/CadastroContext";
+// import { NaveBar } from "../components";
 interface PrivateProps {
   children: React.ReactElement;
 }
@@ -34,12 +35,11 @@ export const AppRoutes = () => {
       <AuthProvider>
         <CadastroProvider>
           <Routes>
-            <Route path="AppCollector/login" element={<LoginPage />} />
+            <Route path="AppCollector/login" element={<LoginPages />} />
 
             <Route path="AppCollector/cadastro" element={<CadastroPage />} />
-
             <Route
-              path="AppCollector/*"
+              path="AppCollector/"
               element={
                 <Private>
                   <HomePage />

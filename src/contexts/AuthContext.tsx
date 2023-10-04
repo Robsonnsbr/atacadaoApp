@@ -63,7 +63,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         );
         if (hasUser) {
           setToken(recoveredToken);
-          navigate("/AppCollector");
+          console.log("entrei aqui");
+          // navigate("/AppCollector");
         }
       }
     })();

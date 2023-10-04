@@ -5,14 +5,14 @@ import {
   Button,
   ContainerField,
   Form,
-  Page,
+  Main,
   Slink,
   Wrapper,
 } from "../../components";
 import { Link } from "react-router-dom";
 // import { createSession } from "../../services/api";
 
-export const LoginPage = () => {
+export const LoginPages = () => {
   const { isAuthenticated, login, error } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -23,7 +23,7 @@ export const LoginPage = () => {
   };
 
   return (
-    <Page>
+    <Main>
       <Wrapper>
         <h1>COLLECTOR SYSTEM LOGIN</h1>
         <Form onSubmit={(e) => handleSubmit(e)} method={"post"}>
@@ -82,6 +82,6 @@ export const LoginPage = () => {
           <Slink value="Sign up" />
         </Link>
       </Wrapper>
-    </Page>
+    </Main>
   );
 };
