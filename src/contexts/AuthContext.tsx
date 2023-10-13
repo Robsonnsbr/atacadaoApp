@@ -16,6 +16,7 @@ interface IPropsAuth {
   login: (mat: string, password: string) => void;
   logout: () => void;
   deleteUser: () => void;
+  deleteUserMat: (mat?: string) => void;
   error: null | string;
 }
 
@@ -35,6 +36,9 @@ const initialProps: IPropsAuth = {
     throw new Error("Function not implemented.");
   },
   deleteUser: () => {
+    throw new Error("Function not implemented.");
+  },
+  deleteUserMat: () => {
     throw new Error("Function not implemented.");
   },
   error: null,
@@ -147,8 +151,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   };
 
   const deleteUser = () => {
-    setToken(null);
-
     const items = getItems();
     if (items) {
       const { token, users } = items;
@@ -160,14 +162,31 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         localStorage.removeItem("token");
         localStorage.setItem("users_db", JSON.stringify(users));
         alert(`Usuário ${currentUser.mat} Excluído com sucesso!`);
+        setToken(null);
       } else {
         setError("Index not found");
       }
     } else {
-      setError("Token/Users not found");
+      return setError("Token/Users not found");
     }
 
     navigate("/AppCollector/*");
+  };
+  const deleteUserMat = (mat?: string) => {
+    const recoveredUser = localStorage.getItem("users_db");
+    if (mat && recoveredUser) {
+      const users = JSON.parse(recoveredUser);
+      // console.log(mat, users, "entrei aqui");
+      const index = users.findIndex((user: User) => user.mat === mat);
+      console.log(index);
+
+      if (index !== -1) {
+        const currentUser: User = users[index];
+        users.splice(index, 1);
+        localStorage.setItem("users_db", JSON.stringify(users));
+        alert(`Usuário ${currentUser.mat} Excluído com sucesso!`);
+      }
+    }
   };
 
   return (
@@ -178,6 +197,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         login,
         logout,
         deleteUser,
+        deleteUserMat,
         user,
         error,
       }}

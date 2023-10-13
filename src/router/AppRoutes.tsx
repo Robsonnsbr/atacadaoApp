@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 import { useContext } from "react";
 
-import { CadastroPage, HomePage, LoginPages } from "../pages";
+import { LoginPages, HomePage, CadastroUser, CadastroEmployee, CadastroCollector} from "../pages";
 import { AuthProvider, AuthContext } from "../contexts/AuthContext";
 import { CadastroProvider } from "../contexts/CadastroContext";
 // import { NaveBar } from "../components";
@@ -37,7 +37,9 @@ export const AppRoutes = () => {
           <Routes>
             <Route path="AppCollector/login" element={<LoginPages />} />
 
-            <Route path="AppCollector/cadastro" element={<CadastroPage />} />
+            <Route path="AppCollector/Users" element={<CadastroUser />} />
+            <Route path="AppCollector/Employees" element={<CadastroEmployee />} />
+            <Route path="AppCollector/Collectors" element={<CadastroCollector />} />
             <Route
               path="AppCollector/"
               element={

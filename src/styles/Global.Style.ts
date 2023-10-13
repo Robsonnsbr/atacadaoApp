@@ -24,6 +24,23 @@ export const GlobalStyle = createGlobalStyle`
     list-style: none;
     border: 0;
     box-sizing: border-box;
+
+h1, h2 {
+    margin: 5px;
+    color: var(--on-secondary);
+    text-align: center;
+
+}
+
+h1 {
+    font-size: 20px;
+    text-shadow: 1px 1px 2px #0000006f;
+}
+h2 {
+    font-size: 18px;
+    text-shadow: 0.5px 0.5px 1px #0000004f;
+}
+
 }
 *::before,
 ::after {
@@ -33,11 +50,11 @@ export const GlobalStyle = createGlobalStyle`
 
 html,
 body {
+    padding-top: 35px !important;
     display: flex;
     justify-content: center;
     align-content: center;
-
-    background-color: #fafafa;
+    background-color: var(--primary);
     min-height: 100vh;
     overflow: auto;
     font-family: system-ui, -apple-system, BlinkMacSystemFont,
@@ -56,7 +73,7 @@ body {
 }
 
 
-body::-webkit-scrollbar {
+/* body::-webkit-scrollbar {
     width: 6px;
-    background-color: transparent; }
+    background-color: transparent; } */
 `;

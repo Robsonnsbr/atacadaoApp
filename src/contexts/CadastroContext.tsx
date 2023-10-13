@@ -1,10 +1,11 @@
 import { createContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { User } from "../@types/User";
 
 interface IPropsCadastro {
   error: null | string;
   cadastro: (
+    name: string,
     mat: string,
     password: string,
     confirmEmail: string,
@@ -26,15 +27,17 @@ const initialProps: IPropsCadastro = {
 export const CadastroContext = createContext<IPropsCadastro>(initialProps);
 
 export const CadastroProvider = ({ children }: CadastroProviderProps) => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [error, setError] = useState<null | string>(null);
 
   const cadastro = async (
+    name: string,
     mat: string,
     confirmMat: string,
     password: string,
     confirmePassword: string
   ) => {
+    console.log("entrei no cadastro");
     if (mat === confirmMat && password === confirmePassword) {
       setError(null);
       const recoveredUsers = localStorage.getItem("users_db");
@@ -52,13 +55,16 @@ export const CadastroProvider = ({ children }: CadastroProviderProps) => {
 
       if (recoveredUsers) {
         const parsedRecoveredUsers = JSON.parse(recoveredUsers);
-        parsedRecoveredUsers.push({ mat, password });
+        parsedRecoveredUsers.push({ name, mat, password });
         localStorage.setItem("users_db", JSON.stringify(parsedRecoveredUsers));
       } else {
-        localStorage.setItem("users_db", JSON.stringify([{ mat, password }]));
+        localStorage.setItem(
+          "users_db",
+          JSON.stringify([{ name, mat, password }])
+        );
       }
       alert("Sucesso no cadastro!");
-      return navigate("/AppCollector/login");
+      // return navigate("/AppCollector/login");
     } else {
       return setError("Os dados informados não conferem!");
     }

@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
-// import { AuthContext } from "../../contexts/AuthContext";
-import { CadastroContext } from "../../contexts/CadastroContext";
+// import { AuthContext } from "../../../contexts/AuthContext";
+import { CadastroContext } from "../../../contexts/CadastroContext";
 import {
   Button,
   ContainerField,
@@ -10,10 +10,10 @@ import {
   PageContent,
   Slink,
   Wrapper,
-} from "../../components";
+} from "../../../components";
 import { Link } from "react-router-dom";
 
-export const CadastroPage = () => {
+export const CadastroEmployee = () => {
   // const { isAuthenticated } = useContext(AuthContext);
   const { cadastro, error } = useContext(CadastroContext);
 
@@ -50,7 +50,7 @@ export const CadastroPage = () => {
       <NaveBar />
       <Main>
         <Wrapper>
-          <h1>CADASTRO DO SISTEMA</h1>
+          <h1>CADASTRO DE FUNCIONÁRIOS</h1>
           <Form onSubmit={(e) => handleSubmit(e)} method={"post"}>
             <ContainerField>
               <label htmlFor="mat">Matricula:</label>

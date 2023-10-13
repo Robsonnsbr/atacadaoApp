@@ -13,8 +13,11 @@ export const StyledWrapper = styled.section`
   box-shadow: 0 0 2px 1px #00000086;
 
   & h1 {
-    margin: 10px;
     color: var(-fourth);
-    text-shadow: 1px 1px 2px #0000006f;
+  }
+
+  & table {
+    width: 100%;
+    padding: 5px;
   }
 `;

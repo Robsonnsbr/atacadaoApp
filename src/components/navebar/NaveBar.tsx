@@ -15,10 +15,12 @@ export const NaveBar = ({ children }: MainProps) => {
 
   return (
     <S.StyledNaveBar>
-      <div className="navbar">
+      <div className="navbar" >
         {children}
         <a href="/AppCollector">Home</a>
-        <a href="/AppCollector/cadastro">Cadastrar</a>
+        <a href="/AppCollector/Collectors">Coletores</a>
+        <a href="/AppCollector/Employees">Funcionários</a>
+        <a href="/AppCollector/Users">Usuários</a>
         <button
           onClick={handleLogout}
           style={{
