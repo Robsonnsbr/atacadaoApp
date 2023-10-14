@@ -8,10 +8,10 @@ export const StyledPage = styled.div`
   margin: 0px;
   padding: 0 2rem;
   /* min-height: 100vh; */
-  overflow:hidden;
-
+  /* overflow:hidden; */
+/* 
   div::-webkit-scrollbar {
     overflow: auto;
     width: 6px;
-    background-color: transparent; } 
+    background-color: transparent; }  */
 `;

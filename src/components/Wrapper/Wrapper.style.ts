@@ -5,7 +5,7 @@ export const StyledWrapper = styled.section`
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  /* flex-direction: column; */
   background-color: var(--secondary);
   margin: 20px;
   min-height: 400px;
@@ -16,8 +16,9 @@ export const StyledWrapper = styled.section`
     color: var(-fourth);
   }
 
-  & table {
-    width: 100%;
-    padding: 5px;
+  & p {
+    text-align: center;
+    justify-content: center;
+    color: red;
   }
 `;

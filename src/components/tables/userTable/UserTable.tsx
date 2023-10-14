@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { User } from "../../../@types/User";
-import { UserTableStyle } from "./UserTable.style";
+import { UserTableStyle, UserTableStyleContainer } from "./UserTable.style";
 import { AuthContext } from "../../../contexts/AuthContext";
 import { Button } from "../../inputs/button/Button";
 
@@ -47,36 +47,38 @@ export const TabelaFuncionarios: React.FC<TabelaFuncionariosProps> = ({
   };
 
   return (
-    <>
-      <h2>Tabela de Funcionários</h2>
-      <UserTableStyle>
-        <thead>
-          <tr>
-            <th>Nome</th>
-            <th>Matrícula</th>
-            <th>Password</th>
-            <th>Ações</th>
-          </tr>
-        </thead>
-        <tbody>
-          {usuarios?.map((usuario: User, index: number) => (
-            <tr key={index}>
-              <td>{usuario.name}</td>
-              <td>{usuario.mat}</td>
-              <td>{usuario.password}</td>
-              <td>
-                <Button
-                  backgroundcolor="var(--buttonDelete)"
-                  type="button"
-                  id="btnDeleteUser"
-                  value="Excluir"
-                  onClick={() => handleExcluirUsuario(usuario.mat)}
-                ></Button>
-              </td>
+    <div>
+      <h2>Usuários</h2>
+      <UserTableStyleContainer>
+        <UserTableStyle>
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Matrícula</th>
+              <th>Password</th>
+              <th>Ações</th>
             </tr>
-          ))}
-        </tbody>
-      </UserTableStyle>
-    </>
+          </thead>
+          <tbody>
+            {usuarios?.map((usuario: User, index: number) => (
+              <tr key={index}>
+                <td>{usuario.name}</td>
+                <td>{usuario.mat}</td>
+                <td>{usuario.password}</td>
+                <td>
+                  <Button
+                    backgroundcolor="var(--buttonDelete)"
+                    type="button"
+                    id="btnDeleteUser"
+                    value="Excluir"
+                    onClick={() => handleExcluirUsuario(usuario.mat)}
+                  ></Button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </UserTableStyle>
+      </UserTableStyleContainer>
+    </div>
   );
 };

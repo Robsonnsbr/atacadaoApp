@@ -49,7 +49,7 @@ export const CadastroProvider = ({ children }: CadastroProviderProps) => {
         );
 
         if (hasUser.length > 0) {
-          return setError("Matricula já cadastrado!");
+          return setError("Matricula já cadastrada!");
         }
       }
 

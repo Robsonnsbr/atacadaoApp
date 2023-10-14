@@ -1,32 +1,45 @@
 import styled from "styled-components";
 
+export const UserTableStyleContainer = styled.div`
+    max-height: 424px;
+    overflow-y:scroll;
+    position: relative;
+    margin: 5px;
+    margin: 20px;
+    margin-right: 40px;
+    margin-bottom: 45px;
+
+
+  & table {
+    min-width: 443px;
+    margin: 5px;
+    background-color: var( --secondary);
+    border-collapse: separate;
+    border-spacing: 5px; 
+    border-radius: 10px;
+    box-shadow: 0 0 2px 1px #00000086;
+
+  }
+
+`
+
 export const UserTableStyle = styled.table`
 
-
-/* Estilização da tabela de dados */
-table {  
-  border-radius: 6px;
-  background-color: var( --secondary);
-  width: 100%;
-  border-collapse: collapse;
-  /* align-items: center; */
-  /* justify-content: center; */
-  /* width: 100vw; */
-  /* margin: 30px; */
-}
 
 /* Estilo das células do cabeçalho da tabela */
 th {
   background-color: var(--primary);
   font-weight: bold;
   border: 1px solid #ddd;
-  padding: 10px;
+  padding: 5px;
+  /* border-radius: 10px; */
 }
 
 /* Estilo das células de dados da tabela */
 td {
   border: 1px solid #ddd;
-  padding: 10px;
+  padding: 5px;
+  /* border-radius: 10px; */
 }
 
 /* Estilização das linhas alternadas (para facilitar a leitura) */
