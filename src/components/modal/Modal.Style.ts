@@ -7,7 +7,7 @@ export const StyledContainerModal = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.6);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -30,5 +30,8 @@ export const StyledContainerModal = styled.div`
     gap:20px
   }
   
+  p {
+    word-spacing: 2px;
+  }
 
   `

@@ -16,7 +16,7 @@ export const TabelaFuncionarios: React.FC<TabelaFuncionariosProps> = ({
   const [usuarios, setUsuarios] = useState<User[] | undefined>([]);
   const [atualizarInterno, setAtualizarInterno] = useState(atualizar);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [matToDelete, setMatToDelete] = useState<string | undefined>();
+  const [userToDelete, setUserToDelete] = useState<User | undefined>();
 
   useEffect(() => {
     const recuperarUsers = () => {
@@ -33,8 +33,8 @@ export const TabelaFuncionarios: React.FC<TabelaFuncionariosProps> = ({
     setAtualizarInterno(atualizar);
   }, [atualizar]);
 
-  const abrirModal = (mat: string | undefined) => {
-    setMatToDelete(mat);
+  const abrirModal = (usuario: User | undefined) => {
+    setUserToDelete(usuario);
     setIsModalOpen(true);
   };
 
@@ -42,30 +42,37 @@ export const TabelaFuncionarios: React.FC<TabelaFuncionariosProps> = ({
     setIsModalOpen(false);
   };
 
-  const handleExcluirUsuario = (mat: string | undefined) => {
-    abrirModal(mat);
-    if (!mat) {
-      return alert("Matrícula incorreta ou não informada");
+  const handleExcluirUsuario = (usuario: User | undefined) => {
+    if (usuario && usuario.mat) {
+      return abrirModal(usuario);
+    }
+    alert("Matrícula incorreta ou não informada");
+  };
+
+  const handleExcluirUsuarioTela = (usuario: User | undefined) => {
+    if (usuario && usuario.mat) {
+      setUsuarios((usuarios) =>
+        usuarios?.filter((usuario) => usuario.mat !== usuario.mat)
+      );
     }
   };
 
-  const handleExcluirUsuarioTela = (mat: string | undefined) => {
-    if (mat) {
-      setUsuarios((users) => users?.filter((user) => user.mat !== mat));
-    }
+  const warningModal = () => {
+    //TODO: chamar modal com outra msg de sucesso
   };
 
   return (
     <div>
       <Modal
         isOpen={isModalOpen}
-        message={`Tem certeza de que deseja excluir este o usuário ${matToDelete}?`}
+        message={`Tem certeza de que deseja excluir o usuário: ${userToDelete?.name}. Matrícula: ${userToDelete?.mat}?`}
         onConfirm={() => {
-          if (matToDelete) {
-            deleteUserMat(matToDelete);
-            handleExcluirUsuarioTela(matToDelete);
+          if (userToDelete?.mat) {
+            deleteUserMat(userToDelete.mat);
+            handleExcluirUsuarioTela(userToDelete);
           }
           fecharModal();
+          warningModal();
         }}
         onCancel={fecharModal}
       />
@@ -92,7 +99,7 @@ export const TabelaFuncionarios: React.FC<TabelaFuncionariosProps> = ({
                     type="button"
                     id="btnDeleteUser"
                     value="Excluir"
-                    onClick={() => handleExcluirUsuario(usuario.mat)}
+                    onClick={() => handleExcluirUsuario(usuario)}
                   ></Button>
                 </td>
               </tr>

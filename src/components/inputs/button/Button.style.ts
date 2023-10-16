@@ -26,7 +26,7 @@ export const StyledButton = styled.button<StyledProps>`
   color: var(--on-primary);
   box-shadow: 0px 0px 1px 1px #0000006f;
   transition: box-shadow 50ms, font-size 50ms color 50ms;
-  min-width: 80px;
+  min-width: 81px;
   max-height: 30px;
   align-items: center;
   justify-content: center;

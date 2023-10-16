@@ -28,6 +28,7 @@ export const UserTableStyle = styled.table`
 
 /* Estilo das células do cabeçalho da tabela */
 th {
+  /* position: fixed; */ //TODO: Colocar uma posição fixa para o header da tabela.
   background-color: var(--primary);
   font-weight: bold;
   border: 1px solid #ddd;
