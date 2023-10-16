@@ -82,7 +82,7 @@ export const CadastroUser = () => {
           warningElement?.classList.add("warning-null");
           warningElement?.classList.remove("error-false");
           warningElement?.classList.remove("error-true");
-        }, 3000);
+        }, 4000);
       }
       return;
     };
