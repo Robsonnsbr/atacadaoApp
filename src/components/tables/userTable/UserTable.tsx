@@ -52,7 +52,6 @@ export const TabelaFuncionarios: React.FC<TabelaFuncionariosProps> = ({
   const handleExcluirUsuarioTela = (mat: string | undefined) => {
     if (mat) {
       setUsuarios((users) => users?.filter((user) => user.mat !== mat));
-      console.log("Exclusão realizada");
     }
   };
 

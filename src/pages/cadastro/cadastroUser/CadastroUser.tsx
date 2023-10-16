@@ -89,8 +89,6 @@ export const CadastroUser = () => {
     handleWarning();
   }, [warningElement, error]);
 
-  // console.log(warningElement);
-
   const [atualizarFilho, setAtualizarFilho] = useState(false);
 
   const atualizarUseEffectFilho = () => {

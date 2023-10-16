@@ -12,7 +12,6 @@ export const createSession = async (email: string, password: string) => {
       email,
       password,
     });
-    console.log(responsePost.data);
     return responsePost.data;
   } catch (error: unknown) {
     throw new Error(`Erro ao criar sessão:\n ${error}`);

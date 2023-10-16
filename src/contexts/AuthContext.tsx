@@ -67,7 +67,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         );
         if (hasUser) {
           setToken(recoveredToken);
-          console.log("entrei aqui");
           // navigate("/AppCollector");
         }
       }
@@ -177,7 +176,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     if (mat && recoveredUser) {
       const users = JSON.parse(recoveredUser);
       const index = users.findIndex((user: User) => user.mat === mat);
-      console.log(index);
 
       if (index !== -1) {
         const currentUser: User = users[index];
