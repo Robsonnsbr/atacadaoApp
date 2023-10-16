@@ -38,7 +38,7 @@ export const CadastroEmployee = () => {
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault(),
-      cadastro(mat, confirmEmail, password, confirmPassword);
+      cadastro(name, mat, confirmMat, password, confirmPassword);
   };
 
   // if (isAuthenticated) {
@@ -107,7 +107,7 @@ export const CadastroEmployee = () => {
             </ContainerField>
 
             <Button
-              backgroundcolor="var(--buttonEnter)"
+              backgroundcolor="var(--successfully)"
               type={"submit"}
               id={"btnSubmit"}
               name={"btnSubmit"}

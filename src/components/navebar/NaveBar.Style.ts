@@ -16,13 +16,31 @@ export const StyledNaveBar = styled.nav`
   gap: 20px; /* Espaçamento horizontal entre os links */
   box-shadow: 0 0 2px 1px #00000086;
 
+  & button {
 
+    font: inherit;
+  }
   & a {
     text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    text-shadow: var(--text-shadow-style);
     color: var(--on-secondary);
     margin-left: 40px;
   }
   & a:hover {
     color: var(--third);
   }
+
+  & div .logo {
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 5px;
+  }
+
+  
 `;

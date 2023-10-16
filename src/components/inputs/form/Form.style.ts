@@ -10,15 +10,32 @@ export const StyledForm = styled.form`
   min-width: 350px;
 
   & label {
+    color:  var(--on-secondary);
     text-shadow: var(--text-shadow-style);
   }
 
   & input {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
     min-width: 300px;
+    outline: none;
   }
+
+  .inputName {
+  margin-bottom: 20px;
+  }
+  .inputMat {
+    margin-bottom: 20px;
+  }
+  .inputPass {
+    margin-bottom: 20px;
+  }
+
 `;
 
 export const StyledContainerField = styled.div`
+
   border-radius: 6px;
   font-size: 20px;
   font-weight: 600;
@@ -29,16 +46,21 @@ export const StyledContainerField = styled.div`
   padding: 5px;
   box-shadow: 0 0 2px 1px #00000086;
 
+
+
   & input {
-    background-color: var(--secondary);
-    border-radius: 3px;
+    
+    background-color: transparent;
     color: var(--on-secondary);
     font-size: 16px;
     padding: 5px;
-    text-align: center;
-    box-shadow: inset 0 0 1px 1px #00000086;
+    text-align: left;
+    border-radius: 3px 3px 0px 0px;
+    /* box-shadow: inset 0 0 1px 1px #00000086; */
+    border-bottom: 1px solid var(--on-secondary);
     outline: none;
   }
+
   & input:focus {
     background-color: var(--on-primary);
   }

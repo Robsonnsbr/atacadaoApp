@@ -2,7 +2,7 @@ import * as S from "./Button.style";
 
 export interface ButtonProps {
   type?: "button" | "submit" | "reset";
-  id: string;
+  id?: string;
   name?: string;
   value?: string;
   backgroundcolor?: string;

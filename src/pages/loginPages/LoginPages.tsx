@@ -56,7 +56,7 @@ export const LoginPages = () => {
               />
             </ContainerField>
             <Button
-              backgroundcolor="var(--buttonEnter)"
+              backgroundcolor="var(--successfully)"
               type={"submit"}
               id={"btnSubmit"}
               name={"btnSubmit"}

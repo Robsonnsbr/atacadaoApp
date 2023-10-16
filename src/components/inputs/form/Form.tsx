@@ -4,11 +4,12 @@ import * as S from "./Form.style";
 interface FormProps {
   onSubmit?: (event: React.FormEvent<HTMLFormElement>) => void;
   method?: string;
-  children: ReactElement[];
+  children: ReactElement | ReactElement[];
 }
 
 interface ContainerFieldProps {
-  children: ReactElement[];
+  children: ReactElement | ReactElement[];
+  className?: string;
 }
 
 export const Form = ({ onSubmit, method, children }: FormProps) => {
@@ -19,6 +20,13 @@ export const Form = ({ onSubmit, method, children }: FormProps) => {
   );
 };
 
-export const ContainerField = ({ children }: ContainerFieldProps) => {
-  return <S.StyledContainerField>{children}</S.StyledContainerField>;
+export const ContainerField = ({
+  className,
+  children,
+}: ContainerFieldProps) => {
+  return (
+    <S.StyledContainerField className={className}>
+      {children}
+    </S.StyledContainerField>
+  );
 };

@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const UserTableStyleContainer = styled.div`
     max-height: 424px;
-    overflow-y:scroll;
+    overflow-y: auto;
     position: relative;
     margin: 5px;
     margin: 20px;

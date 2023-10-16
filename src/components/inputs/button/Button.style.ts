@@ -11,12 +11,13 @@ export const StyledContainerButton = styled.div<StyledProps>`
   align-items: center;
   background-color: var(--third);
   margin: 5px;
-  min-width: 101px;
-  max-width: 101px;
+  width: 101px;
   height: 40px;
-`;
+  
+  `;
 
 export const StyledButton = styled.button<StyledProps>`
+  cursor: pointer;
   border-radius: 3px;
   font-size: 16px;
   padding: 5px;

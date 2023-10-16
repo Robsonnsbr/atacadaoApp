@@ -2,13 +2,18 @@ import { createContext, useState } from "react";
 // import { useNavigate } from "react-router-dom";
 import { User } from "../@types/User";
 
+interface CustomError {
+  hasError: boolean;
+  msg: string;
+}
+
 interface IPropsCadastro {
-  error: null | string;
+  error: CustomError | null;
   cadastro: (
     name: string,
     mat: string,
+    confirmMat: string,
     password: string,
-    confirmEmail: string,
     confirmPassword: string
   ) => void;
 }
@@ -18,7 +23,10 @@ interface CadastroProviderProps {
 }
 
 const initialProps: IPropsCadastro = {
-  error: null,
+  error: {
+    hasError: false,
+    msg: "",
+  },
   cadastro: () => {
     throw new Error("Function not implemented.");
   },
@@ -28,7 +36,7 @@ export const CadastroContext = createContext<IPropsCadastro>(initialProps);
 
 export const CadastroProvider = ({ children }: CadastroProviderProps) => {
   // const navigate = useNavigate();
-  const [error, setError] = useState<null | string>(null);
+  const [error, setError] = useState<CustomError | null>(null);
 
   const cadastro = async (
     name: string,
@@ -49,7 +57,10 @@ export const CadastroProvider = ({ children }: CadastroProviderProps) => {
         );
 
         if (hasUser.length > 0) {
-          return setError("Matricula já cadastrada!");
+          return setError({
+            hasError: true,
+            msg: "Ops, parece que a matrícula já está cadastrada.",
+          });
         }
       }
 
@@ -63,10 +74,16 @@ export const CadastroProvider = ({ children }: CadastroProviderProps) => {
           JSON.stringify([{ name, mat, password }])
         );
       }
-      alert("Sucesso no cadastro!");
+      setError({
+        hasError: false,
+        msg: "Seu cadastro foi concluído com sucesso.",
+      });
       // return navigate("/AppCollector/login");
     } else {
-      return setError("Os dados informados não conferem!");
+      return setError({
+        hasError: true,
+        msg: "Os dados inseridos não estão corretos. Verifique novamente.",
+      });
     }
   };
 

@@ -7,13 +7,12 @@ export const GlobalStyle = createGlobalStyle`
     --secondary:  #ebebeb;
     --third: #f63;
     --third-transparent: rgb(255,102,51, 0.3);
-    --fourth: #009933;
     --on-primary: #fff;
     --on-secondary: #000;
-    --buttonEnter: #093;
     --buttonDelete: #b85c5c;
+    --successfully: #093;
     --error: #f00;
-    --text-shadow-style: 0px 0px 2px  rgb(0,0,0, 0.8);
+    --text-shadow-style: 0px 0px 1px  rgb(0,0,0, 0.2);
 }
 
 * {
@@ -30,6 +29,9 @@ h1, h2 {
     color: var(--on-secondary);
     text-align: center;
 
+}
+p {
+    font-size: 14px;
 }
 
 h1 {
