@@ -45,7 +45,6 @@ export const CadastroProvider = ({ children }: CadastroProviderProps) => {
     password: string,
     confirmePassword: string
   ) => {
-    console.log("entrei no cadastro");
     if (mat === confirmMat && password === confirmePassword) {
       setError(null);
       const recoveredUsers = localStorage.getItem("users_db");

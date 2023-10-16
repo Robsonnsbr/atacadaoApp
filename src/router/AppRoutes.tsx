@@ -6,7 +6,13 @@ import {
 } from "react-router-dom";
 import { useContext } from "react";
 
-import { LoginPages, HomePage, CadastroUser, CadastroEmployee, CadastroCollector} from "../pages";
+import {
+  LoginPages,
+  HomePage,
+  CadastroUser,
+  CadastroEmployee,
+  CadastroCollector,
+} from "../pages";
 import { AuthProvider, AuthContext } from "../contexts/AuthContext";
 import { CadastroProvider } from "../contexts/CadastroContext";
 // import { NaveBar } from "../components";
@@ -19,7 +25,6 @@ export const AppRoutes = () => {
     const { isAuthenticated } = useContext(AuthContext);
 
     // if (loading) {
-    //   console.log("Entrei aqui");
     //   //TODO: corrigir loading na pasta AuthContext..
     //   return <div>Em Carregamento...</div>;
     // }
@@ -38,8 +43,14 @@ export const AppRoutes = () => {
             <Route path="AppCollector/login" element={<LoginPages />} />
 
             <Route path="AppCollector/Users" element={<CadastroUser />} />
-            <Route path="AppCollector/Employees" element={<CadastroEmployee />} />
-            <Route path="AppCollector/Collectors" element={<CadastroCollector />} />
+            <Route
+              path="AppCollector/Employees"
+              element={<CadastroEmployee />}
+            />
+            <Route
+              path="AppCollector/Collectors"
+              element={<CadastroCollector />}
+            />
             <Route
               path="AppCollector/"
               element={

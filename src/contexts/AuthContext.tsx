@@ -176,7 +176,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     const recoveredUser = localStorage.getItem("users_db");
     if (mat && recoveredUser) {
       const users = JSON.parse(recoveredUser);
-      // console.log(mat, users, "entrei aqui");
       const index = users.findIndex((user: User) => user.mat === mat);
       console.log(index);
 

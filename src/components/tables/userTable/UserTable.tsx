@@ -24,7 +24,6 @@ export const TabelaFuncionarios: React.FC<TabelaFuncionariosProps> = ({
       if (recoveredUsers) {
         const hasRecoveredUsers = JSON.parse(recoveredUsers);
         setUsuarios(hasRecoveredUsers.reverse());
-        console.log("useEffect executado");
       }
     };
     recuperarUsers();
