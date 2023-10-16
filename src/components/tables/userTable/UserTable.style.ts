@@ -21,6 +21,13 @@ export const UserTableStyleContainer = styled.div`
 
   }
 
+  & p {
+    color: var(--error);
+    margin: 0;
+    margin-top: 20px;
+    /* padding: 10px; */
+  }
+
 `
 
 export const UserTableStyle = styled.table`

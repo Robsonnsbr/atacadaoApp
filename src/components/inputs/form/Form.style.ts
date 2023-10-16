@@ -12,6 +12,8 @@ export const StyledForm = styled.form`
   & label {
     color:  var(--on-secondary);
     text-shadow: var(--text-shadow-style);
+    font-size: 12px;
+
   }
 
   & input {
@@ -62,6 +64,6 @@ export const StyledContainerField = styled.div`
   }
 
   & input:focus {
-    background-color: var(--on-primary);
+    background-color: var(--secondary);
   }
 `;

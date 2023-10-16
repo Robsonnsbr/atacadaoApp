@@ -156,11 +156,11 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       const index = users.findIndex((user: User) => user.mat === token.mat);
 
       if (index !== -1) {
-        const currentUser: User = users[index];
+        // const currentUser: User = users[index];
         users.splice(index, 1);
         localStorage.removeItem("token");
         localStorage.setItem("users_db", JSON.stringify(users));
-        alert(`Usuário ${currentUser.mat} Excluído com sucesso!`);
+        // alert(`Usuário ${currentUser.mat} Excluído com sucesso!`);
         setToken(null);
       } else {
         setError("Index not found");
@@ -178,10 +178,10 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       const index = users.findIndex((user: User) => user.mat === mat);
 
       if (index !== -1) {
-        const currentUser: User = users[index];
+        // const currentUser: User = users[index];
         users.splice(index, 1);
         localStorage.setItem("users_db", JSON.stringify(users));
-        alert(`Usuário ${currentUser.mat} Excluído com sucesso!`);
+        // alert(`Usuário ${currentUser.mat} Excluído com sucesso!`);
       }
     }
   };

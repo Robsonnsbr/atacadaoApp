@@ -16,7 +16,7 @@ export const GlobalStyle = createGlobalStyle`
 }
 
 * {
-
+    letter-spacing: 1px;
     padding: 0;
     margin: 0;
     vertical-align: baseline;

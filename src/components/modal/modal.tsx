@@ -4,13 +4,15 @@ import { Button } from "..";
 
 interface ModalProps {
   isOpen: boolean;
-  message: string;
+  isButtonOff: boolean;
+  message: string | null;
   onConfirm: () => void;
   onCancel: () => void;
 }
 
 export const Modal: React.FC<ModalProps> = ({
   isOpen,
+  isButtonOff,
   message,
   onConfirm,
   onCancel,
@@ -24,18 +26,20 @@ export const Modal: React.FC<ModalProps> = ({
       <div className="modal">
         <div className="modal-content">
           <p>{message}</p>
-          <div className="buttons">
-            <Button
-              backgroundcolor="var(--successfully)"
-              value="Confirmar"
-              onClick={onConfirm}
-            ></Button>
-            <Button
-              backgroundcolor="var(--buttonDelete)"
-              value="Cancelar"
-              onClick={onCancel}
-            ></Button>
-          </div>
+          {!isButtonOff && (
+            <div className="buttons">
+              <Button
+                backgroundcolor="var(--successfully)"
+                value="Confirmar"
+                onClick={onConfirm}
+              ></Button>
+              <Button
+                backgroundcolor="var(--buttonDelete)"
+                value="Cancelar"
+                onClick={onCancel}
+              ></Button>
+            </div>
+          )}
         </div>
       </div>
     </StyledContainerModal>

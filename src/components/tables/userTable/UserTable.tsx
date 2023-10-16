@@ -17,6 +17,8 @@ export const TabelaFuncionarios: React.FC<TabelaFuncionariosProps> = ({
   const [atualizarInterno, setAtualizarInterno] = useState(atualizar);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [userToDelete, setUserToDelete] = useState<User | undefined>();
+  const [msgModal, setMsgModal] = useState<string | null>(null);
+  const [isButtonOff, setIsButtonOff] = useState(false);
 
   useEffect(() => {
     const recuperarUsers = () => {
@@ -34,7 +36,11 @@ export const TabelaFuncionarios: React.FC<TabelaFuncionariosProps> = ({
   }, [atualizar]);
 
   const abrirModal = (usuario: User | undefined) => {
-    setUserToDelete(usuario);
+    if (!isButtonOff) {
+      setUserToDelete(usuario);
+      setIsModalOpen(true);
+      return;
+    }
     setIsModalOpen(true);
   };
 
@@ -43,7 +49,11 @@ export const TabelaFuncionarios: React.FC<TabelaFuncionariosProps> = ({
   };
 
   const handleExcluirUsuario = (usuario: User | undefined) => {
+    setIsButtonOff(false);
     if (usuario && usuario.mat) {
+      setMsgModal(
+        `Tem certeza de que deseja excluir o usuário: ${usuario?.name} Matrícula: ${usuario?.mat}?`
+      );
       return abrirModal(usuario);
     }
     alert("Matrícula incorreta ou não informada");
@@ -57,22 +67,30 @@ export const TabelaFuncionarios: React.FC<TabelaFuncionariosProps> = ({
     }
   };
 
-  const warningModal = () => {
-    //TODO: chamar modal com outra msg de sucesso
+  const warningModal = (usuario: User | undefined) => {
+    setMsgModal(
+      `O usuário: ${usuario?.name} Matrícula: ${usuario?.mat} excluído com sucesso!`
+    );
+    setIsButtonOff(true);
+    abrirModal(usuario);
+    setTimeout(() => {
+      setIsModalOpen(false);
+    }, 3000);
   };
 
   return (
     <div>
       <Modal
         isOpen={isModalOpen}
-        message={`Tem certeza de que deseja excluir o usuário: ${userToDelete?.name}. Matrícula: ${userToDelete?.mat}?`}
+        isButtonOff={isButtonOff}
+        message={msgModal}
         onConfirm={() => {
           if (userToDelete?.mat) {
             deleteUserMat(userToDelete.mat);
             handleExcluirUsuarioTela(userToDelete);
           }
           fecharModal();
-          warningModal();
+          warningModal(userToDelete);
         }}
         onCancel={fecharModal}
       />
@@ -106,6 +124,7 @@ export const TabelaFuncionarios: React.FC<TabelaFuncionariosProps> = ({
             ))}
           </tbody>
         </UserTableStyle>
+        {!usuarios?.length && <p>Nenhum usuário cadastrado!</p>}
       </UserTableStyleContainer>
     </div>
   );

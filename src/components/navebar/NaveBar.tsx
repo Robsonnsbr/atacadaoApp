@@ -1,7 +1,7 @@
 import { ReactNode, useContext } from "react";
 import * as S from "./NaveBar.Style";
 import { AuthContext } from "../../contexts/AuthContext";
-import iconAtacadao from "../../assets/icon.atacadao.png";
+import iconAtacadaoSvg from "../../assets/logo-atacadao-marketplace.svg";
 
 interface MainProps {
   children?: ReactNode;
@@ -20,7 +20,7 @@ export const NaveBar = ({ children }: MainProps) => {
         {children}
 
         <div className="logo">
-          <img src={iconAtacadao} alt="Logo da sua empresa" />
+          <img src={iconAtacadaoSvg} alt="Logo da sua empresa" />
         </div>
 
         <a href="/AppCollector">Home</a>

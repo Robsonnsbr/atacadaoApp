@@ -19,6 +19,7 @@ export const StyledNaveBar = styled.nav`
   & button {
 
     font: inherit;
+    background-color: var(--secondary);
   }
   & a {
     text-decoration: none;
@@ -40,6 +41,9 @@ export const StyledNaveBar = styled.nav`
     align-items: center;
     margin: 0;
     padding: 5px;
+    img {
+      max-width: 140px;
+    }
   }
 
   

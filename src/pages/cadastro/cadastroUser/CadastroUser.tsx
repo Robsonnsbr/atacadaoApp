@@ -19,8 +19,8 @@ export const CadastroUser = () => {
   // const navigate = useNavigate();
   const [name, setName] = useState("");
   const [mat, setMat] = useState("");
+  const [confirmMat, setConfirmMat] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmEmail, setConfirmEmail] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
   const inputsBlock = document.querySelectorAll(".block");
@@ -35,7 +35,7 @@ export const CadastroUser = () => {
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault(),
-      cadastro(name, mat, confirmEmail, password, confirmPassword);
+      cadastro(name, mat, confirmMat, password, confirmPassword);
   };
   //TODO: fix CustomValidity for React obs:(após o 2 elemento ele persiste o erro)
   // useEffect(() => {
@@ -105,10 +105,10 @@ export const CadastroUser = () => {
       <NaveBar />
       <Main>
         <Wrapper>
-          <div>
+          <div className="containerCadastro">
             <h1>CADASTRO DE USUÁRIOS</h1>
             <Form onSubmit={(e) => handleSubmit(e)} method={"post"}>
-              <label htmlFor="name">Nome do usuário</label>
+              <label htmlFor="name">NOME DO USUÁRIO</label>
               <ContainerField className="inputName">
                 <input
                   autoFocus
@@ -123,10 +123,10 @@ export const CadastroUser = () => {
                   title="aaaaa"
                 />
               </ContainerField>
-              <label htmlFor="mat">Matrícula do usuário</label>
+              <label htmlFor="mat">MATRÍCULA DO USUÁRIO</label>
               <ContainerField>
                 <input
-                  className="block "
+                  className="block"
                   autoComplete="nope"
                   type="text"
                   id="mat"
@@ -138,38 +138,38 @@ export const CadastroUser = () => {
               </ContainerField>
               <ContainerField className="inputMat">
                 <input
-                  className="block "
+                  className="block"
                   autoComplete="nope"
                   type="text"
                   id="confirmarMat"
                   placeholder="confirmar matrícula"
-                  value={confirmEmail.toLowerCase()}
-                  onChange={(event) => setConfirmEmail(event.target.value)}
+                  value={confirmMat.toLowerCase()}
+                  onChange={(event) => setConfirmMat(event.target.value)}
                   required
                 />
               </ContainerField>
-              <label htmlFor="password">Senha do usuário</label>
+              <label htmlFor="password">SENHA DO USUÁRIO</label>
               <ContainerField>
                 <input
-                  className="block "
+                  className="block"
                   type="password"
                   name="password"
                   id="password"
-                  value={confirmPassword}
-                  onChange={(event) => setConfirmPassword(event.target.value)}
-                  placeholder="confirmar senha"
+                  value={password}
+                  placeholder="senha"
+                  onChange={(event) => setPassword(event.target.value)}
                   required
                 />
               </ContainerField>
               <ContainerField className="inputPass">
                 <input
-                  className="block "
+                  className="block"
                   type="password"
                   name="confirmarPassword"
                   id="confirmarPassword"
-                  value={password}
-                  onChange={(event) => setPassword(event.target.value)}
-                  placeholder="senha"
+                  value={confirmPassword}
+                  onChange={(event) => setConfirmPassword(event.target.value)}
+                  placeholder="confirmar senha"
                   required
                 />
               </ContainerField>

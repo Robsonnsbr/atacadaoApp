@@ -8,12 +8,18 @@ export const StyledWrapper = styled.section`
   background-color: var(--secondary);
   margin: 20px;
   min-height: 400px;
-  min-width: 300px;
+  min-width: 996px;
   box-shadow: 0 0 2px 1px #00000086;
   flex-direction: row;
   
   @media (max-width: 855px) {
+    min-width: 300px;
     flex-direction: column;
+  }
+
+  & .containerCadastro {
+  min-width: 443px;
+  margin: 20px;
   }
 
   & p {
