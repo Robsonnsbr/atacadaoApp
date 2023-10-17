@@ -11,16 +11,30 @@ export const StyledWrapper = styled.section`
   min-width: 996px;
   box-shadow: 0 0 2px 1px #00000086;
   flex-direction: row;
-  
-  @media (max-width: 855px) {
-    min-width: 300px;
-    flex-direction: column;
-  }
 
   & .containerCadastro {
   min-width: 443px;
   margin: 20px;
   }
+
+  & .tabelaContainer {
+    margin-top: 20px;
+  }
+  
+  @media (max-width: 855px) {
+    min-width: 300px;
+    flex-direction: column;
+
+    .containerCadastro {
+      margin: 0px;
+  }
+    
+    .tabelaContainer {
+      margin: 0px;
+  }
+  }
+
+
 
   & p {
     text-align: center;

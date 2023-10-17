@@ -80,7 +80,7 @@ export const TabelaFuncionarios: React.FC<TabelaFuncionariosProps> = ({
   };
 
   return (
-    <div>
+    <div className="tabelaContainer">
       <Modal
         isOpen={isModalOpen}
         isButtonOff={isButtonOff}

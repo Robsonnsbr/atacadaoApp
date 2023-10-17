@@ -9,6 +9,10 @@ export const StyledForm = styled.form`
   margin: 20px;
   min-width: 350px;
 
+  @media (max-width: 855px) {
+      margin: 5px;
+  }
+
   & label {
     color:  var(--on-secondary);
     text-shadow: var(--text-shadow-style);

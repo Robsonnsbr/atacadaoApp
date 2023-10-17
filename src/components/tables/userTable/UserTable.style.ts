@@ -4,12 +4,14 @@ export const UserTableStyleContainer = styled.div`
     max-height: 424px;
     overflow-y: auto;
     position: relative;
-    margin: 5px;
-    margin: 20px;
     margin-right: 40px;
     margin-bottom: 45px;
-
-
+    
+    
+  @media (max-width: 855px) {
+    margin: 5px;
+  }
+    
   & table {
     min-width: 443px;
     margin: 5px;
