@@ -172,6 +172,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     navigate("/AppCollector/*");
   };
   const deleteUserMat = (mat?: string) => {
+    console.log("entrei no excluir!", mat);
     const recoveredUser = localStorage.getItem("users_db");
     if (mat && recoveredUser) {
       const users = JSON.parse(recoveredUser);
