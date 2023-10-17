@@ -1,7 +1,7 @@
 import { ReactNode, useContext } from "react";
 import * as S from "./NaveBar.Style";
 import { AuthContext } from "../../contexts/AuthContext";
-import iconAtacadaoSvg from "../../assets/logo-atacadao-marketplace.svg";
+import iconAtacadaoSvg from "../../assets/logo-atacadao-marketplace2.png";
 
 interface MainProps {
   children?: ReactNode;

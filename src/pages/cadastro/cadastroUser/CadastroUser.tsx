@@ -74,6 +74,7 @@ export const CadastroUser = () => {
         if (!error.hasError) {
           warningElement?.classList.remove("error-true");
           warningElement?.classList.add("error-false");
+          handleClearInput();
         } else {
           warningElement?.classList.remove("error-false");
           warningElement?.classList.add("error-true");
@@ -93,6 +94,14 @@ export const CadastroUser = () => {
 
   const atualizarUseEffectFilho = () => {
     setAtualizarFilho(!atualizarFilho);
+  };
+
+  const handleClearInput = () => {
+    setName("");
+    setMat("");
+    setConfirmMat("");
+    setPassword("");
+    setConfirmPassword("");
   };
 
   // const usuario: User = { name, mat, password };

@@ -42,7 +42,7 @@ export const StyledNaveBar = styled.nav`
     margin: 0;
     padding: 5px;
     img {
-      max-width: 140px;
+      max-width: 180px;
     }
   }
 
