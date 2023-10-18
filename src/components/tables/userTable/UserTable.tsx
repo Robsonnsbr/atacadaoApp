@@ -95,7 +95,7 @@ export const TabelaFuncionarios: React.FC<TabelaFuncionariosProps> = ({
         }}
         onCancel={fecharModal}
       />
-      <h2>Usuários</h2>
+      <h2>USUÁRIOS CADASTRADOS</h2>
       <UserTableStyleContainer>
         <UserTableStyle>
           <thead>
@@ -103,7 +103,7 @@ export const TabelaFuncionarios: React.FC<TabelaFuncionariosProps> = ({
               <th className="information">NOME</th>
               <th className="information">MATRÍCULA</th>
               <th className="information">CPF</th>
-              <th className="information">AÇÕES</th>
+              <th>AÇÕES</th>
             </tr>
           </thead>
           <tbody>
@@ -111,7 +111,12 @@ export const TabelaFuncionarios: React.FC<TabelaFuncionariosProps> = ({
               <tr key={index}>
                 <td className="information">{user.name}</td>
                 <td className="information">{user.mat}</td>
-                <td className="information">{user.cpf}</td>
+                <td className="information">
+                  {user.cpf?.replace(
+                    /(\d{3})(\d{3})(\d{3})(\d{2})/,
+                    "$1.$2.$3-$4"
+                  )}
+                </td>
                 <td>
                   <Button
                     backgroundcolor="var(--buttonDelete)"

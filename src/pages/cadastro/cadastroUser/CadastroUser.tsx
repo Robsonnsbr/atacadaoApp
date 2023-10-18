@@ -41,7 +41,14 @@ export const CadastroUser = () => {
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault(),
-      cadastro(name, mat, confirmMat, password, confirmPassword, CPF);
+      cadastro(
+        name,
+        mat,
+        confirmMat,
+        password,
+        confirmPassword,
+        CPF.replace(/\D/g, "")
+      );
   };
   //TODO: fix CustomValidity for React obs:(após o 2 elemento ele persiste o erro)
   // useEffect(() => {
@@ -178,6 +185,7 @@ export const CadastroUser = () => {
                   type="text"
                   id="name"
                   placeholder="nome"
+                  maxLength={30}
                   value={name.toLowerCase()}
                   onChange={(event) => setName(event.target.value)}
                   required
@@ -192,6 +200,7 @@ export const CadastroUser = () => {
                   type="text"
                   id="mat"
                   placeholder="matrícula"
+                  maxLength={20}
                   value={mat.toLowerCase()}
                   onChange={(event) => setMat(event.target.value)}
                   required
@@ -204,6 +213,7 @@ export const CadastroUser = () => {
                   type="text"
                   id="confirmarMat"
                   placeholder="confirmar matrícula"
+                  maxLength={20}
                   value={confirmMat.toLowerCase()}
                   onChange={(event) => setConfirmMat(event.target.value)}
                   required
@@ -217,9 +227,9 @@ export const CadastroUser = () => {
                   type="text"
                   id="CPF"
                   placeholder="CPF"
+                  maxLength={14}
                   value={CPF}
                   onChange={(event) => handleChangeCPF(event)}
-                  maxLength={14}
                   required
                 />
               </ContainerField>
@@ -237,6 +247,7 @@ export const CadastroUser = () => {
                     name="password"
                     id="password"
                     value={password}
+                    maxLength={17}
                     placeholder="senha"
                     onChange={(event) => setPassword(event.target.value)}
                     required

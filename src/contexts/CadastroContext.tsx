@@ -39,7 +39,7 @@ export const CadastroProvider = ({ children }: CadastroProviderProps) => {
   // const navigate = useNavigate();
   const [error, setError] = useState<CustomError | null>(null);
 
-  const validarCPF = (cpf: string) => {
+  const validityCPF = (cpf: string) => {
     cpf = cpf.replace(/[^\d]/g, ""); // Remove caracteres não numéricos
 
     if (cpf.length !== 11) {
@@ -47,6 +47,7 @@ export const CadastroProvider = ({ children }: CadastroProviderProps) => {
         hasError: true,
         msg: "Um CPF válido deve ter 11 dígitos",
       });
+      console.log("entrei aqui1");
       return false;
     }
 
@@ -54,9 +55,9 @@ export const CadastroProvider = ({ children }: CadastroProviderProps) => {
     if (/^(\d)\1+$/.test(cpf)) {
       setError({
         hasError: true,
-        msg: "CPF ",
+        msg: "CPF Inválido!",
       });
-
+      console.log("entrei aqui2");
       return false;
     }
 
@@ -75,17 +76,34 @@ export const CadastroProvider = ({ children }: CadastroProviderProps) => {
     const segundoDigito = (soma * 10) % 11;
 
     // Verifica se os dígitos verificadores calculados coincidem com os dígitos no CPF
+
     if (
       primeiroDigito === parseInt(cpf.charAt(9)) &&
       segundoDigito === parseInt(cpf.charAt(10))
     ) {
-      return true;
+      // Verificar se o cpf já está em uso
+      const recoveredUsers = localStorage.getItem("users_db");
+      if (recoveredUsers) {
+        const hasRecoveredUsers = JSON.parse(recoveredUsers);
+        const hasUser = hasRecoveredUsers.filter(
+          (user: User) => user.cpf === cpf
+        );
+        if (hasUser.length > 0) {
+          setError({
+            hasError: true,
+            msg: "Ops, parece que o cpf já está cadastrado.",
+          });
+          return false;
+        }
+        return true;
+      }
     }
-
     setError({
       hasError: true,
       msg: "CPF Inválido!",
     });
+    console.log(cpf);
+    console.log("entrei aqui3");
     return false;
   };
 
@@ -137,7 +155,7 @@ export const CadastroProvider = ({ children }: CadastroProviderProps) => {
     if (mat === confirmMat && password === confirmePassword) {
       setError(null);
 
-      if (validityPassword(password) && validarCPF(cpf)) {
+      if (validityPassword(password) && validityCPF(cpf)) {
         const recoveredUsers = localStorage.getItem("users_db");
 
         if (recoveredUsers) {

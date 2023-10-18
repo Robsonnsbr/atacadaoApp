@@ -4,7 +4,7 @@ export const StyledWrapper = styled.section`
   border-radius: 6px;
   display: flex;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
   background-color: var(--secondary);
   margin: 20px;
   min-height: 400px;
