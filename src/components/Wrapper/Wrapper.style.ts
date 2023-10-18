@@ -36,13 +36,13 @@ export const StyledWrapper = styled.section`
 
 
 
-  & p {
+  & p#warning {
     text-align: center;
-    font-size: 14px;
-    font-weight: 600;
     margin: 0;
     margin-Bottom: 5px;
     padding: 0px;
+    width: 472px;
+    height: 37px;
   }
 
   & .warning-null {

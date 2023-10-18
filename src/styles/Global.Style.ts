@@ -32,6 +32,7 @@ h1, h2 {
 }
 p {
     font-size: 14px;
+    font-weight: 600;
 }
 
 h1 {

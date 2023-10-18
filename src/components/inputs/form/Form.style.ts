@@ -27,11 +27,17 @@ export const StyledForm = styled.form`
     min-width: 300px;
     outline: none;
   }
+  & input#confirmarPassword, #password{
+    min-width: 280px;
+  }
 
   .inputName {
   margin-bottom: 20px;
   }
   .inputMat {
+    margin-bottom: 20px;
+  }
+  .inputCPF {
     margin-bottom: 20px;
   }
   .inputPass {
@@ -69,5 +75,24 @@ export const StyledContainerField = styled.div`
 
   & input:focus {
     background-color: var(--secondary);
+  }
+  
+
+
+  & .btnViewPassword {
+    background-color:transparent;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: none;
+    height: 20px;
+    img {
+      padding: 0px;
+      color: transparent;
+      width: 20px;
+    }
   }
 `;

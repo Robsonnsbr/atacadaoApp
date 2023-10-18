@@ -100,18 +100,18 @@ export const TabelaFuncionarios: React.FC<TabelaFuncionariosProps> = ({
         <UserTableStyle>
           <thead>
             <tr>
-              <th>NOME</th>
-              <th>MATRÍCULA</th>
-              <th>SENHA</th>
-              <th>AÇÕES</th>
+              <th className="information">NOME</th>
+              <th className="information">MATRÍCULA</th>
+              <th className="information">CPF</th>
+              <th className="information">AÇÕES</th>
             </tr>
           </thead>
           <tbody>
             {usuarios?.map((user: User, index: number) => (
               <tr key={index}>
-                <td>{user.name}</td>
-                <td>{user.mat}</td>
-                <td>{user.password}</td>
+                <td className="information">{user.name}</td>
+                <td className="information">{user.mat}</td>
+                <td className="information">{user.cpf}</td>
                 <td>
                   <Button
                     backgroundcolor="var(--buttonDelete)"

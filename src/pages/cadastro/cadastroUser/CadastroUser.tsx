@@ -11,6 +11,8 @@ import {
   Wrapper,
 } from "../../../components";
 import { TabelaFuncionarios } from "../../../components/tables/userTable/UserTable";
+import hide from "../../../assets/iconButtonPassword/hide.png";
+import show from "../../../assets/iconButtonPassword/show.png";
 
 export const CadastroUser = () => {
   // const { isAuthenticated } = useContext(AuthContext);
@@ -22,6 +24,10 @@ export const CadastroUser = () => {
   const [confirmMat, setConfirmMat] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [CPF, setCPF] = useState("");
+  const [atualizarFilho, setAtualizarFilho] = useState(false);
+  const [mostrarSenha1, setMostrarSenha1] = useState(false);
+  const [mostrarSenha2, setMostrarSenha2] = useState(false);
 
   const inputsBlock = document.querySelectorAll(".block");
 
@@ -35,7 +41,7 @@ export const CadastroUser = () => {
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault(),
-      cadastro(name, mat, confirmMat, password, confirmPassword);
+      cadastro(name, mat, confirmMat, password, confirmPassword, CPF);
   };
   //TODO: fix CustomValidity for React obs:(após o 2 elemento ele persiste o erro)
   // useEffect(() => {
@@ -90,8 +96,6 @@ export const CadastroUser = () => {
     handleWarning();
   }, [warningElement, error]);
 
-  const [atualizarFilho, setAtualizarFilho] = useState(false);
-
   const atualizarUseEffectFilho = () => {
     setAtualizarFilho(!atualizarFilho);
   };
@@ -102,6 +106,54 @@ export const CadastroUser = () => {
     setConfirmMat("");
     setPassword("");
     setConfirmPassword("");
+    setCPF("");
+  };
+
+  // const formatarCPF = (value: string) => {
+  //   // Função para formatar o CPF
+  //   // Implemente a lógica de formatação aqui, se necessário
+  //   // Exemplo simples:
+  //   const cpfFormatado = value
+  //     .replace(/\D/g, "")
+  //     .replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
+  //   console.log(cpfFormatado);
+  //   return cpfFormatado;
+  // };
+
+  const formatarCPF = (value: string) => {
+    const cpfDigits = value.replace(/\D/g, "");
+    let cpfFormatado = cpfDigits;
+
+    if (cpfDigits.length >= 3) {
+      cpfFormatado = cpfDigits.substring(0, 3) + "." + cpfDigits.substring(3);
+    }
+    if (cpfDigits.length >= 6) {
+      cpfFormatado =
+        cpfFormatado.substring(0, 7) + "." + cpfDigits.substring(6);
+    }
+    if (cpfDigits.length >= 9) {
+      cpfFormatado =
+        cpfFormatado.substring(0, 11) + "-" + cpfDigits.substring(9);
+    }
+
+    return cpfFormatado;
+  };
+
+  const handleChangeCPF = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value;
+    const cpfFormatado = formatarCPF(value);
+    setCPF(cpfFormatado);
+  };
+
+  const handleToggleSenha = (value: string) => {
+    if (value === "btn1") {
+      setMostrarSenha1(!mostrarSenha1);
+      return;
+    }
+    if (value === "btn2") {
+      setMostrarSenha2(!mostrarSenha2);
+      return;
+    }
   };
 
   // const usuario: User = { name, mat, password };
@@ -157,30 +209,80 @@ export const CadastroUser = () => {
                   required
                 />
               </ContainerField>
-              <label htmlFor="password">SENHA DO USUÁRIO</label>
-              <ContainerField>
+              <label htmlFor="CPF">CPF</label>
+              <ContainerField className="inputCPF">
                 <input
                   className="block"
-                  type="password"
-                  name="password"
-                  id="password"
-                  value={password}
-                  placeholder="senha"
-                  onChange={(event) => setPassword(event.target.value)}
+                  autoComplete="off"
+                  type="text"
+                  id="CPF"
+                  placeholder="CPF"
+                  value={CPF}
+                  onChange={(event) => handleChangeCPF(event)}
+                  maxLength={14}
                   required
                 />
               </ContainerField>
+              <label htmlFor="password">SENHA DO USUÁRIO</label>
+              <ContainerField>
+                <div
+                  style={{
+                    maxWidth: "310px",
+                    maxHeight: "39.2px",
+                  }}
+                >
+                  <input
+                    className="block"
+                    type={mostrarSenha1 ? "text" : "password"}
+                    name="password"
+                    id="password"
+                    value={password}
+                    placeholder="senha"
+                    onChange={(event) => setPassword(event.target.value)}
+                    required
+                  />
+                  <button
+                    className="btnViewPassword"
+                    type="button"
+                    onClick={() => handleToggleSenha("btn1")}
+                  >
+                    {mostrarSenha1 ? (
+                      <img src={hide} alt="Ocultar Senha" />
+                    ) : (
+                      <img src={show} alt="Mostrar Senha" />
+                    )}
+                  </button>
+                </div>
+              </ContainerField>
               <ContainerField className="inputPass">
-                <input
-                  className="block"
-                  type="password"
-                  name="confirmarPassword"
-                  id="confirmarPassword"
-                  value={confirmPassword}
-                  onChange={(event) => setConfirmPassword(event.target.value)}
-                  placeholder="confirmar senha"
-                  required
-                />
+                <div
+                  style={{
+                    maxWidth: "310px",
+                    maxHeight: "39.2px",
+                  }}
+                >
+                  <input
+                    className="block"
+                    type={mostrarSenha2 ? "text" : "password"}
+                    name="confirmarPassword"
+                    id="confirmarPassword"
+                    value={confirmPassword}
+                    onChange={(event) => setConfirmPassword(event.target.value)}
+                    placeholder="confirmar senha"
+                    required
+                  />
+                  <button
+                    className="btnViewPassword"
+                    type="button"
+                    onClick={() => handleToggleSenha("btn2")}
+                  >
+                    {mostrarSenha2 ? (
+                      <img src={hide} alt="Ocultar Senha" />
+                    ) : (
+                      <img src={show} alt="Mostrar Senha" />
+                    )}
+                  </button>
+                </div>
               </ContainerField>
 
               <Button

@@ -25,9 +25,8 @@ export const UserTableStyleContainer = styled.div`
 
   & p {
     color: var(--error);
-    margin: 0;
-    margin-top: 20px;
-    /* padding: 10px; */
+    margin: 20px;
+    text-align: center;
   }
 
 `
@@ -41,38 +40,45 @@ th {
   background-color: var(--primary);
   font-weight: bold;
   border: 1px solid #ddd;
-  padding: 5px;
+  padding: 2px;
   /* border-radius: 10px; */
 }
 
 /* Estilo das células de dados da tabela */
 td {
   border: 1px solid #ddd;
-  padding: 5px;
+  padding: 0px;
+  padding-inline: 10px;
   /* border-radius: 10px; */
 }
 
-/* Estilização das linhas alternadas (para facilitar a leitura) */
-tr:nth-child(even) {
-  background-color: #f2f2f2;
+.information {
+  min-width: 140px;
 }
+
+
+
+/* Estilização das linhas alternadas (para facilitar a leitura) */
+/* tr:nth-child(even) {
+  background-color: #f2f2f2;
+} */
 
 /* Estilização das células de cabeçalho e dados "Name" */
-th:nth-child(2),
+/* th:nth-child(2),
 td:nth-child(2) {
   width: 30%;
-}
+} */
 
 /* Estilização das células de cabeçalho e dados "Matrícula" */
-th:nth-child(4),
+/* th:nth-child(4),
 td:nth-child(4) {
   width: 20%;
-}
+} */
 
 /* Estilização das células de cabeçalho e dados "Password" */
-th:nth-child(6),
+/* th:nth-child(6),
 td:nth-child(6) {
   width: 20%;
-}
+} */
 
 `;
