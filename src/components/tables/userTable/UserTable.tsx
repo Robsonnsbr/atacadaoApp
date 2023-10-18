@@ -1,6 +1,11 @@
 import React, { useState, useEffect, useContext } from "react";
 import { User } from "../../../@types/User";
-import { UserTableStyle, UserTableStyleContainer } from "./UserTable.style";
+import {
+  ShadowBottom,
+  ShadowTop,
+  UserTableStyle,
+  UserTableStyleContainer,
+} from "./UserTable.style";
 import { AuthContext } from "../../../contexts/AuthContext";
 import { Button } from "../../inputs/button/Button";
 import { Modal } from "../../../components/modal/modal";
@@ -79,6 +84,90 @@ export const TabelaFuncionarios: React.FC<TabelaFuncionariosProps> = ({
     }, 1500);
   };
 
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     const container = document.querySelector(
+  //       ".UserTableStyleContainer"
+  //     ) as HTMLElement;
+  //     const shadowTop = document.querySelector(".ShadowTop") as HTMLElement;
+  //     const shadowBottom = document.querySelector(
+  //       ".ShadowBottom"
+  //     ) as HTMLElement;
+
+  //     if (container.scrollTop > 0) {
+  //       shadowTop.style.display = "block";
+  //     } else {
+  //       shadowTop.style.display = "none";
+  //     }
+
+  //     if (
+  //       container.scrollTop + container.clientHeight <
+  //       container.scrollHeight
+  //     ) {
+  //       shadowBottom.style.display = "block";
+  //     } else {
+  //       shadowBottom.style.display = "none";
+  //     }
+  //   };
+
+  //   const container = document.querySelector(
+  //     ".UserTableStyleContainer"
+  //   ) as HTMLElement;
+  //   container.addEventListener("scroll", handleScroll);
+
+  //   return () => {
+  //     container.removeEventListener("scroll", handleScroll);
+  //   };
+  // }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const container = document.querySelector(
+        ".UserTableStyleContainer"
+      ) as HTMLElement;
+      const shadowTop = document.querySelector(".ShadowTop") as HTMLElement;
+      const shadowBottom = document.querySelector(
+        ".ShadowBottom"
+      ) as HTMLElement;
+
+      if (container.scrollTop > 0) {
+        shadowTop.style.display = "block";
+      } else {
+        shadowTop.style.display = "none";
+      }
+
+      if (
+        container.scrollTop + container.clientHeight <
+        container.scrollHeight
+      ) {
+        shadowBottom.style.display = "block";
+      } else {
+        shadowBottom.style.display = "none";
+      }
+    };
+
+    const container = document.querySelector(
+      ".UserTableStyleContainer"
+    ) as HTMLElement;
+    container.addEventListener("scroll", handleScroll);
+
+    // Função para acionar handleScroll quando a classe muda (scroll ativado/desativado)
+    const observeContainerChanges = () => {
+      const observer = new MutationObserver(() => {
+        handleScroll(); // Chama handleScroll quando as mudanças ocorrem no container
+      });
+      observer.observe(container, {
+        attributes: true,
+        attributeFilter: ["class", "style"],
+      });
+    };
+
+    observeContainerChanges(); // Inicia a observação
+
+    return () => {
+      container.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
   return (
     <div className="tabelaContainer">
       <Modal
@@ -96,8 +185,9 @@ export const TabelaFuncionarios: React.FC<TabelaFuncionariosProps> = ({
         onCancel={fecharModal}
       />
       <h2>USUÁRIOS CADASTRADOS</h2>
-      <UserTableStyleContainer>
-        <UserTableStyle>
+      <ShadowTop className="ShadowTop" />
+      <UserTableStyleContainer className="UserTableStyleContainer">
+        <UserTableStyle className="tableContent">
           <thead>
             <tr>
               <th className="information">NOME</th>
@@ -130,8 +220,9 @@ export const TabelaFuncionarios: React.FC<TabelaFuncionariosProps> = ({
             ))}
           </tbody>
         </UserTableStyle>
-        {!usuarios?.length && <p>Nenhum usuário cadastrado!</p>}
       </UserTableStyleContainer>
+      <ShadowBottom className="ShadowBottom" />
+      {!usuarios?.length && <p>Nenhum usuário cadastrado!</p>}
     </div>
   );
 };

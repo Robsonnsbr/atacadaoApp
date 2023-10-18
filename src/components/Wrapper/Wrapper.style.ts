@@ -19,6 +19,7 @@ export const StyledWrapper = styled.section`
 
   & .tabelaContainer {
     margin-top: 20px;
+    position: relative;
   }
   
   @media (max-width: 855px) {
