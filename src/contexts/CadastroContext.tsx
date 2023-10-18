@@ -47,7 +47,6 @@ export const CadastroProvider = ({ children }: CadastroProviderProps) => {
         hasError: true,
         msg: "Um CPF válido deve ter 11 dígitos",
       });
-      console.log("entrei aqui1");
       return false;
     }
 
@@ -57,7 +56,6 @@ export const CadastroProvider = ({ children }: CadastroProviderProps) => {
         hasError: true,
         msg: "CPF Inválido!",
       });
-      console.log("entrei aqui2");
       return false;
     }
 
@@ -102,8 +100,6 @@ export const CadastroProvider = ({ children }: CadastroProviderProps) => {
       hasError: true,
       msg: "CPF Inválido!",
     });
-    console.log(cpf);
-    console.log("entrei aqui3");
     return false;
   };
 
@@ -133,10 +129,10 @@ export const CadastroProvider = ({ children }: CadastroProviderProps) => {
         });
         return false;
       }
-      if (password.length > 16) {
+      if (password.length > 20) {
         setError({
           hasError: true,
-          msg: "Senha inválida! A senha deve conter no máximo 16 caracteres",
+          msg: "Senha inválida! A senha deve conter no máximo 20 caracteres",
         });
         return false;
       }

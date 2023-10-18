@@ -58,17 +58,33 @@ td {
   min-width: 160px;
   max-width: 160px;
   white-space: nowrap;
-  overflow:auto;  
+  overflow:auto;
 }
 
 & .information::-webkit-scrollbar {
-  width: 0; /* Largura da barra de rolagem (neste caso, 0 para escondê-la) */
+  border-radius: 5px;
+  height: 10px;
+  background-color: var(--primary);
+  box-shadow: var(--text-shadow-style);
 }
 
 
+& .information::-webkit-scrollbar-track:hover {
+  border-radius: 5px;
+  background-color: #B8C0C2;
+}
 
 
+& .information::-webkit-scrollbar-thumb {
+  box-shadow: 0px 0px 1px rgb(000, 000, 000, 1);
+  border-radius: 5px;
+  border: 2px solid var(--successfully);
+  background-color: var(--successfully);
+}
 
+ & .information::-webkit-scrollbar-thumb:hover {
+  background-color: var(--third);
+} 
 
 
 

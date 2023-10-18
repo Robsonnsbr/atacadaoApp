@@ -247,7 +247,7 @@ export const CadastroUser = () => {
                     name="password"
                     id="password"
                     value={password}
-                    maxLength={17}
+                    maxLength={20}
                     placeholder="senha"
                     onChange={(event) => setPassword(event.target.value)}
                     required
@@ -278,6 +278,7 @@ export const CadastroUser = () => {
                     name="confirmarPassword"
                     id="confirmarPassword"
                     value={confirmPassword}
+                    maxLength={20}
                     onChange={(event) => setConfirmPassword(event.target.value)}
                     placeholder="confirmar senha"
                     required
