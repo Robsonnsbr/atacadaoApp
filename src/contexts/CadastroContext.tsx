@@ -164,7 +164,7 @@ export const CadastroProvider = ({ children }: CadastroProviderProps) => {
         } else {
           localStorage.setItem(
             "users_db",
-            JSON.stringify([{ name, mat, password }])
+            JSON.stringify([{ name, mat, password, cpf }])
           );
         }
         setError({

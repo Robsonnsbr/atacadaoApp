@@ -53,7 +53,7 @@ h2 {
 
 html,
 body {
-    padding-top: 35px !important;
+    padding-top: 30px !important;
     display: flex;
     justify-content: center;
     align-content: center;

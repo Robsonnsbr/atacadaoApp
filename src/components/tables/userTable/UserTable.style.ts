@@ -52,9 +52,23 @@ td {
   /* border-radius: 10px; */
 }
 
-.information {
-  min-width: 140px;
+& .information {
+  min-width: 160px;
+  max-width: 160px;
+  white-space: nowrap;
+  overflow:auto;  
 }
+
+& .information::-webkit-scrollbar {
+  width: 0; /* Largura da barra de rolagem (neste caso, 0 para escondê-la) */
+}
+
+
+
+
+
+
+
 
 
 
