@@ -14,7 +14,7 @@ interface TabelaFuncionariosProps {
   atualizar: boolean;
 }
 
-export const TabelaFuncionarios: React.FC<TabelaFuncionariosProps> = ({
+export const TabelaUsers: React.FC<TabelaFuncionariosProps> = ({
   atualizar,
 }) => {
   const { deleteUserMat } = useContext(AuthContext);

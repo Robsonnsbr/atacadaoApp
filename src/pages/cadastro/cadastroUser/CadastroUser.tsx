@@ -10,7 +10,7 @@ import {
   PageContent,
   Wrapper,
 } from "../../../components";
-import { TabelaFuncionarios } from "../../../components/tables/userTable/UserTable";
+import { TabelaUsers } from "../../../components/tables/userTable/UserTable";
 import hide from "../../../assets/iconButtonPassword/hide.png";
 import show from "../../../assets/iconButtonPassword/show.png";
 
@@ -29,15 +29,15 @@ export const CadastroUser = () => {
   const [mostrarSenha1, setMostrarSenha1] = useState(false);
   const [mostrarSenha2, setMostrarSenha2] = useState(false);
 
-  const inputsBlock = document.querySelectorAll(".block");
+  // const inputsBlock = document.querySelectorAll(".block");
 
-  inputsBlock.forEach((element) => {
-    const preventDefault = (e: Event) => e.preventDefault();
+  // inputsBlock.forEach((element) => {
+  //   const preventDefault = (e: Event) => e.preventDefault();
 
-    element.addEventListener("paste", preventDefault);
-    element.addEventListener("copy", preventDefault);
-    element.addEventListener("cut", preventDefault);
-  });
+  //   element.addEventListener("paste", preventDefault);
+  //   element.addEventListener("copy", preventDefault);
+  //   element.addEventListener("cut", preventDefault);
+  // });
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault(),
@@ -114,6 +114,7 @@ export const CadastroUser = () => {
     setPassword("");
     setConfirmPassword("");
     setCPF("");
+    document.getElementById("name")?.focus();
   };
 
   // const formatarCPF = (value: string) => {
@@ -310,7 +311,7 @@ export const CadastroUser = () => {
               {error?.msg || "null"}
             </p>
           </div>
-          <TabelaFuncionarios atualizar={atualizarFilho} />
+          <TabelaUsers atualizar={atualizarFilho} />
         </Wrapper>
       </Main>
     </PageContent>
