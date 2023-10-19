@@ -35,7 +35,7 @@ export const ShadowTop = styled.div`
   }
 `;
 export const ShadowBottom = styled.div`
-  display: none; 
+  display: none;
   content: "";
   position: absolute;
   left: 0;

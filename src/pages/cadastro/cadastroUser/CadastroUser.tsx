@@ -201,7 +201,7 @@ export const CadastroUser = () => {
                   id="mat"
                   placeholder="matrícula"
                   maxLength={20}
-                  value={mat.toLowerCase()}
+                  value={mat.toLowerCase().replace(/\s+/g, "")}
                   onChange={(event) => setMat(event.target.value)}
                   required
                 />
@@ -214,7 +214,7 @@ export const CadastroUser = () => {
                   id="confirmarMat"
                   placeholder="confirmar matrícula"
                   maxLength={20}
-                  value={confirmMat.toLowerCase()}
+                  value={confirmMat.toLowerCase().replace(/\s+/g, "")}
                   onChange={(event) => setConfirmMat(event.target.value)}
                   required
                 />
