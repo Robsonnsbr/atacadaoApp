@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const UserTableStyleContainer = styled.div`
+box-shadow: inset 0px 0px 5px 1px rgb(000,000,000, 0.3);
   max-height: 424px;
   overflow-y: auto;
   overflow-x: hidden;
@@ -28,7 +29,6 @@ export const UserTableStyleContainer = styled.div`
   &::-webkit-scrollbar-thumb:hover {
     background-color: #bbb;
   }
-
 
 `;
 
@@ -60,7 +60,7 @@ export const ShadowBottom = styled.div`
   margin-left: 40px;
   margin-right: 40px;
   box-shadow: inset 0 -10px 10px -10px rgba(0, 0, 0, 0.2);
-  bottom: 135px;
+  bottom: 124px;
   border-radius: 0px 0px 10px 10px;
   @media (max-width: 855px) {
     margin: 5px;
@@ -86,19 +86,23 @@ export const UserTableStyle = styled.table`
     padding: 0px 10px;
   }
 
-   tr:nth-child(even) td {
+  tr:nth-child(even) td {
     background-color: var(--primary);
-}
+  }
 
-tr:nth-child(odd) td {
+  tr:nth-child(odd) td {
     background-color: var(--secondary);
-}
+  }
 
   & .information {
     min-width: 160px;
     max-width: 160px;
     white-space: nowrap;
     overflow: auto;
+  }
+  & .actions {
+    min-width: 132px;
+    white-space: nowrap;
   }
 
   & .information::-webkit-scrollbar {

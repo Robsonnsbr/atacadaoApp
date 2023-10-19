@@ -4,8 +4,9 @@ export const StyledNaveBar = styled.nav`
   overflow: hidden;
   position: fixed;
   top: 0;
-  left: 0;
-  width: 100vw;
+  width: 100%;
+  justify-content: center;
+  margin: auto;
   background-color: var(--secondary); /* Cor de fundo da navbar */
   color: #fff; /* Cor do texto na navbar */
   padding: 15px 0; /* Espaçamento interno no topo e na parte inferior */

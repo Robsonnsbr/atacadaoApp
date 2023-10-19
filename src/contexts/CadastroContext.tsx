@@ -118,7 +118,7 @@ export const CadastroProvider = ({ children }: CadastroProviderProps) => {
       if (!hasSpecial) {
         setError({
           hasError: true,
-          msg: "Senha inválida! A senha deve conter ao menos um caractere especial",
+          msg: 'Senha inválida! A senha deve conter ao menos um caractere especial"(!@#$&...*)"',
         });
         return false;
       }

@@ -13,12 +13,12 @@ export const StyledWrapper = styled.section`
   flex-direction: row;
 
   & .containerCadastro {
-  min-width: 443px;
-  margin: 20px;
+  min-width: 310px;
+  margin: 20px 0px;
   }
 
   & .tabelaContainer {
-    margin-top: 20px;
+    margin: 20px 0px;
     position: relative;
   }
   
@@ -35,8 +35,6 @@ export const StyledWrapper = styled.section`
   }
   }
 
-
-
   & p#warning {
     text-align: center;
     margin: 0;
@@ -45,6 +43,15 @@ export const StyledWrapper = styled.section`
     width: 472px;
     height: 37px;
   }
+
+  & .warningTable {
+    color: var(--error);
+    text-align: center;
+    margin: 0;
+
+  }
+ 
+
 
   & .warning-null {
     color: transparent;

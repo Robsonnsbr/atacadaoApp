@@ -7,7 +7,7 @@ export const StyledForm = styled.form`
   align-items: center;
   flex-direction: column;
   margin: 20px;
-  min-width: 350px;
+  /* min-width: 350px; */
 
   @media (max-width: 855px) {
       margin: 5px;
@@ -57,8 +57,7 @@ export const StyledContainerField = styled.div`
   background-color: var(--third);
   padding: 5px;
   box-shadow: 0 0 2px 1px #00000086;
-
-
+  min-height: 41.4px;
 
   & input {
     

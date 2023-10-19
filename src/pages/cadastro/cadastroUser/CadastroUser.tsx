@@ -29,6 +29,8 @@ export const CadastroUser = () => {
   const [mostrarSenha1, setMostrarSenha1] = useState(false);
   const [mostrarSenha2, setMostrarSenha2] = useState(false);
 
+  //TODO: analisar e/ou remover todos as function and commits
+  //TODO: ativar tratamento dos inputs
   // const inputsBlock = document.querySelectorAll(".block");
 
   // inputsBlock.forEach((element) => {

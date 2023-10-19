@@ -193,7 +193,7 @@ export const TabelaUsers: React.FC<TabelaFuncionariosProps> = ({
               <th className="information">NOME</th>
               <th className="information">MATRÍCULA</th>
               <th className="information">CPF</th>
-              <th>AÇÕES</th>
+              <th className="actions">AÇÕES</th>
             </tr>
           </thead>
           <tbody>
@@ -222,7 +222,9 @@ export const TabelaUsers: React.FC<TabelaFuncionariosProps> = ({
         </UserTableStyle>
       </UserTableStyleContainer>
       <ShadowBottom className="ShadowBottom" />
-      {!usuarios?.length && <p>Nenhum usuário cadastrado!</p>}
+      {!usuarios?.length && (
+        <p className="warningTable">Nenhum usuário cadastrado!</p>
+      )}
     </div>
   );
 };
