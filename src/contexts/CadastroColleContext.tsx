@@ -1,6 +1,6 @@
 import { createContext, useState } from "react";
 // import { useNavigate } from "react-router-dom";
-import { User } from "../@types/User";
+import { Collector } from "../@types/Collector";
 // import userTest from "./userTest.json";
 
 interface CustomError {
@@ -10,8 +10,8 @@ interface CustomError {
 
 interface IPropsCadastro {
   error: CustomError | null;
-  cadastro: (name: string, mat: string, confirmMat: string) => void;
-  deleteCollector: (mat: string) => void;
+  cadastro: (numero: string, sn: string, confirmMat: string) => void;
+  deleteCollector: (sn: string) => void;
 }
 
 interface CadastroProviderProps {
@@ -37,50 +37,52 @@ export const CadastroColleProvider = ({ children }: CadastroProviderProps) => {
   // const navigate = useNavigate();
   const [error, setError] = useState<CustomError | null>(null);
 
-  const deleteCollector = (mat?: string) => {
+  const deleteCollector = (sn?: string) => {
     const recoveredUser = localStorage.getItem("collector_db");
-    if (mat && recoveredUser) {
-      const users = JSON.parse(recoveredUser);
-      const index = users.findIndex((user: User) => user.mat === mat);
+    if (sn && recoveredUser) {
+      const collectors = JSON.parse(recoveredUser);
+      const index = collectors.findIndex(
+        (collector: Collector) => collector.sn === sn
+      );
 
       if (index !== -1) {
-        // const currentUser: User = users[index];
-        users.splice(index, 1);
-        localStorage.setItem("collector_db", JSON.stringify(users));
-        // alert(`Usuário ${currentUser.mat} Excluído com sucesso!`);
+        // const currentUser: Collector = collectors[index];
+        collectors.splice(index, 1);
+        localStorage.setItem("collector_db", JSON.stringify(collectors));
+        // alert(`Usuário ${currentUser.sn} Excluído com sucesso!`);
       }
     }
   };
 
-  const cadastro = async (name: string, mat: string, confirmMat: string) => {
+  const cadastro = async (numero: string, sn: string, confirmMat: string) => {
     console.log("entrei aqui");
-    if (mat === confirmMat) {
+    if (sn === confirmMat) {
       setError(null);
       const recoveredUsers = localStorage.getItem("collector_db");
 
       if (recoveredUsers) {
         const hasRecoveredUsers = JSON.parse(recoveredUsers);
         const hasUser = hasRecoveredUsers.filter(
-          (user: User) => user.mat === mat
+          (collector: Collector) => collector.sn === sn
         );
 
         if (hasUser.length > 0) {
           return setError({
             hasError: true,
-            msg: "Ops, parece que a matrícula já está cadastrada.",
+            msg: "Ops, parece que esse número de série já está cadastrado.",
           });
         }
       }
 
       if (recoveredUsers) {
-        const parsedRecoveredUsers: User[] = JSON.parse(recoveredUsers);
-        parsedRecoveredUsers.push({ name, mat });
+        const parsedRecoveredUsers: Collector[] = JSON.parse(recoveredUsers);
+        parsedRecoveredUsers.push({ numero, sn });
         localStorage.setItem(
           "collector_db",
           JSON.stringify(parsedRecoveredUsers)
         );
       } else {
-        localStorage.setItem("collector_db", JSON.stringify([{ name, mat }]));
+        localStorage.setItem("collector_db", JSON.stringify([{ numero, sn }]));
       }
       // const usersTestConvert = JSON.stringify(userTest);
       // localStorage.setItem("users_db", usersTestConvert);
