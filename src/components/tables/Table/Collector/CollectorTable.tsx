@@ -1,23 +1,23 @@
 import React, { useState, useEffect, useContext } from "react";
-import { User } from "../../../@types/User";
+import { User } from "../../../../@types/User";
 import {
   ShadowBottom,
   ShadowTop,
   UserTableStyle,
   UserTableStyleContainer,
-} from "./UserTable.style";
-import { AuthContext } from "../../../contexts/AuthContext";
-import { Button } from "../../inputs/button/Button";
-import { Modal } from "../../../components/modal/modal";
+} from "../Table.style";
+import { CadastroColleContext } from "../../../../contexts/CadastroColleContext";
+import { Button } from "../../../inputs/button/Button";
+import { Modal } from "../../../modal/modal";
 
 interface TabelaFuncionariosProps {
   atualizar: boolean;
 }
 
-export const TabelaUsers: React.FC<TabelaFuncionariosProps> = ({
+export const CollectorTable: React.FC<TabelaFuncionariosProps> = ({
   atualizar,
 }) => {
-  const { deleteUserMat } = useContext(AuthContext);
+  const { deleteCollector } = useContext(CadastroColleContext);
   const [usuarios, setUsuarios] = useState<User[] | null>([]);
   const [atualizarInterno, setAtualizarInterno] = useState(atualizar);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -27,7 +27,7 @@ export const TabelaUsers: React.FC<TabelaFuncionariosProps> = ({
 
   useEffect(() => {
     const recuperarUsers = () => {
-      const recoveredUsers = localStorage.getItem("users_db");
+      const recoveredUsers = localStorage.getItem("employee_db");
       if (recoveredUsers) {
         const hasRecoveredUsers = JSON.parse(recoveredUsers);
         setUsuarios(hasRecoveredUsers.reverse());
@@ -58,7 +58,7 @@ export const TabelaUsers: React.FC<TabelaFuncionariosProps> = ({
     setIsButtonOff(false);
     if (usuario && usuario.mat) {
       setMsgModal(
-        `Tem certeza de que deseja excluir o usuário: ${usuario?.name} Matrícula: ${usuario?.mat}?`
+        `Tem certeza de que deseja excluir o funcionário: ${usuario?.name} Matrícula: ${usuario?.mat}?`
       );
       return abrirModal(usuario);
     }
@@ -176,7 +176,7 @@ export const TabelaUsers: React.FC<TabelaFuncionariosProps> = ({
         message={msgModal}
         onConfirm={() => {
           if (usuario?.mat) {
-            deleteUserMat(usuario.mat);
+            deleteCollector(usuario.mat);
             handleExcluirUsuarioTela(usuario.mat);
           }
           fecharModal();
@@ -184,15 +184,16 @@ export const TabelaUsers: React.FC<TabelaFuncionariosProps> = ({
         }}
         onCancel={fecharModal}
       />
-      <h2>USUÁRIOS CADASTRADOS</h2>
-      <ShadowTop className="ShadowTop" />
+      <h3>COLETORES CADASTRADOS</h3>
+      <ShadowTop />
       <UserTableStyleContainer className="UserTableStyleContainer">
         <UserTableStyle className="tableContent">
           <thead>
             <tr>
-              <th className="information">NOME</th>
-              <th className="information">MATRÍCULA</th>
-              <th className="information">CPF</th>
+              <th className="information">NÚMERO</th>
+              <th className="information" style={{ minWidth: "190px" }}>
+                SERIAL DO COLETOR
+              </th>
               <th className="actions">AÇÕES</th>
             </tr>
           </thead>
@@ -201,12 +202,6 @@ export const TabelaUsers: React.FC<TabelaFuncionariosProps> = ({
               <tr key={index}>
                 <td className="information">{user.name}</td>
                 <td className="information">{user.mat}</td>
-                <td className="information">
-                  {user.cpf?.replace(
-                    /(\d{3})(\d{3})(\d{3})(\d{2})/,
-                    "$1.$2.$3-$4"
-                  )}
-                </td>
                 <td>
                   <Button
                     backgroundcolor="var(--buttonDelete)"
@@ -223,7 +218,7 @@ export const TabelaUsers: React.FC<TabelaFuncionariosProps> = ({
       </UserTableStyleContainer>
       <ShadowBottom className="ShadowBottom" />
       {!usuarios?.length && (
-        <p className="warningTable">Nenhum usuário cadastrado!</p>
+        <p className="warningTable">Nenhum coletor cadastrado!</p>
       )}
     </div>
   );

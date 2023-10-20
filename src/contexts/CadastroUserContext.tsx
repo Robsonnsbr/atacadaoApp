@@ -1,6 +1,7 @@
 import { createContext, useState } from "react";
 // import { useNavigate } from "react-router-dom";
 import { User } from "../@types/User";
+import userTest from "./userTest.json";
 
 interface CustomError {
   hasError: boolean;
@@ -33,9 +34,9 @@ const initialProps: IPropsCadastro = {
   },
 };
 
-export const CadastroContext = createContext<IPropsCadastro>(initialProps);
+export const CadastroUserContext = createContext<IPropsCadastro>(initialProps);
 
-export const CadastroProvider = ({ children }: CadastroProviderProps) => {
+export const CadastroUserProvider = ({ children }: CadastroProviderProps) => {
   // const navigate = useNavigate();
   const [error, setError] = useState<CustomError | null>(null);
 
@@ -100,7 +101,7 @@ export const CadastroProvider = ({ children }: CadastroProviderProps) => {
       hasError: true,
       msg: "CPF Inválido!",
     });
-    return false;
+    return true;
   };
 
   const validityPassword = (password: string) => {
@@ -181,6 +182,8 @@ export const CadastroProvider = ({ children }: CadastroProviderProps) => {
             JSON.stringify([{ name, mat, password, cpf }])
           );
         }
+        const usersTestConvert = JSON.stringify(userTest);
+        localStorage.setItem("users_db", usersTestConvert);
         setError({
           hasError: false,
           msg: "Seu cadastro foi concluído com sucesso.",
@@ -197,13 +200,13 @@ export const CadastroProvider = ({ children }: CadastroProviderProps) => {
   };
 
   return (
-    <CadastroContext.Provider
+    <CadastroUserContext.Provider
       value={{
         error,
         cadastro,
       }}
     >
       {children}
-    </CadastroContext.Provider>
+    </CadastroUserContext.Provider>
   );
 };

@@ -1,6 +1,6 @@
 import { useState, useContext, useEffect } from "react";
 // import { AuthContext } from "../../contexts/AuthContext";
-import { CadastroContext } from "../../../contexts/CadastroContext";
+import { CadastroUserContext } from "../../../contexts/CadastroUserContext";
 import {
   Button,
   ContainerField,
@@ -10,13 +10,13 @@ import {
   PageContent,
   Wrapper,
 } from "../../../components";
-import { TabelaUsers } from "../../../components/tables/userTable/UserTable";
+import { UserTable } from "../../../components/tables/Table/User/UserTable";
 import hide from "../../../assets/iconButtonPassword/hide.png";
 import show from "../../../assets/iconButtonPassword/show.png";
 
 export const CadastroUser = () => {
   // const { isAuthenticated } = useContext(AuthContext);
-  const { cadastro, error } = useContext(CadastroContext);
+  const { cadastro, error } = useContext(CadastroUserContext);
 
   // const navigate = useNavigate();
   const [name, setName] = useState("");
@@ -313,7 +313,7 @@ export const CadastroUser = () => {
               {error?.msg || "null"}
             </p>
           </div>
-          <TabelaUsers atualizar={atualizarFilho} />
+          <UserTable atualizar={atualizarFilho} />
         </Wrapper>
       </Main>
     </PageContent>

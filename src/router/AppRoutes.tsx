@@ -14,7 +14,9 @@ import {
   CadastroCollector,
 } from "../pages";
 import { AuthProvider, AuthContext } from "../contexts/AuthContext";
-import { CadastroProvider } from "../contexts/CadastroContext";
+import { CadastroUserProvider } from "../contexts/CadastroUserContext";
+import { CadastroEmpProvider } from "../contexts/CadastroEmpContext";
+import { CadastroColleProvider } from "../contexts/CadastroColleContext";
 // import { NaveBar } from "../components";
 interface PrivateProps {
   children: React.ReactElement;
@@ -38,29 +40,33 @@ export const AppRoutes = () => {
   return (
     <Router>
       <AuthProvider>
-        <CadastroProvider>
-          <Routes>
-            <Route path="AppCollector/login" element={<LoginPages />} />
+        <CadastroUserProvider>
+          <CadastroEmpProvider>
+            <CadastroColleProvider>
+              <Routes>
+                <Route path="AppCollector/login" element={<LoginPages />} />
 
-            <Route path="AppCollector/Users" element={<CadastroUser />} />
-            <Route
-              path="AppCollector/Employees"
-              element={<CadastroEmployee />}
-            />
-            <Route
-              path="AppCollector/Collectors"
-              element={<CadastroCollector />}
-            />
-            <Route
-              path="AppCollector/"
-              element={
-                <Private>
-                  <HomePage />
-                </Private>
-              }
-            />
-          </Routes>
-        </CadastroProvider>
+                <Route path="AppCollector/Users" element={<CadastroUser />} />
+                <Route
+                  path="AppCollector/Employees"
+                  element={<CadastroEmployee />}
+                />
+                <Route
+                  path="AppCollector/Collectors"
+                  element={<CadastroCollector />}
+                />
+                <Route
+                  path="AppCollector/"
+                  element={
+                    <Private>
+                      <HomePage />
+                    </Private>
+                  }
+                />
+              </Routes>
+            </CadastroColleProvider>
+          </CadastroEmpProvider>
+        </CadastroUserProvider>
       </AuthProvider>
     </Router>
   );

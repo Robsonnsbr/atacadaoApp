@@ -1,5 +1,6 @@
 import styled from "styled-components";
 
+//TODO: Ajustar tamanho mínimo do navBar após definição de atalhos
 export const StyledNaveBar = styled.nav`
   overflow: hidden;
   position: fixed;

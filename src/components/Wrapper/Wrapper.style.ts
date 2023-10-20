@@ -33,6 +33,7 @@ export const StyledWrapper = styled.section`
     .tabelaContainer {
       margin: 0px;
   }
+  
   }
 
   & p#warning {

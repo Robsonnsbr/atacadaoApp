@@ -1,0 +1,206 @@
+[
+  {
+    "name": "Isabella Fernandes",
+    "mat": "if1234",
+    "password": "IsabellaPass",
+    "cpf": "12345678901"
+  },
+  {
+    "name": "Noah Rodrigues",
+    "mat": "nr3456",
+    "password": "NoahPass12",
+    "cpf": "45678901234"
+  },
+  {
+    "name": "Manuela Santos",
+    "mat": "ms67890001546",
+    "password": "Manuela12",
+    "cpf": "78901234567"
+  },
+  {
+    "name": "Camila",
+    "mat": "ca4545",
+    "password": "Apollo13++",
+    "cpf": "33603911016"
+  },
+  {
+    "name": "Lucas",
+    "mat": "lu7890",
+    "password": "SecretPass12",
+    "cpf": "54832678901"
+  },
+  {
+    "name": "Laura Almeida",
+    "mat": "la4567",
+    "password": "LauraPass",
+    "cpf": "90123456789"
+  },
+  {
+    "name": "Maria Almeida Cecilia",
+    "mat": "ma1234",
+    "password": "P@ssw0rd",
+    "cpf": "12345678900"
+  },
+  {
+    "name": "Pedro",
+    "mat": "pe5678",
+    "password": "Secure123!",
+    "cpf": "98765432100"
+  },
+  {
+    "name": "Ana Cecilia Costa Silva",
+    "mat": "an9999",
+    "password": "12345Pass",
+    "cpf": "55555555555"
+  },
+  {
+    "name": "João",
+    "mat": "jo6789",
+    "password": "Passw0rd123",
+    "cpf": "65432198700"
+  },
+  {
+    "name": "Rafael",
+    "mat": "ra00010001546",
+    "password": "RafaelPass",
+    "cpf": "98712365409"
+  },
+  {
+    "name": "Sofia",
+    "mat": "so5678",
+    "password": "S0f!@123",
+    "cpf": "45612378901"
+  },
+  {
+    "name": "Felipe",
+    "mat": "fe11110001546",
+    "password": "Fe1!pE12",
+    "cpf": "45678912300"
+  },
+  {
+    "name": "Arthur Martins  Cecilia Costa Andrade",
+    "mat": "am9012",
+    "password": "Arthur123",
+    "cpf": "01234567890"
+  },
+  {
+    "name": "Camila",
+    "mat": "ca4545",
+    "password": "Apollo13++",
+    "cpf": "33603911016"
+  },
+  {
+    "name": "Miguel Costa",
+    "mat": "mc1234",
+    "password": "Miguel@123",
+    "cpf": "89012345678"
+  },
+  {
+    "name": "Lucas",
+    "mat": "lu7890",
+    "password": "SecretPass12",
+    "cpf": "54832678901"
+  },
+  {
+    "name": "Mariana Camila Silva",
+    "mat": "ma4321",
+    "password": "M@r1@n@",
+    "cpf": "78965432101"
+  },
+  {
+    "name": "Sofia",
+    "mat": "so5678",
+    "password": "S0f!@123",
+    "cpf": "45612378901"
+  },
+  {
+    "name": "Felipe",
+    "mat": "fe1111aih456aih456",
+    "password": "Fe1!pE12",
+    "cpf": "45678912300"
+  },
+  {
+    "name": "ChatGPT the best world",
+    "mat": "cgpt123",
+    "password": "AI@Open123",
+    "cpf": "01234567890"
+  },
+  {
+    "name": "AIHelper",
+    "mat": "aih456",
+    "password": "HelpMeNow!",
+    "cpf": "11223344556"
+  },
+  {
+    "name": "Benjamin da Silva",
+    "mat": "bs5678",
+    "password": "Benjamin123",
+    "cpf": "23456789012"
+  },
+  {
+    "name": "TechBot",
+    "mat": "tb7890",
+    "password": "TechWiz123",
+    "cpf": "99887766554"
+  },
+  {
+    "name": "InfoGenius AIHelper VirtualMind",
+    "mat": "ig1234",
+    "password": "Genius@123",
+    "cpf": "76543210987"
+  },
+  {
+    "name": "KnowledgeBot HelpDeskAI AICompanion",
+    "mat": "kb7777",
+    "password": "KnowItAll1",
+    "cpf": "99887766554"
+  },
+  {
+    "name": "QABot",
+    "mat": "qa8888",
+    "password": "Question123",
+    "cpf": "76543210987"
+  },
+  {
+    "name": "TechSavvyAI",
+    "mat": "tsai789",
+    "password": "Tech123Savvy",
+    "cpf": "99887766554"
+  },
+  {
+    "name": "CyberMentor",
+    "mat": "cm5678",
+    "password": "CyberMentor1",
+    "cpf": "99887766554"
+  },
+  {
+    "name": "KnowledgeSage VirtuosoBot QuizMaster",
+    "mat": "ks9999",
+    "password": "SagePass123",
+    "cpf": "99887766554"
+  },
+  {
+    "name": "DataOracle",
+    "mat": "doracle123",
+    "password": "Data@Oracle",
+    "cpf": "11223344556"
+  },
+  {
+    "name": "AIWhizKid",
+    "mat": "aiwk777",
+    "password": "WhizKid123",
+    "cpf": "99887766554"
+  },
+  {
+    "name": "QuizMaster",
+    "mat": "qm1234",
+    "password": "QuizMaster@123",
+    "cpf": "99887766554"
+  },
+  {
+    "name": "InfiniteWisdom",
+    "mat": "iw9999",
+    "password": "Infinite123",
+    "cpf": "11223344556"
+  }
+]

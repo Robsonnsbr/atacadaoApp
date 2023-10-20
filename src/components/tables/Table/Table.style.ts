@@ -66,6 +66,10 @@ export const ShadowBottom = styled.div`
     margin: 5px;
     bottom: 0px;
   }
+  @media (max-width: 400px) {
+    margin: 5px;
+    bottom: 10px;
+  }
 
 `;
 

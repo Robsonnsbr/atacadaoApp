@@ -1,6 +1,6 @@
-import { useState, useContext } from "react";
-// import { AuthContext } from "../../../contexts/AuthContext";
-import { CadastroContext } from "../../../contexts/CadastroContext";
+import { useState, useContext, useEffect } from "react";
+// import { AuthContext } from "../../contexts/AuthContext";
+import { CadastroEmpContext } from "../../../contexts/CadastroEmpContext";
 import {
   Button,
   ContainerField,
@@ -8,39 +8,111 @@ import {
   Main,
   NaveBar,
   PageContent,
-  Slink,
   Wrapper,
 } from "../../../components";
-import { Link } from "react-router-dom";
+import { EmployeeTable } from "../../../components/tables/Table/Employee/EmployeeTable";
 
 export const CadastroEmployee = () => {
   // const { isAuthenticated } = useContext(AuthContext);
-  const { cadastro, error } = useContext(CadastroContext);
+  const { cadastro, error } = useContext(CadastroEmpContext);
 
   // const navigate = useNavigate();
+  const [name, setName] = useState("");
   const [mat, setMat] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmEmail, setConfirmEmail] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [confirmMat, setConfirmMat] = useState("");
+  const [atualizarFilho, setAtualizarFilho] = useState(false);
 
-  const inputsBlock = document.querySelectorAll(".block");
-  inputsBlock.forEach((element) => {
-    element.addEventListener("paste", (e) => {
-      e.preventDefault();
-    });
-    element.addEventListener("copy", (e) => {
-      e.preventDefault();
-    });
-    element.addEventListener("cut", (e) => {
-      e.preventDefault();
-    });
-  });
+  //TODO: analisar e/ou remover todos as function and commits
+  //TODO: ativar tratamento dos inputs
+  // const inputsBlock = document.querySelectorAll(".block");
+
+  // inputsBlock.forEach((element) => {
+  //   const preventDefault = (e: Event) => e.preventDefault();
+
+  //   element.addEventListener("paste", preventDefault);
+  //   element.addEventListener("copy", preventDefault);
+  //   element.addEventListener("cut", preventDefault);
+  // });
 
   const handleSubmit = (event: React.FormEvent) => {
-    event.preventDefault(),
-      cadastro(name, mat, confirmMat, password, confirmPassword);
+    event.preventDefault(), cadastro(name, mat, confirmMat);
+  };
+  //TODO: fix CustomValidity for React obs:(após o 2 elemento ele persiste o erro)
+  // useEffect(() => {
+  //   const fields = document.querySelectorAll("[required]");
+
+  //   const customValidation = (e: Event) => {
+  //     e.preventDefault();
+  //     const field = e.target as HTMLInputElement;
+
+  //     if (field.validity.valueMissing) {
+  //       field.setCustomValidity("Esse campo é obrigatório");
+  //     } else if (field.validity.customError) {
+  //       field.setCustomValidity("Houve um erro personalizado no campo");
+  //     } else {
+  //       field.setCustomValidity(""); // Limpa a mensagem de erro personalizada
+  //     }
+  //   };
+
+  //   for (const field of fields) {
+  //     field.addEventListener("invalid", customValidation);
+  //   }
+
+  //   return () => {
+  //     for (const field of fields) {
+  //       field.removeEventListener("invalid", customValidation);
+  //     }
+  //   };
+  // }, []);
+
+  const warningElement = document.getElementById("warning")!;
+
+  useEffect(() => {
+    const handleWarning = () => {
+      if (error !== null) {
+        warningElement?.classList.remove("warning-null");
+        if (!error.hasError) {
+          warningElement?.classList.remove("error-true");
+          warningElement?.classList.add("error-false");
+          handleClearInput();
+        } else {
+          warningElement?.classList.remove("error-false");
+          warningElement?.classList.add("error-true");
+        }
+        setTimeout(() => {
+          warningElement?.classList.add("warning-null");
+          warningElement?.classList.remove("error-false");
+          warningElement?.classList.remove("error-true");
+        }, 4000);
+      }
+      return;
+    };
+    handleWarning();
+  }, [warningElement, error]);
+
+  const atualizarUseEffectFilho = () => {
+    setAtualizarFilho(!atualizarFilho);
   };
 
+  const handleClearInput = () => {
+    setName("");
+    setMat("");
+    setConfirmMat("");
+    document.getElementById("name")?.focus();
+  };
+
+  // const formatarCPF = (value: string) => {
+  //   // Função para formatar o CPF
+  //   // Implemente a lógica de formatação aqui, se necessário
+  //   // Exemplo simples:
+  //   const cpfFormatado = value
+  //     .replace(/\D/g, "")
+  //     .replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
+  //   console.log(cpfFormatado);
+  //   return cpfFormatado;
+  // };
+
+  // const usuario: User = { name, mat, password };
   // if (isAuthenticated) {
   //   navigate("/");
   // }
@@ -50,76 +122,66 @@ export const CadastroEmployee = () => {
       <NaveBar />
       <Main>
         <Wrapper>
-          <h1>CADASTRO DE FUNCIONÁRIOS</h1>
-          <Form onSubmit={(e) => handleSubmit(e)} method={"post"}>
-            <ContainerField>
-              <label htmlFor="mat">Matricula:</label>
-              <input
-                autoFocus
-                className="block"
-                autoComplete="nope"
-                type="text"
-                id="mat"
-                placeholder="matricula"
-                value={mat.toLowerCase()}
-                onChange={(event) => setMat(event.target.value)}
-                required
+          <div className="containerCadastro">
+            <h1>CADASTRO DE FUNCIONÁRIOS</h1>
+            <Form onSubmit={(e) => handleSubmit(e)} method={"post"}>
+              <label htmlFor="name">NOME DO FUNCIONÁRIO</label>
+              <ContainerField className="inputName">
+                <input
+                  autoFocus
+                  className="block"
+                  autoComplete="nope"
+                  type="text"
+                  id="name"
+                  placeholder="nome"
+                  maxLength={30}
+                  value={name.toLowerCase()}
+                  onChange={(event) => setName(event.target.value)}
+                  required
+                  title="aaaaa"
+                />
+              </ContainerField>
+              <label htmlFor="mat">MATRÍCULA DO FUNCIONÁRIO</label>
+              <ContainerField>
+                <input
+                  className="block"
+                  autoComplete="nope"
+                  type="text"
+                  id="mat"
+                  placeholder="matrícula"
+                  maxLength={20}
+                  value={mat.toLowerCase().replace(/\s+/g, "")}
+                  onChange={(event) => setMat(event.target.value)}
+                  required
+                />
+              </ContainerField>
+              <ContainerField className="inputMat">
+                <input
+                  className="block"
+                  autoComplete="nope"
+                  type="text"
+                  id="confirmarMat"
+                  placeholder="confirmar matrícula"
+                  maxLength={20}
+                  value={confirmMat.toLowerCase().replace(/\s+/g, "")}
+                  onChange={(event) => setConfirmMat(event.target.value)}
+                  required
+                />
+              </ContainerField>
+              <Button
+                backgroundcolor="var(--successfully)"
+                type={"submit"}
+                id={"btnSubmit"}
+                name={"btnSubmit"}
+                value={"Cadastrar"}
+                onClick={atualizarUseEffectFilho}
               />
-            </ContainerField>
-            <ContainerField>
-              <label htmlFor="confirmarMat">Confirmar matricula:</label>
-              <input
-                className="block"
-                autoComplete="nope"
-                type="text"
-                id="confirmarMat"
-                placeholder="confirmar matricula"
-                value={confirmEmail.toLowerCase()}
-                onChange={(event) => setConfirmEmail(event.target.value)}
-                required
-              />
-            </ContainerField>
-            <ContainerField>
-              <label htmlFor="password">Senha:</label>
-              <input
-                className="block"
-                type="password"
-                name="password"
-                id="password"
-                value={confirmPassword}
-                onChange={(event) => setConfirmPassword(event.target.value)}
-                placeholder="confirmar senha"
-                required
-              />
-            </ContainerField>
-            <ContainerField>
-              <label htmlFor="confirmarPassword">Confirmar senha:</label>
-              <input
-                className="block"
-                type="password"
-                name="confirmarPassword"
-                id="confirmarPassword"
-                value={password}
-                onChange={(event) => setPassword(event.target.value)}
-                placeholder="senha"
-                required
-              />
-            </ContainerField>
-
-            <Button
-              backgroundcolor="var(--successfully)"
-              type={"submit"}
-              id={"btnSubmit"}
-              name={"btnSubmit"}
-              value={"Cadastrar"}
-            />
-          </Form>
-
-          {!error && <span style={{ color: "transparent" }}>#gambiarra#</span>}
-          {error && <span style={{ color: "var(--error)" }}>{error}</span>}
-          <Link to={"/AppCollector/Login"} style={{ textDecoration: "none" }}>
-            <Slink value={"log in"} />
-          </Link>
+            </Form>
+            <p id="warning" className="warning-null">
+              {error?.msg || "null"}
+            </p>
+          </div>
+          <EmployeeTable atualizar={atualizarFilho} />
         </Wrapper>
       </Main>
     </PageContent>

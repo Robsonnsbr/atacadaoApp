@@ -24,7 +24,7 @@ export const GlobalStyle = createGlobalStyle`
     border: 0;
     box-sizing: border-box;
 
-h1, h2 {
+h1, h2, h3 {
     margin: 5px;
     color: var(--on-secondary);
     text-align: center;
@@ -37,10 +37,10 @@ p {
 
 h1 {
     font-size: 20px;
-    text-shadow: 1px 1px 2px #0000006f;
+    text-shadow: 1px 1px 1px #0000005f;
 }
-h2 {
-    font-size: 18px;
+h3 {
+    font-size: 16px;
     text-shadow: 0.5px 0.5px 1px #0000004f;
 }
 
