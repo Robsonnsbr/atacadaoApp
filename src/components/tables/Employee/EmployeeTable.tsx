@@ -186,15 +186,15 @@ export const EmployeeTable: React.FC<TabelaColaboradoresProps> = ({
         }}
         onCancel={fecharModal}
       />
-      <h3>FUNCIONÁRIO CADASTRADOS</h3>
+      <h3>COLABORADORES CADASTRADOS</h3>
       <ShadowTop />
       <UserTableStyleContainer className="UserTableStyleContainer">
         <UserTableStyle className="tableContent">
           <thead>
             <tr>
-              <th className="information">NOME</th>
-              <th className="information">MATRÍCULA</th>
-              <th className="information">PERÍODO</th>
+              <th className="info">NOME</th>
+              <th className="info">MATRÍCULA</th>
+              <th className="info">PERÍODO</th>
               {/* TODO: adicionar período ao colaborador controle */}
               <th className="actions">AÇÕES</th>
             </tr>
@@ -202,9 +202,9 @@ export const EmployeeTable: React.FC<TabelaColaboradoresProps> = ({
           <tbody>
             {employees?.map((user: Employee, index: number) => (
               <tr key={index}>
-                <td className="information">{user.name}</td>
-                <td className="information">{user.mat}</td>
-                <td className="information" style={{ textAlign: "center" }}>
+                <td className="info">{user.name}</td>
+                <td className="info">{user.mat}</td>
+                <td className="info" style={{ textAlign: "center" }}>
                   {user.workShift}
                 </td>
                 <td>

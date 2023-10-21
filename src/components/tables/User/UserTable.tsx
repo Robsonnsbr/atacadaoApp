@@ -190,18 +190,18 @@ export const UserTable: React.FC<TabelaColaboradoresProps> = ({
         <UserTableStyle className="tableContent">
           <thead>
             <tr>
-              <th className="information">NOME</th>
-              <th className="information">MATRÍCULA</th>
-              <th className="information">CPF</th>
+              <th className="info">NOME</th>
+              <th className="info">MATRÍCULA</th>
+              <th className="info">CPF</th>
               <th className="actions">AÇÕES</th>
             </tr>
           </thead>
           <tbody>
             {usuarios?.map((user: User, index: number) => (
               <tr key={index}>
-                <td className="information">{user.name}</td>
-                <td className="information">{user.mat}</td>
-                <td className="information">
+                <td className="info">{user.name}</td>
+                <td className="info">{user.mat}</td>
+                <td className="info">
                   {user.cpf?.replace(
                     /(\d{3})(\d{3})(\d{3})(\d{2})/,
                     "$1.$2.$3-$4"

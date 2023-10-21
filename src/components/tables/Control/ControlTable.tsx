@@ -189,19 +189,19 @@ export const ControlTable: React.FC<TabelaColaboradoresProps> = ({
         <UserTableStyle className="tableContent">
           <thead>
             <tr>
-              <th className="information">COLABORADOR</th>
-              <th className="information">COLETOR</th>
-              <th className="information">STATUS</th>
+              <th className="info">COLABORADOR</th>
+              <th className="info">COLETOR</th>
+              <th className="info">STATUS</th>
               <th className="actions">AÇÕES</th>
             </tr>
           </thead>
           <tbody>
             {usuarios?.map((user: Activated, index: number) => (
               <tr key={index}>
-                <td className="information">{user.employee}</td>
-                <td className="information">{user.collector}</td>
+                <td className="info">{user.employee}</td>
+                <td className="info">{user.collector}</td>
                 <td
-                  className="information"
+                  className="info"
                   style={{ textAlign: "center", color: "var(--successfully)" }}
                 >
                   {user.status}

@@ -190,18 +190,16 @@ export const CollectorTable: React.FC<TabelaColaboradoresProps> = ({
         <UserTableStyle className="tableContent">
           <thead>
             <tr>
-              <th className="information">NÚMERO</th>
-              <th className="information">SERIAL COLETOR</th>
+              <th className=" info info-num-collector">NÚMERO</th>
+              <th className="info info-sn-collector">SERIAL COLETOR</th>
               <th className="actions">AÇÕES</th>
             </tr>
           </thead>
           <tbody>
             {collectors?.map((collector: Collector, index: number) => (
               <tr key={index}>
-                <td className="information" style={{ textAlign: "center" }}>
-                  {collector.numero}
-                </td>
-                <td className="information">{collector.sn}</td>
+                <td style={{ textAlign: "center" }}>{collector.numero}</td>
+                <td className="info">{collector.sn}</td>
                 <td>
                   <Button
                     backgroundcolor="var(--buttonDelete)"

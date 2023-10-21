@@ -138,9 +138,9 @@ export const CadastroEmployee = () => {
         <Main>
           <Wrapper>
             <div className="containerCadastro">
-              <h1>CADASTRO DE FUNCIONÁRIOS</h1>
+              <h1>CADASTRO DE COLABORADORES</h1>
               <Form onSubmit={(e) => handleSubmit(e)} method={"post"}>
-                <label htmlFor="name">NOME DO FUNCIONÁRIO</label>
+                <label htmlFor="name">NOME DO COLABORADORES</label>
                 <ContainerField className="inputName">
                   <input
                     autoFocus

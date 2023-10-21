@@ -98,37 +98,47 @@ export const UserTableStyle = styled.table`
     background-color: var(--secondary);
   }
 
-  & .information {
+  & .info {
     min-width: 160px;
     max-width: 160px;
     white-space: nowrap;
     overflow: auto;
+
   }
+
+  & .info-num-collector {
+    min-width: 90px;
+  }
+
+  & .info-sn-collector {
+    min-width: 220px;
+  }
+
   & .actions {
     min-width: 132px;
     white-space: nowrap;
   }
 
-  & .information::-webkit-scrollbar {
+  & .info::-webkit-scrollbar {
     border-radius: 5px;
     height: 7px;
     background-color: var(--primary);
     box-shadow: var(--text-shadow-style);
   }
 
-  & .information::-webkit-scrollbar-track:hover {
+  & .info::-webkit-scrollbar-track:hover {
     border-radius: 5px;
     background-color: #bbb;
   }
 
-  & .information::-webkit-scrollbar-thumb {
+  & .info::-webkit-scrollbar-thumb {
     box-shadow: 0px 0px 1px rgba(0, 0, 0, 1);
     border-radius: 5px;
     border: 2px solid var(--successfully);
     background-color: var(--successfully);
   }
 
-  & .information::-webkit-scrollbar-thumb:hover {
+  & .info::-webkit-scrollbar-thumb:hover {
     background-color: var(--third);
   }
 `;
