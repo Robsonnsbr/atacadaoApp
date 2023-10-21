@@ -191,9 +191,7 @@ export const CollectorTable: React.FC<TabelaColaboradoresProps> = ({
           <thead>
             <tr>
               <th className="information">NÚMERO</th>
-              <th className="information" style={{ minWidth: "190px" }}>
-                SERIAL DO COLETOR
-              </th>
+              <th className="information">SERIAL COLETOR</th>
               <th className="actions">AÇÕES</th>
             </tr>
           </thead>

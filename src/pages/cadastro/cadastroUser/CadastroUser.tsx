@@ -202,7 +202,7 @@ export const CadastroUser = () => {
                     id="name"
                     placeholder="nome"
                     maxLength={30}
-                    value={name.toLowerCase()}
+                    value={name}
                     onChange={(event) => setName(event.target.value)}
                     required
                     title="aaaaa"

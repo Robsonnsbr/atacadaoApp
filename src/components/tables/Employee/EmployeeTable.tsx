@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { User } from "../../../@types/User";
+import { Employee } from "../../../@types/Employee";
 import {
   ShadowBottom,
   ShadowTop,
@@ -18,20 +18,31 @@ export const EmployeeTable: React.FC<TabelaColaboradoresProps> = ({
   atualizar,
 }) => {
   const { deleteEmployee } = useContext(CadastroEmpContext);
-  const [usuarios, setUsuarios] = useState<User[] | null>([]);
+  const [employees, setEmployee] = useState<Employee[] | null>([]);
   const [atualizarInterno, setAtualizarInterno] = useState(atualizar);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [usuario, setUserToDelete] = useState<User | undefined>();
+  const [employee, setUserToDelete] = useState<Employee | undefined>();
   const [msgModal, setMsgModal] = useState<string>("");
   const [isButtonOff, setIsButtonOff] = useState(false);
+
+  useEffect(() => {
+    const recuperarUsers = () => {
+      const recoveredUsers = localStorage.getItem("employee_db");
+      if (recoveredUsers) {
+        const hasRecoveredUsers = JSON.parse(recoveredUsers);
+        setEmployee(hasRecoveredUsers.reverse());
+      }
+    };
+    recuperarUsers();
+  }, [atualizarInterno]);
 
   useEffect(() => {
     setAtualizarInterno(atualizar);
   }, [atualizar, atualizarInterno]);
 
-  const abrirModal = (usuario: User | undefined) => {
+  const abrirModal = (employee: Employee | undefined) => {
     if (!isButtonOff) {
-      setUserToDelete(usuario);
+      setUserToDelete(employee);
       setIsModalOpen(true);
       return;
     }
@@ -42,32 +53,34 @@ export const EmployeeTable: React.FC<TabelaColaboradoresProps> = ({
     setIsModalOpen(false);
   };
 
-  const handleExcluirUsuario = (usuario: User | undefined) => {
-    setUserToDelete(usuario);
+  const handleExcluirUsuario = (employee: Employee | undefined) => {
+    setUserToDelete(employee);
     setIsButtonOff(false);
-    if (usuario && usuario.mat) {
+    if (employee && employee.mat) {
       setMsgModal(
-        `Tem certeza de que deseja excluir o funcionário: ${usuario?.name} Matrícula: ${usuario?.mat}?`
+        `Tem certeza de que deseja excluir o funcionário: ${employee?.name} Matrícula: ${employee?.mat}?`
       );
-      return abrirModal(usuario);
+      return abrirModal(employee);
     }
     alert("Matrícula incorreta ou não informada");
   };
 
   const handleExcluirUsuarioTela = (mat: string) => {
-    if (usuarios && mat) {
-      const newUsers = usuarios.filter((user) => user.mat !== mat);
-      setUsuarios(newUsers); // Atualiza a lista de usuários após a exclusão
+    if (employees && mat) {
+      const newUsers = employees.filter(
+        (employee: Employee) => employee.mat !== mat
+      );
+      setEmployee(newUsers); // Atualiza a lista de usuários após a exclusão
       setAtualizarInterno(!atualizarInterno); // Altera o estado de atualização interno
     }
   };
 
-  const warningModal = (usuario: User | undefined) => {
+  const warningModal = (employee: Employee | undefined) => {
     setMsgModal(
-      `O usuário: ${usuario?.name} Matrícula: ${usuario?.mat} excluído com sucesso!`
+      `O usuário: ${employee?.name} Matrícula: ${employee?.mat} excluído com sucesso!`
     );
     setIsButtonOff(true);
-    abrirModal(usuario);
+    abrirModal(employee);
     setTimeout(() => {
       setIsModalOpen(false);
     }, 1500);
@@ -164,12 +177,12 @@ export const EmployeeTable: React.FC<TabelaColaboradoresProps> = ({
         isButtonOff={isButtonOff}
         message={msgModal}
         onConfirm={() => {
-          if (usuario?.mat) {
-            deleteEmployee(usuario.mat);
-            handleExcluirUsuarioTela(usuario.mat);
+          if (employee?.mat) {
+            deleteEmployee(employee.mat);
+            handleExcluirUsuarioTela(employee.mat);
           }
           fecharModal();
-          warningModal(usuario);
+          warningModal(employee);
         }}
         onCancel={fecharModal}
       />
@@ -187,12 +200,12 @@ export const EmployeeTable: React.FC<TabelaColaboradoresProps> = ({
             </tr>
           </thead>
           <tbody>
-            {usuarios?.map((user: User, index: number) => (
+            {employees?.map((user: Employee, index: number) => (
               <tr key={index}>
                 <td className="information">{user.name}</td>
                 <td className="information">{user.mat}</td>
-                <td className="information">
-                  {user.workShift || "não informado"}
+                <td className="information" style={{ textAlign: "center" }}>
+                  {user.workShift}
                 </td>
                 <td>
                   <Button
@@ -209,7 +222,7 @@ export const EmployeeTable: React.FC<TabelaColaboradoresProps> = ({
         </UserTableStyle>
       </UserTableStyleContainer>
       <ShadowBottom className="ShadowBottom" />
-      {!usuarios?.length && (
+      {!employees?.length && (
         <p className="warningTable">Nenhum funcionário cadastrado!</p>
       )}
     </div>

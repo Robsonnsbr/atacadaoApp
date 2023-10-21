@@ -20,7 +20,7 @@ export const CadastroEmployee = () => {
   // const navigate = useNavigate();
   const [name, setName] = useState("");
   const [mat, setMat] = useState("");
-  const [workShift, setworkShift] = useState("");
+  const [workShift, setWorkShift] = useState("");
   const [confirmMat, setConfirmMat] = useState("");
   const [atualizarFilho, setAtualizarFilho] = useState(false);
 
@@ -37,7 +37,7 @@ export const CadastroEmployee = () => {
   // });
 
   const handleSubmit = (event: React.FormEvent) => {
-    event.preventDefault(), cadastro(name, mat, confirmMat);
+    event.preventDefault(), cadastro({ name, mat, confirmMat, workShift });
   };
   //TODO: fix CustomValidity for React obs:(após o 2 elemento ele persiste o erro)
   // useEffect(() => {
@@ -100,6 +100,7 @@ export const CadastroEmployee = () => {
     setName("");
     setMat("");
     setConfirmMat("");
+    setWorkShift("");
     document.getElementById("name")?.focus();
   };
 
@@ -149,27 +150,29 @@ export const CadastroEmployee = () => {
                     id="name"
                     placeholder="nome"
                     maxLength={30}
-                    value={name.toLowerCase()}
+                    value={name}
                     onChange={(event) => setName(event.target.value)}
                     required
                     title="aaaaa"
                   />
                 </ContainerField>
-                <label htmlFor="workShift">PERÍODO OU workShift</label>
+                <label htmlFor="workShift">PERÍODO</label>
                 <ContainerField className="inputName">
-                  <input
+                  <select
                     autoFocus
                     className="block"
-                    autoComplete="nope"
-                    type="text"
                     id="workShift"
-                    placeholder="workShift"
-                    maxLength={30}
-                    value={workShift.toLowerCase()}
-                    onChange={(event) => setworkShift(event.target.value)}
+                    value={workShift}
+                    onChange={(event) => setWorkShift(event.target.value)}
                     required
                     title="aaaaa"
-                  />
+                  >
+                    <option value="">Selecione um período</option>
+                    <option value="MANHÃ">MANHÃ</option>
+                    <option value="TARDE">TARDE</option>
+                    <option value="NOITE">NOITE</option>
+                    <option value="HÍBRIDO">HÍBRIDO</option>
+                  </select>
                 </ContainerField>
                 <label htmlFor="mat">MATRÍCULA DO FUNCIONÁRIO</label>
                 <ContainerField>

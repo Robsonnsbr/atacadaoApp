@@ -20,13 +20,8 @@ export const StyledForm = styled.form`
 
   }
 
-  & input {
-    -moz-appearance: none;
-    -webkit-appearance: none;
-    appearance: none;
-    min-width: 300px;
-    outline: none;
-  }
+
+
   & input#confirmarPassword, #password{
     min-width: 280px;
   }
@@ -59,8 +54,12 @@ export const StyledContainerField = styled.div`
   box-shadow: 0 0 2px 1px #00000086;
   min-height: 41.4px;
 
-  & input {
-    
+  & input, select{
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    min-width: 300px;
+    outline: none;
     background-color: transparent;
     color: var(--on-secondary);
     font-size: 16px;
@@ -71,6 +70,11 @@ export const StyledContainerField = styled.div`
     border-bottom: 1px solid var(--on-secondary);
     outline: none;
   }
+
+  & select {
+    appearance: auto;
+  }
+
 
   & input:focus {
     background-color: var(--secondary);

@@ -1,6 +1,6 @@
 import { createContext, useState } from "react";
 // import { useNavigate } from "react-router-dom";
-import { User } from "../@types/User";
+import { Employee } from "../@types/Employee";
 // import userTest from "./userTest.json";
 
 interface CustomError {
@@ -10,7 +10,7 @@ interface CustomError {
 
 interface IPropsCadastro {
   error: CustomError | null;
-  cadastro: (name: string, mat: string, confirmMat: string) => void;
+  cadastro: (data: Employee) => void;
   deleteEmployee: (mat: string) => void;
 }
 
@@ -41,10 +41,10 @@ export const CadastroEmpProvider = ({ children }: CadastroProviderProps) => {
     const recoveredUser = localStorage.getItem("employee_db");
     if (mat && recoveredUser) {
       const users = JSON.parse(recoveredUser);
-      const index = users.findIndex((user: User) => user.mat === mat);
+      const index = users.findIndex((user: Employee) => user.mat === mat);
 
       if (index !== -1) {
-        // const currentUser: User = users[index];
+        // const currentUser: Employee = users[index];
         users.splice(index, 1);
         localStorage.setItem("employee_db", JSON.stringify(users));
         // alert(`Usuário ${currentUser.mat} Excluído com sucesso!`);
@@ -52,8 +52,8 @@ export const CadastroEmpProvider = ({ children }: CadastroProviderProps) => {
     }
   };
 
-  const cadastro = async (name: string, mat: string, confirmMat: string) => {
-    console.log("entrei aqui");
+  const cadastro = async (employee: Employee) => {
+    const { name, mat, confirmMat, workShift } = employee;
     if (mat === confirmMat) {
       setError(null);
       const recoveredUsers = localStorage.getItem("employee_db");
@@ -61,7 +61,7 @@ export const CadastroEmpProvider = ({ children }: CadastroProviderProps) => {
       if (recoveredUsers) {
         const hasRecoveredUsers = JSON.parse(recoveredUsers);
         const hasUser = hasRecoveredUsers.filter(
-          (user: User) => user.mat === mat
+          (user: Employee) => user.mat === mat
         );
 
         if (hasUser.length > 0) {
@@ -73,8 +73,8 @@ export const CadastroEmpProvider = ({ children }: CadastroProviderProps) => {
       }
 
       if (recoveredUsers) {
-        const parsedRecoveredUsers: User[] = JSON.parse(recoveredUsers);
-        parsedRecoveredUsers.push({ name, mat });
+        const parsedRecoveredUsers: Employee[] = JSON.parse(recoveredUsers);
+        parsedRecoveredUsers.push({ name, mat, workShift });
         localStorage.setItem(
           "employee_db",
           JSON.stringify(parsedRecoveredUsers)
