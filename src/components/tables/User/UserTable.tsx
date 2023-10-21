@@ -40,86 +40,6 @@ export const UserTable: React.FC<TabelaColaboradoresProps> = ({
     setAtualizarInterno(atualizar);
   }, [atualizar, atualizarInterno]);
 
-  const abrirModal = (usuario: User | undefined) => {
-    if (!isButtonOff) {
-      setUserToDelete(usuario);
-      setIsModalOpen(true);
-      return;
-    }
-    setIsModalOpen(true);
-  };
-
-  const fecharModal = () => {
-    setIsModalOpen(false);
-  };
-
-  const handleExcluirUsuario = (usuario: User | undefined) => {
-    setUserToDelete(usuario);
-    setIsButtonOff(false);
-    if (usuario && usuario.mat) {
-      setMsgModal(
-        `Tem certeza de que deseja excluir o usuário: ${usuario?.name} Matrícula: ${usuario?.mat}?`
-      );
-      return abrirModal(usuario);
-    }
-    alert("Matrícula incorreta ou não informada");
-  };
-
-  const handleExcluirUsuarioTela = (mat: string) => {
-    if (usuarios && mat) {
-      const newUsers = usuarios.filter((user) => user.mat !== mat);
-      setUsuarios(newUsers); // Atualiza a lista de usuários após a exclusão
-      setAtualizarInterno(!atualizarInterno); // Altera o estado de atualização interno
-    }
-  };
-
-  const warningModal = (usuario: User | undefined) => {
-    setMsgModal(
-      `O usuário: ${usuario?.name} Matrícula: ${usuario?.mat} excluído com sucesso!`
-    );
-    setIsButtonOff(true);
-    abrirModal(usuario);
-    setTimeout(() => {
-      setIsModalOpen(false);
-    }, 1500);
-  };
-
-  // useEffect(() => {
-  //   const handleScroll = () => {
-  //     const container = document.querySelector(
-  //       ".UserTableStyleContainer"
-  //     ) as HTMLElement;
-  //     const shadowTop = document.querySelector(".ShadowTop") as HTMLElement;
-  //     const shadowBottom = document.querySelector(
-  //       ".ShadowBottom"
-  //     ) as HTMLElement;
-
-  //     if (container.scrollTop > 0) {
-  //       shadowTop.style.display = "block";
-  //     } else {
-  //       shadowTop.style.display = "none";
-  //     }
-
-  //     if (
-  //       container.scrollTop + container.clientHeight <
-  //       container.scrollHeight
-  //     ) {
-  //       shadowBottom.style.display = "block";
-  //     } else {
-  //       shadowBottom.style.display = "none";
-  //     }
-  //   };
-
-  //   const container = document.querySelector(
-  //     ".UserTableStyleContainer"
-  //   ) as HTMLElement;
-  //   container.addEventListener("scroll", handleScroll);
-
-  //   return () => {
-  //     container.removeEventListener("scroll", handleScroll);
-  //   };
-  // }, []);
-
   useEffect(() => {
     const handleScroll = () => {
       const container = document.querySelector(
@@ -168,6 +88,51 @@ export const UserTable: React.FC<TabelaColaboradoresProps> = ({
       container.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  const abrirModal = (usuario: User | undefined) => {
+    if (!isButtonOff) {
+      setUserToDelete(usuario);
+      setIsModalOpen(true);
+      return;
+    }
+    setIsModalOpen(true);
+  };
+
+  const fecharModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const warningModal = (usuario: User | undefined) => {
+    setMsgModal(
+      `O usuário: ${usuario?.name} Matrícula: ${usuario?.mat} excluído com sucesso!`
+    );
+    setIsButtonOff(true);
+    abrirModal(usuario);
+    setTimeout(() => {
+      setIsModalOpen(false);
+    }, 1500);
+  };
+
+  const handleExcluirUsuario = (usuario: User | undefined) => {
+    setUserToDelete(usuario);
+    setIsButtonOff(false);
+    if (usuario && usuario.mat) {
+      setMsgModal(
+        `Tem certeza de que deseja excluir o usuário: ${usuario?.name} Matrícula: ${usuario?.mat}?`
+      );
+      return abrirModal(usuario);
+    }
+    alert("Matrícula incorreta ou não informada");
+  };
+
+  const handleExcluirUsuarioTela = (mat: string) => {
+    if (usuarios && mat) {
+      const newUsers = usuarios.filter((user) => user.mat !== mat);
+      setUsuarios(newUsers); // Atualiza a lista de usuários após a exclusão
+      setAtualizarInterno(!atualizarInterno); // Altera o estado de atualização interno
+    }
+  };
+
   return (
     <div className="tabelaContainer">
       <Modal

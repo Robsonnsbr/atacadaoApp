@@ -145,6 +145,8 @@ export const Control = () => {
             <div className="containerCadastro">
               <h1>ATIVAR COLABORADOR</h1>
               <Form onSubmit={(e) => handleSubmit(e)} method={"post"}>
+                {/* TODO: add icon/imagem buscador nos inputs  e add logica*/}
+                {/* TODO: FIX add icon do react-icons aqui  e alterar o da pagina cadastro usuários que está com um ícone externo */}
                 <label htmlFor="numero">NÚMERO OU SERIAL DO COLETOR</label>
                 <ContainerField className="inputName">
                   <input

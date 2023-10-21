@@ -58,7 +58,7 @@ export const CollectorTable: React.FC<TabelaColaboradoresProps> = ({
     setIsButtonOff(false);
     if (collector && collector.sn) {
       setMsgModal(
-        `Tem certeza de que deseja excluir o funcionário: ${collector?.numero} Matrícula: ${collector?.sn}?`
+        `Tem certeza de que deseja excluir o Coletor: ${collector?.numero} SN: ${collector?.sn}?`
       );
       return abrirModal(collector);
     }
@@ -75,7 +75,7 @@ export const CollectorTable: React.FC<TabelaColaboradoresProps> = ({
 
   const warningModal = (collector: Collector | undefined) => {
     setMsgModal(
-      `O usuário: ${collector?.numero} Matrícula: ${collector?.sn} excluído com sucesso!`
+      `O Coletor: ${collector?.numero} SN: ${collector?.sn} excluído com sucesso!`
     );
     setIsButtonOff(true);
     abrirModal(collector);
@@ -168,6 +168,7 @@ export const CollectorTable: React.FC<TabelaColaboradoresProps> = ({
       container.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
   return (
     <div className="tabelaContainer">
       <Modal

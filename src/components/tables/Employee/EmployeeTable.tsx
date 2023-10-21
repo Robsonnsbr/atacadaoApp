@@ -40,88 +40,6 @@ export const EmployeeTable: React.FC<TabelaColaboradoresProps> = ({
     setAtualizarInterno(atualizar);
   }, [atualizar, atualizarInterno]);
 
-  const abrirModal = (employee: Employee | undefined) => {
-    if (!isButtonOff) {
-      setUserToDelete(employee);
-      setIsModalOpen(true);
-      return;
-    }
-    setIsModalOpen(true);
-  };
-
-  const fecharModal = () => {
-    setIsModalOpen(false);
-  };
-
-  const handleExcluirUsuario = (employee: Employee | undefined) => {
-    setUserToDelete(employee);
-    setIsButtonOff(false);
-    if (employee && employee.mat) {
-      setMsgModal(
-        `Tem certeza de que deseja excluir o funcionário: ${employee?.name} Matrícula: ${employee?.mat}?`
-      );
-      return abrirModal(employee);
-    }
-    alert("Matrícula incorreta ou não informada");
-  };
-
-  const handleExcluirUsuarioTela = (mat: string) => {
-    if (employees && mat) {
-      const newUsers = employees.filter(
-        (employee: Employee) => employee.mat !== mat
-      );
-      setEmployee(newUsers); // Atualiza a lista de usuários após a exclusão
-      setAtualizarInterno(!atualizarInterno); // Altera o estado de atualização interno
-    }
-  };
-
-  const warningModal = (employee: Employee | undefined) => {
-    setMsgModal(
-      `O usuário: ${employee?.name} Matrícula: ${employee?.mat} excluído com sucesso!`
-    );
-    setIsButtonOff(true);
-    abrirModal(employee);
-    setTimeout(() => {
-      setIsModalOpen(false);
-    }, 1500);
-  };
-
-  // useEffect(() => {
-  //   const handleScroll = () => {
-  //     const container = document.querySelector(
-  //       ".UserTableStyleContainer"
-  //     ) as HTMLElement;
-  //     const shadowTop = document.querySelector(".ShadowTop") as HTMLElement;
-  //     const shadowBottom = document.querySelector(
-  //       ".ShadowBottom"
-  //     ) as HTMLElement;
-
-  //     if (container.scrollTop > 0) {
-  //       shadowTop.style.display = "block";
-  //     } else {
-  //       shadowTop.style.display = "none";
-  //     }
-
-  //     if (
-  //       container.scrollTop + container.clientHeight <
-  //       container.scrollHeight
-  //     ) {
-  //       shadowBottom.style.display = "block";
-  //     } else {
-  //       shadowBottom.style.display = "none";
-  //     }
-  //   };
-
-  //   const container = document.querySelector(
-  //     ".UserTableStyleContainer"
-  //   ) as HTMLElement;
-  //   container.addEventListener("scroll", handleScroll);
-
-  //   return () => {
-  //     container.removeEventListener("scroll", handleScroll);
-  //   };
-  // }, []);
-
   useEffect(() => {
     const handleScroll = () => {
       const container = document.querySelector(
@@ -170,6 +88,53 @@ export const EmployeeTable: React.FC<TabelaColaboradoresProps> = ({
       container.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  const abrirModal = (employee: Employee | undefined) => {
+    if (!isButtonOff) {
+      setUserToDelete(employee);
+      setIsModalOpen(true);
+      return;
+    }
+    setIsModalOpen(true);
+  };
+
+  const fecharModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const warningModal = (employee: Employee | undefined) => {
+    setMsgModal(
+      `O Colaborador: ${employee?.name} Matrícula: ${employee?.mat} excluído com sucesso!`
+    );
+    setIsButtonOff(true);
+    abrirModal(employee);
+    setTimeout(() => {
+      setIsModalOpen(false);
+    }, 1500);
+  };
+
+  const handleExcluirUsuario = (employee: Employee | undefined) => {
+    setUserToDelete(employee);
+    setIsButtonOff(false);
+    if (employee && employee.mat) {
+      setMsgModal(
+        `Tem certeza de que deseja excluir o Colaborador: ${employee?.name} Matrícula: ${employee?.mat}?`
+      );
+      return abrirModal(employee);
+    }
+    alert("Matrícula incorreta ou não informada");
+  };
+
+  const handleExcluirUsuarioTela = (mat: string) => {
+    if (employees && mat) {
+      const newUsers = employees.filter(
+        (employee: Employee) => employee.mat !== mat
+      );
+      setEmployee(newUsers); // Atualiza a lista de usuários após a exclusão
+      setAtualizarInterno(!atualizarInterno); // Altera o estado de atualização interno
+    }
+  };
+
   return (
     <div className="tabelaContainer">
       <Modal
