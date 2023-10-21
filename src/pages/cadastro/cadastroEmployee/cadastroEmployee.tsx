@@ -20,7 +20,7 @@ export const CadastroEmployee = () => {
   // const navigate = useNavigate();
   const [name, setName] = useState("");
   const [mat, setMat] = useState("");
-  const [turno, setTurno] = useState("");
+  const [workShift, setworkShift] = useState("");
   const [confirmMat, setConfirmMat] = useState("");
   const [atualizarFilho, setAtualizarFilho] = useState(false);
 
@@ -155,18 +155,18 @@ export const CadastroEmployee = () => {
                     title="aaaaa"
                   />
                 </ContainerField>
-                <label htmlFor="turno">PERÍODO OU TURNO</label>
+                <label htmlFor="workShift">PERÍODO OU workShift</label>
                 <ContainerField className="inputName">
                   <input
                     autoFocus
                     className="block"
                     autoComplete="nope"
                     type="text"
-                    id="turno"
-                    placeholder="turno"
+                    id="workShift"
+                    placeholder="workShift"
                     maxLength={30}
-                    value={turno.toLowerCase()}
-                    onChange={(event) => setTurno(event.target.value)}
+                    value={workShift.toLowerCase()}
+                    onChange={(event) => setworkShift(event.target.value)}
                     required
                     title="aaaaa"
                   />

@@ -27,11 +27,12 @@ export const ControlTable: React.FC<TabelaColaboradoresProps> = ({
 
   const ActiveUser: Activated = {
     collector: "65\t65 12345678901234567",
-    employee: "robson monteiro\t646469797\tnão informado",
+    employee: "Robson monteiro\t646469797\tnão informado",
     status: "ATIVO",
   };
   useEffect(() => {
     setUsuarios([ActiveUser]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
