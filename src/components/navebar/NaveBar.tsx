@@ -24,10 +24,11 @@ export const NaveBar = ({ children }: MainProps) => {
         </div>
 
         {/* <a href="/AppCollector">Home</a> */}
-        <a href="/AppCollector/Control">Controle</a>
+        <a href="/AppCollector/Controls">Controle</a>
         <a href="/AppCollector/Collectors">Coletores</a>
         <a href="/AppCollector/Employees">Colaboradores</a>
         <a href="/AppCollector/Users">Usuários</a>
+        <a href="/AppCollector/ReportPage">Relatório</a>
         <button onClick={handleLogout}>
           <a href="/AppCollector/Login">Sair</a>
         </button>

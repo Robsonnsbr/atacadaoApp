@@ -1,6 +1,6 @@
 import { useState, useContext, useEffect } from "react";
 // import { AuthContext } from "../../contexts/AuthContext";
-import { ControlContext } from "../../../contexts/ControlContext";
+import { CadastroColleContext } from "../../../contexts/CadastroColleContext";
 import {
   Button,
   ContainerField,
@@ -10,12 +10,12 @@ import {
   PageContent,
   Wrapper,
 } from "../../../components";
-import { ControlTable } from "../../../components/tables/Control/ControlTable";
+import { CollectorTable } from "../../../components/tables";
 import { motion } from "framer-motion";
 
-export const Control = () => {
+export const CollectorPage = () => {
   // const { isAuthenticated } = useContext(AuthContext);
-  const { cadastro, error } = useContext(ControlContext);
+  const { cadastro, error } = useContext(CadastroColleContext);
 
   // const navigate = useNavigate();
   const [numero, setNumero] = useState("");
@@ -36,7 +36,7 @@ export const Control = () => {
   // });
 
   const handleSubmit = (event: React.FormEvent) => {
-    event.preventDefault(), cadastro(numero, sn, confirmMat, sn, sn, sn);
+    event.preventDefault(), cadastro(numero, sn, confirmMat);
   };
   //TODO: fix CustomValidity for React obs:(após o 2 elemento ele persiste o erro)
   // useEffect(() => {
@@ -91,24 +91,6 @@ export const Control = () => {
     handleWarning();
   }, [warningElement, error]);
 
-  // useEffect(() => {
-  //   const recuperarUsers = () => {
-  //     const EmpTeste = {
-  //       employee: "robson monteiro	646469797	não informado",
-  //       collector: "65	65 12345678901234567",
-  //       status: "ATIVO",
-  //     };
-  //     localStorage.setItem("activeUsers_db", JSON.stringify(EmpTeste));
-  //   };
-  //   console.log("entrei aqui2");
-  //   recuperarUsers();
-  // }, []);
-
-  // useEffect(() => {
-  //   setAtualizarFilho(!atualizarFilho); // TODO: apagar
-  //   console.log("entrei aqui1");
-  // }, []);
-
   const atualizarUseEffectFilho = () => {
     setAtualizarFilho(!atualizarFilho);
   };
@@ -119,6 +101,17 @@ export const Control = () => {
     setConfirmMat("");
     document.getElementById("name")?.focus();
   };
+
+  // const fornsarCPF = (value: string) => {
+  //   // Função para fornsar o CPF
+  //   // Implemente a lógica de fornsação aqui, se necessário
+  //   // Exemplo simples:
+  //   const cpfFornsado = value
+  //     .replace(/\D/g, "")
+  //     .replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
+  //   console.log(cpfFornsado);
+  //   return cpfFornsado;
+  // };
 
   // const usuario: User = { name, sn, password };
   // if (isAuthenticated) {
@@ -143,38 +136,49 @@ export const Control = () => {
         <Main>
           <Wrapper>
             <div className="containerCadastro">
-              <h1>ATIVAR COLABORADOR</h1>
+              <h1>CADASTRO DE COLETORES</h1>
               <Form onSubmit={(e) => handleSubmit(e)} method={"post"}>
-                {/* TODO: add icon/imagem buscador nos inputs  e add logica*/}
-                {/* TODO: FIX add icon do react-icons aqui  e alterar o da pagina cadastro usuários que está com um ícone externo */}
-                <label htmlFor="numero">NÚMERO OU SERIAL DO COLETOR</label>
+                <label htmlFor="numero">NÚMERO DO COLETOR</label>
                 <ContainerField className="inputName">
-                  <input
-                    className="block"
-                    autoComplete="nope"
-                    type="text"
-                    id="sn"
-                    placeholder="número | serial"
-                    maxLength={20}
-                    value={sn.toLowerCase().replace(/\s+/g, "")}
-                    onChange={(event) => setSN(event.target.value)}
-                    required
-                  />
-                </ContainerField>
-                <label htmlFor="sn">MATRÍCULA OU NOME DO COLABORADOR</label>
-                <ContainerField className="inputMat">
                   <input
                     autoFocus
                     className="block"
                     autoComplete="nope"
                     type="text"
                     id="numero"
-                    placeholder="matrícula | name"
-                    maxLength={30}
+                    placeholder="número"
+                    maxLength={3}
                     value={numero.toLowerCase()}
                     onChange={(event) => setNumero(event.target.value)}
                     required
                     title="aaaaa"
+                  />
+                </ContainerField>
+                <label htmlFor="sn">SERIAL DO COLETOR</label>
+                <ContainerField>
+                  <input
+                    className="block"
+                    autoComplete="nope"
+                    type="text"
+                    id="sn"
+                    placeholder="número de série"
+                    maxLength={20}
+                    value={sn.toLowerCase().replace(/\s+/g, "")}
+                    onChange={(event) => setSN(event.target.value)}
+                    required
+                  />
+                </ContainerField>
+                <ContainerField className="inputMat">
+                  <input
+                    className="block"
+                    autoComplete="nope"
+                    type="text"
+                    id="confirmarMat"
+                    placeholder="confirmar sn"
+                    maxLength={20}
+                    value={confirmMat.toLowerCase().replace(/\s+/g, "")}
+                    onChange={(event) => setConfirmMat(event.target.value)}
+                    required
                   />
                 </ContainerField>
                 <Button
@@ -182,7 +186,7 @@ export const Control = () => {
                   type={"submit"}
                   id={"btnSubmit"}
                   name={"btnSubmit"}
-                  value={"ATIVAR"}
+                  value={"Cadastrar"}
                   onClick={atualizarUseEffectFilho}
                 />
               </Form>
@@ -190,7 +194,7 @@ export const Control = () => {
                 {error?.msg || "null"}
               </p>
             </div>
-            <ControlTable atualizar={atualizarFilho} />
+            <CollectorTable atualizar={atualizarFilho} />
           </Wrapper>
         </Main>
       </motion.div>

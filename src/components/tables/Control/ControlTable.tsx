@@ -222,7 +222,7 @@ export const ControlTable: React.FC<TabelaColaboradoresProps> = ({
                 <td className="info info-activeUser">
                   <p>Name: {activeUser.employee?.name}</p>
                   <p>Mat: {activeUser.employee?.mat}</p>
-                  <p>Turno: {activeUser.employee?.workShift}</p>
+                  <p>Período: {activeUser.employee?.workShift}</p>
                 </td>
                 <td className="info info-activeUser">
                   <p>Número: {activeUser.collector?.num}</p>

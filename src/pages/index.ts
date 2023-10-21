@@ -1,8 +1,9 @@
-import { LoginPages } from "./loginPages/LoginPages";
+import { LoginPages } from "./loginPage/LoginPage";
 import { HomePage } from "./homePage/HomePage";
-import { Control } from "./cadastro/control/Control";
-import { CadastroUser } from "./cadastro/cadastroUser/CadastroUser";
-import { CadastroEmployee } from "./cadastro/cadastroEmployee/CadastroEmployee";
-import { CadastroCollector } from "./cadastro/cadastroCollector/CadastroCollector";
+import { ControlPage } from "./cadastro";
+import { UserPage } from "./cadastro";
+import { EmployeePage } from "./cadastro";
+import { CollectorPage } from "./cadastro";
+import { ReportPage } from "./reportPage/ReportPage";
 
-export { LoginPages,  HomePage, Control, CadastroUser, CadastroEmployee, CadastroCollector };
+export { LoginPages,  HomePage, ControlPage, UserPage, EmployeePage, CollectorPage, ReportPage };

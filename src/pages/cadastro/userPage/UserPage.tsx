@@ -1,6 +1,6 @@
 import { useState, useContext, useEffect } from "react";
 // import { AuthContext } from "../../contexts/AuthContext";
-import { CadastroEmpContext } from "../../../contexts/CadastroEmpContext";
+import { CadastroUserContext } from "../../../contexts/CadastroUserContext";
 import {
   Button,
   ContainerField,
@@ -10,19 +10,25 @@ import {
   PageContent,
   Wrapper,
 } from "../../../components";
-import { EmployeeTable } from "../../../components/tables/Employee/EmployeeTable";
+import { UserTable } from "../../../components/tables";
+import hide from "../../../assets/iconButtonPassword/hide.png";
+import show from "../../../assets/iconButtonPassword/show.png";
 import { motion } from "framer-motion";
 
-export const CadastroEmployee = () => {
+export const UserPage = () => {
   // const { isAuthenticated } = useContext(AuthContext);
-  const { cadastro, error } = useContext(CadastroEmpContext);
+  const { cadastro, error } = useContext(CadastroUserContext);
 
   // const navigate = useNavigate();
   const [name, setName] = useState("");
   const [mat, setMat] = useState("");
-  const [workShift, setWorkShift] = useState("");
   const [confirmMat, setConfirmMat] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [CPF, setCPF] = useState("");
   const [atualizarFilho, setAtualizarFilho] = useState(false);
+  const [mostrarSenha1, setMostrarSenha1] = useState(false);
+  const [mostrarSenha2, setMostrarSenha2] = useState(false);
 
   //TODO: analisar e/ou remover todos as function and commits
   //TODO: ativar tratamento dos inputs
@@ -37,7 +43,15 @@ export const CadastroEmployee = () => {
   // });
 
   const handleSubmit = (event: React.FormEvent) => {
-    event.preventDefault(), cadastro({ name, mat, confirmMat, workShift });
+    event.preventDefault(),
+      cadastro(
+        name,
+        mat,
+        confirmMat,
+        password,
+        confirmPassword,
+        CPF.replace(/\D/g, "")
+      );
   };
   //TODO: fix CustomValidity for React obs:(após o 2 elemento ele persiste o erro)
   // useEffect(() => {
@@ -100,7 +114,9 @@ export const CadastroEmployee = () => {
     setName("");
     setMat("");
     setConfirmMat("");
-    setWorkShift("");
+    setPassword("");
+    setConfirmPassword("");
+    setCPF("");
     document.getElementById("name")?.focus();
   };
 
@@ -114,6 +130,42 @@ export const CadastroEmployee = () => {
   //   console.log(cpfFormatado);
   //   return cpfFormatado;
   // };
+
+  const formatarCPF = (value: string) => {
+    const cpfDigits = value.replace(/\D/g, "");
+    let cpfFormatado = cpfDigits;
+
+    if (cpfDigits.length >= 3) {
+      cpfFormatado = cpfDigits.substring(0, 3) + "." + cpfDigits.substring(3);
+    }
+    if (cpfDigits.length >= 6) {
+      cpfFormatado =
+        cpfFormatado.substring(0, 7) + "." + cpfDigits.substring(6);
+    }
+    if (cpfDigits.length >= 9) {
+      cpfFormatado =
+        cpfFormatado.substring(0, 11) + "-" + cpfDigits.substring(9);
+    }
+
+    return cpfFormatado;
+  };
+
+  const handleChangeCPF = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value;
+    const cpfFormatado = formatarCPF(value);
+    setCPF(cpfFormatado);
+  };
+
+  const handleToggleSenha = (value: string) => {
+    if (value === "btn1") {
+      setMostrarSenha1(!mostrarSenha1);
+      return;
+    }
+    if (value === "btn2") {
+      setMostrarSenha2(!mostrarSenha2);
+      return;
+    }
+  };
 
   // const usuario: User = { name, mat, password };
   // if (isAuthenticated) {
@@ -138,9 +190,9 @@ export const CadastroEmployee = () => {
         <Main>
           <Wrapper>
             <div className="containerCadastro">
-              <h1>CADASTRO DE COLABORADORES</h1>
+              <h1>CADASTRO DE USUÁRIOS</h1>
               <Form onSubmit={(e) => handleSubmit(e)} method={"post"}>
-                <label htmlFor="name">NOME DO COLABORADORES</label>
+                <label htmlFor="name">NOME DO USUÁRIO</label>
                 <ContainerField className="inputName">
                   <input
                     autoFocus
@@ -156,25 +208,7 @@ export const CadastroEmployee = () => {
                     title="aaaaa"
                   />
                 </ContainerField>
-                <label htmlFor="workShift">PERÍODO</label>
-                <ContainerField className="inputName">
-                  <select
-                    autoFocus
-                    className="block"
-                    id="workShift"
-                    value={workShift}
-                    onChange={(event) => setWorkShift(event.target.value)}
-                    required
-                    title="aaaaa"
-                  >
-                    <option value="">Selecione um período</option>
-                    <option value="MANHÃ">MANHÃ</option>
-                    <option value="TARDE">TARDE</option>
-                    <option value="NOITE">NOITE</option>
-                    <option value="HÍBRIDO">HÍBRIDO</option>
-                  </select>
-                </ContainerField>
-                <label htmlFor="mat">MATRÍCULA DO FUNCIONÁRIO</label>
+                <label htmlFor="mat">MATRÍCULA DO USUÁRIO</label>
                 <ContainerField>
                   <input
                     className="block"
@@ -201,6 +235,86 @@ export const CadastroEmployee = () => {
                     required
                   />
                 </ContainerField>
+                <label htmlFor="CPF">CPF</label>
+                <ContainerField className="inputCPF">
+                  <input
+                    className="block"
+                    autoComplete="off"
+                    type="text"
+                    id="CPF"
+                    placeholder="CPF"
+                    maxLength={14}
+                    value={CPF}
+                    onChange={(event) => handleChangeCPF(event)}
+                    required
+                  />
+                </ContainerField>
+                <label htmlFor="password">SENHA DO USUÁRIO</label>
+                <ContainerField>
+                  <div
+                    style={{
+                      maxWidth: "310px",
+                      maxHeight: "39.2px",
+                    }}
+                  >
+                    <input
+                      className="block"
+                      type={mostrarSenha1 ? "text" : "password"}
+                      name="password"
+                      id="password"
+                      value={password}
+                      maxLength={20}
+                      placeholder="senha"
+                      onChange={(event) => setPassword(event.target.value)}
+                      required
+                    />
+                    <button
+                      className="btnViewPassword"
+                      type="button"
+                      onClick={() => handleToggleSenha("btn1")}
+                    >
+                      {mostrarSenha1 ? (
+                        <img src={hide} alt="Ocultar Senha" />
+                      ) : (
+                        <img src={show} alt="Mostrar Senha" />
+                      )}
+                    </button>
+                  </div>
+                </ContainerField>
+                <ContainerField className="inputPass">
+                  <div
+                    style={{
+                      maxWidth: "310px",
+                      maxHeight: "39.2px",
+                    }}
+                  >
+                    <input
+                      className="block"
+                      type={mostrarSenha2 ? "text" : "password"}
+                      name="confirmarPassword"
+                      id="confirmarPassword"
+                      value={confirmPassword}
+                      maxLength={20}
+                      onChange={(event) =>
+                        setConfirmPassword(event.target.value)
+                      }
+                      placeholder="confirmar senha"
+                      required
+                    />
+                    <button
+                      className="btnViewPassword"
+                      type="button"
+                      onClick={() => handleToggleSenha("btn2")}
+                    >
+                      {mostrarSenha2 ? (
+                        <img src={hide} alt="Ocultar Senha" />
+                      ) : (
+                        <img src={show} alt="Mostrar Senha" />
+                      )}
+                    </button>
+                  </div>
+                </ContainerField>
+
                 <Button
                   backgroundcolor="var(--successfully)"
                   type={"submit"}
@@ -214,7 +328,7 @@ export const CadastroEmployee = () => {
                 {error?.msg || "null"}
               </p>
             </div>
-            <EmployeeTable atualizar={atualizarFilho} />
+            <UserTable atualizar={atualizarFilho} />
           </Wrapper>
         </Main>
       </motion.div>

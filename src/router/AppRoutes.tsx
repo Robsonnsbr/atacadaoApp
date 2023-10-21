@@ -9,10 +9,11 @@ import { useContext } from "react";
 import {
   LoginPages,
   HomePage,
-  Control,
-  CadastroUser,
-  CadastroEmployee,
-  CadastroCollector,
+  ControlPage,
+  UserPage,
+  EmployeePage,
+  CollectorPage,
+  ReportPage,
 } from "../pages";
 import { AuthProvider, AuthContext } from "../contexts/AuthContext";
 import { CadastroUserProvider } from "../contexts/CadastroUserContext";
@@ -50,15 +51,22 @@ export const AppRoutes = () => {
                 <Routes>
                   <Route path="AppCollector/login" element={<LoginPages />} />
 
-                  <Route path="AppCollector/Users" element={<CadastroUser />} />
-                  <Route path="AppCollector/Control" element={<Control />} />
+                  <Route path="AppCollector/Users" element={<UserPage />} />
+                  <Route
+                    path="AppCollector/Controls"
+                    element={<ControlPage />}
+                  />
                   <Route
                     path="AppCollector/Employees"
-                    element={<CadastroEmployee />}
+                    element={<EmployeePage />}
                   />
                   <Route
                     path="AppCollector/Collectors"
-                    element={<CadastroCollector />}
+                    element={<CollectorPage />}
+                  />
+                  <Route
+                    path="AppCollector/ReportPage"
+                    element={<ReportPage />}
                   />
                   <Route
                     path="AppCollector/"
