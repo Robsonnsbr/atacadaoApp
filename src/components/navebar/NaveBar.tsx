@@ -8,12 +8,12 @@ interface MainProps {
 }
 
 export const NaveBar = ({ children }: MainProps) => {
-  const { logout } = useContext(AuthContext);
+  const { logout, user } = useContext(AuthContext);
 
   const handleLogout = () => {
     logout();
   };
-
+  // console.log(`Usuário Ativo NavBar: ${user?.name}`);
   return (
     <S.StyledNaveBar>
       <div className="navbar">
@@ -23,13 +23,15 @@ export const NaveBar = ({ children }: MainProps) => {
           <img src={iconAtacadaoSvg} alt="Logo da sua empresa" />
         </div>
 
-        <a href="/AppCollector">Home</a>
+        {/* <a href="/AppCollector">Home</a> */}
+        <a href="/AppCollector/Control">Controle</a>
         <a href="/AppCollector/Collectors">Coletores</a>
-        <a href="/AppCollector/Employees">Funcionários</a>
+        <a href="/AppCollector/Employees">Colaboradores</a>
         <a href="/AppCollector/Users">Usuários</a>
         <button onClick={handleLogout}>
           <a href="/AppCollector/Login">Sair</a>
         </button>
+        {user && <span>Usuário: {user.name}</span>}
       </div>
     </S.StyledNaveBar>
   );

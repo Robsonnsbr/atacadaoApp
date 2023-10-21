@@ -1,20 +1,22 @@
 import React, { useState, useEffect, useContext } from "react";
-import { User } from "../../../../@types/User";
+import { User } from "../../../@types/User";
 import {
   ShadowBottom,
   ShadowTop,
   UserTableStyle,
   UserTableStyleContainer,
 } from "../Table.style";
-import { AuthContext } from "../../../../contexts/AuthContext";
-import { Button } from "../../../inputs/button/Button";
-import { Modal } from "../../../modal/modal";
+import { AuthContext } from "../../../contexts/AuthContext";
+import { Button } from "../../inputs/button/Button";
+import { Modal } from "../../modal/modal";
 
-interface TabelaFuncionariosProps {
+interface TabelaColaboradoresProps {
   atualizar: boolean;
 }
 
-export const UserTable: React.FC<TabelaFuncionariosProps> = ({ atualizar }) => {
+export const UserTable: React.FC<TabelaColaboradoresProps> = ({
+  atualizar,
+}) => {
   const { deleteUserMat } = useContext(AuthContext);
   const [usuarios, setUsuarios] = useState<User[] | null>([]);
   const [atualizarInterno, setAtualizarInterno] = useState(atualizar);

@@ -1,48 +1,37 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Collector } from "../../../../@types/Collector";
+import { User } from "../../../@types/User";
 import {
   ShadowBottom,
   ShadowTop,
   UserTableStyle,
   UserTableStyleContainer,
 } from "../Table.style";
-import { CadastroColleContext } from "../../../../contexts/CadastroColleContext";
-import { Button } from "../../../inputs/button/Button";
-import { Modal } from "../../../modal/modal";
+import { CadastroEmpContext } from "../../../contexts/CadastroEmpContext";
+import { Button } from "../../inputs/button/Button";
+import { Modal } from "../../modal/modal";
 
-interface TabelaFuncionariosProps {
+interface TabelaColaboradoresProps {
   atualizar: boolean;
 }
 
-export const CollectorTable: React.FC<TabelaFuncionariosProps> = ({
+export const EmployeeTable: React.FC<TabelaColaboradoresProps> = ({
   atualizar,
 }) => {
-  const { deleteCollector } = useContext(CadastroColleContext);
-  const [collectors, setCollectors] = useState<Collector[] | null>([]);
+  const { deleteEmployee } = useContext(CadastroEmpContext);
+  const [usuarios, setUsuarios] = useState<User[] | null>([]);
   const [atualizarInterno, setAtualizarInterno] = useState(atualizar);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [collector, setUserToDelete] = useState<Collector | undefined>();
+  const [usuario, setUserToDelete] = useState<User | undefined>();
   const [msgModal, setMsgModal] = useState<string>("");
   const [isButtonOff, setIsButtonOff] = useState(false);
-
-  useEffect(() => {
-    const recuperarUsers = () => {
-      const recoveredUsers = localStorage.getItem("collector_db");
-      if (recoveredUsers) {
-        const hasRecoveredUsers = JSON.parse(recoveredUsers);
-        setCollectors(hasRecoveredUsers.reverse());
-      }
-    };
-    recuperarUsers();
-  }, [atualizarInterno]);
 
   useEffect(() => {
     setAtualizarInterno(atualizar);
   }, [atualizar, atualizarInterno]);
 
-  const abrirModal = (collector: Collector | undefined) => {
+  const abrirModal = (usuario: User | undefined) => {
     if (!isButtonOff) {
-      setUserToDelete(collector);
+      setUserToDelete(usuario);
       setIsModalOpen(true);
       return;
     }
@@ -53,32 +42,32 @@ export const CollectorTable: React.FC<TabelaFuncionariosProps> = ({
     setIsModalOpen(false);
   };
 
-  const handleExcluirUsuario = (collector: Collector | undefined) => {
-    setUserToDelete(collector);
+  const handleExcluirUsuario = (usuario: User | undefined) => {
+    setUserToDelete(usuario);
     setIsButtonOff(false);
-    if (collector && collector.sn) {
+    if (usuario && usuario.mat) {
       setMsgModal(
-        `Tem certeza de que deseja excluir o funcionário: ${collector?.numero} Matrícula: ${collector?.sn}?`
+        `Tem certeza de que deseja excluir o funcionário: ${usuario?.name} Matrícula: ${usuario?.mat}?`
       );
-      return abrirModal(collector);
+      return abrirModal(usuario);
     }
     alert("Matrícula incorreta ou não informada");
   };
 
-  const handleExcluirUsuarioTela = (sn: string) => {
-    if (collectors && sn) {
-      const newUsers = collectors.filter((collector) => collector.sn !== sn);
-      setCollectors(newUsers); // Atualiza a lista de usuários após a exclusão
+  const handleExcluirUsuarioTela = (mat: string) => {
+    if (usuarios && mat) {
+      const newUsers = usuarios.filter((user) => user.mat !== mat);
+      setUsuarios(newUsers); // Atualiza a lista de usuários após a exclusão
       setAtualizarInterno(!atualizarInterno); // Altera o estado de atualização interno
     }
   };
 
-  const warningModal = (collector: Collector | undefined) => {
+  const warningModal = (usuario: User | undefined) => {
     setMsgModal(
-      `O usuário: ${collector?.numero} Matrícula: ${collector?.sn} excluído com sucesso!`
+      `O usuário: ${usuario?.name} Matrícula: ${usuario?.mat} excluído com sucesso!`
     );
     setIsButtonOff(true);
-    abrirModal(collector);
+    abrirModal(usuario);
     setTimeout(() => {
       setIsModalOpen(false);
     }, 1500);
@@ -175,42 +164,43 @@ export const CollectorTable: React.FC<TabelaFuncionariosProps> = ({
         isButtonOff={isButtonOff}
         message={msgModal}
         onConfirm={() => {
-          if (collector?.sn) {
-            deleteCollector(collector.sn);
-            handleExcluirUsuarioTela(collector.sn);
+          if (usuario?.mat) {
+            deleteEmployee(usuario.mat);
+            handleExcluirUsuarioTela(usuario.mat);
           }
           fecharModal();
-          warningModal(collector);
+          warningModal(usuario);
         }}
         onCancel={fecharModal}
       />
-      <h3>COLETORES CADASTRADOS</h3>
+      <h3>FUNCIONÁRIO CADASTRADOS</h3>
       <ShadowTop />
       <UserTableStyleContainer className="UserTableStyleContainer">
         <UserTableStyle className="tableContent">
           <thead>
             <tr>
-              <th className="information">NÚMERO</th>
-              <th className="information" style={{ minWidth: "190px" }}>
-                SERIAL DO COLETOR
-              </th>
+              <th className="information">NOME</th>
+              <th className="information">MATRÍCULA</th>
+              <th className="information">PERÍODO</th>
+              {/* TODO: adicionar período ao colaborador controle */}
               <th className="actions">AÇÕES</th>
             </tr>
           </thead>
           <tbody>
-            {collectors?.map((collector: Collector, index: number) => (
+            {usuarios?.map((user: User, index: number) => (
               <tr key={index}>
-                <td className="information" style={{ textAlign: "center" }}>
-                  {collector.numero}
+                <td className="information">{user.name}</td>
+                <td className="information">{user.mat}</td>
+                <td className="information">
+                  {user.workShift || "não informado"}
                 </td>
-                <td className="information">{collector.sn}</td>
                 <td>
                   <Button
                     backgroundcolor="var(--buttonDelete)"
                     type="button"
                     id="btnDeleteUser"
                     value="Excluir"
-                    onClick={() => handleExcluirUsuario(collector)}
+                    onClick={() => handleExcluirUsuario(user)}
                   ></Button>
                 </td>
               </tr>
@@ -219,8 +209,8 @@ export const CollectorTable: React.FC<TabelaFuncionariosProps> = ({
         </UserTableStyle>
       </UserTableStyleContainer>
       <ShadowBottom className="ShadowBottom" />
-      {!collectors?.length && (
-        <p className="warningTable">Nenhum coletor cadastrado!</p>
+      {!usuarios?.length && (
+        <p className="warningTable">Nenhum funcionário cadastrado!</p>
       )}
     </div>
   );

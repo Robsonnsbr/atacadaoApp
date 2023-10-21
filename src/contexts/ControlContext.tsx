@@ -34,9 +34,9 @@ const initialProps: IPropsCadastro = {
   },
 };
 
-export const CadastroUserContext = createContext<IPropsCadastro>(initialProps);
+export const ControlContext = createContext<IPropsCadastro>(initialProps);
 
-export const CadastroUserProvider = ({ children }: CadastroProviderProps) => {
+export const ControlProvider = ({ children }: CadastroProviderProps) => {
   // const navigate = useNavigate();
   const [error, setError] = useState<CustomError | null>(null);
 
@@ -200,13 +200,13 @@ export const CadastroUserProvider = ({ children }: CadastroProviderProps) => {
   };
 
   return (
-    <CadastroUserContext.Provider
+    <ControlContext.Provider
       value={{
         error,
         cadastro,
       }}
     >
       {children}
-    </CadastroUserContext.Provider>
+    </ControlContext.Provider>
   );
 };

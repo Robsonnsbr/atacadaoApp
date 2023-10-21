@@ -48,5 +48,23 @@ export const StyledNaveBar = styled.nav`
     }
   }
 
+  & span {
+    font-size: 14px;
+    font-weight: 500;
+    margin-right: 10px;
+    overflow-y: hidden;
+    overflow-x: hidden; /* Impede a rolagem horizontal */
+    max-width: 180px;
+    white-space: nowrap; /* Impede que o texto quebre para a próxima linha */
+    text-overflow: ellipsis;
+    color: var(--successfully);
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+
+
+  }
+
   
 `;

@@ -10,7 +10,8 @@ import {
   PageContent,
   Wrapper,
 } from "../../../components";
-import { EmployeeTable } from "../../../components/tables/Table/Employee/EmployeeTable";
+import { EmployeeTable } from "../../../components/tables/Employee/EmployeeTable";
+import { motion } from "framer-motion";
 
 export const CadastroEmployee = () => {
   // const { isAuthenticated } = useContext(AuthContext);
@@ -19,6 +20,7 @@ export const CadastroEmployee = () => {
   // const navigate = useNavigate();
   const [name, setName] = useState("");
   const [mat, setMat] = useState("");
+  const [turno, setTurno] = useState("");
   const [confirmMat, setConfirmMat] = useState("");
   const [atualizarFilho, setAtualizarFilho] = useState(false);
 
@@ -117,73 +119,102 @@ export const CadastroEmployee = () => {
   //   navigate("/");
   // }
 
+  const containerMotion = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        delayChildren: 0.5,
+        staggerDirection: -1,
+      },
+    },
+  };
+
   return (
     <PageContent>
       <NaveBar />
-      <Main>
-        <Wrapper>
-          <div className="containerCadastro">
-            <h1>CADASTRO DE FUNCIONÁRIOS</h1>
-            <Form onSubmit={(e) => handleSubmit(e)} method={"post"}>
-              <label htmlFor="name">NOME DO FUNCIONÁRIO</label>
-              <ContainerField className="inputName">
-                <input
-                  autoFocus
-                  className="block"
-                  autoComplete="nope"
-                  type="text"
-                  id="name"
-                  placeholder="nome"
-                  maxLength={30}
-                  value={name.toLowerCase()}
-                  onChange={(event) => setName(event.target.value)}
-                  required
-                  title="aaaaa"
+      <motion.div variants={containerMotion} initial="hidden" animate="show">
+        <Main>
+          <Wrapper>
+            <div className="containerCadastro">
+              <h1>CADASTRO DE FUNCIONÁRIOS</h1>
+              <Form onSubmit={(e) => handleSubmit(e)} method={"post"}>
+                <label htmlFor="name">NOME DO FUNCIONÁRIO</label>
+                <ContainerField className="inputName">
+                  <input
+                    autoFocus
+                    className="block"
+                    autoComplete="nope"
+                    type="text"
+                    id="name"
+                    placeholder="nome"
+                    maxLength={30}
+                    value={name.toLowerCase()}
+                    onChange={(event) => setName(event.target.value)}
+                    required
+                    title="aaaaa"
+                  />
+                </ContainerField>
+                <label htmlFor="turno">PERÍODO OU TURNO</label>
+                <ContainerField className="inputName">
+                  <input
+                    autoFocus
+                    className="block"
+                    autoComplete="nope"
+                    type="text"
+                    id="turno"
+                    placeholder="turno"
+                    maxLength={30}
+                    value={turno.toLowerCase()}
+                    onChange={(event) => setTurno(event.target.value)}
+                    required
+                    title="aaaaa"
+                  />
+                </ContainerField>
+                <label htmlFor="mat">MATRÍCULA DO FUNCIONÁRIO</label>
+                <ContainerField>
+                  <input
+                    className="block"
+                    autoComplete="nope"
+                    type="text"
+                    id="mat"
+                    placeholder="matrícula"
+                    maxLength={20}
+                    value={mat.toLowerCase().replace(/\s+/g, "")}
+                    onChange={(event) => setMat(event.target.value)}
+                    required
+                  />
+                </ContainerField>
+                <ContainerField className="inputMat">
+                  <input
+                    className="block"
+                    autoComplete="nope"
+                    type="text"
+                    id="confirmarMat"
+                    placeholder="confirmar matrícula"
+                    maxLength={20}
+                    value={confirmMat.toLowerCase().replace(/\s+/g, "")}
+                    onChange={(event) => setConfirmMat(event.target.value)}
+                    required
+                  />
+                </ContainerField>
+                <Button
+                  backgroundcolor="var(--successfully)"
+                  type={"submit"}
+                  id={"btnSubmit"}
+                  name={"btnSubmit"}
+                  value={"Cadastrar"}
+                  onClick={atualizarUseEffectFilho}
                 />
-              </ContainerField>
-              <label htmlFor="mat">MATRÍCULA DO FUNCIONÁRIO</label>
-              <ContainerField>
-                <input
-                  className="block"
-                  autoComplete="nope"
-                  type="text"
-                  id="mat"
-                  placeholder="matrícula"
-                  maxLength={20}
-                  value={mat.toLowerCase().replace(/\s+/g, "")}
-                  onChange={(event) => setMat(event.target.value)}
-                  required
-                />
-              </ContainerField>
-              <ContainerField className="inputMat">
-                <input
-                  className="block"
-                  autoComplete="nope"
-                  type="text"
-                  id="confirmarMat"
-                  placeholder="confirmar matrícula"
-                  maxLength={20}
-                  value={confirmMat.toLowerCase().replace(/\s+/g, "")}
-                  onChange={(event) => setConfirmMat(event.target.value)}
-                  required
-                />
-              </ContainerField>
-              <Button
-                backgroundcolor="var(--successfully)"
-                type={"submit"}
-                id={"btnSubmit"}
-                name={"btnSubmit"}
-                value={"Cadastrar"}
-                onClick={atualizarUseEffectFilho}
-              />
-            </Form>
-            <p id="warning" className="warning-null">
-              {error?.msg || "null"}
-            </p>
-          </div>
-          <EmployeeTable atualizar={atualizarFilho} />
-        </Wrapper>
-      </Main>
+              </Form>
+              <p id="warning" className="warning-null">
+                {error?.msg || "null"}
+              </p>
+            </div>
+            <EmployeeTable atualizar={atualizarFilho} />
+          </Wrapper>
+        </Main>
+      </motion.div>
     </PageContent>
   );
 };

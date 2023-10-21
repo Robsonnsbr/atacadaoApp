@@ -20,7 +20,7 @@ export const HomePage = () => {
     <PageContent>
       <NaveBar />
       <h1>Bem-vindo!</h1>
-      <p>{user?.mat}</p>
+      <p>{user?.name}</p>
       <Main>
         <Wrapper>
           <ul>

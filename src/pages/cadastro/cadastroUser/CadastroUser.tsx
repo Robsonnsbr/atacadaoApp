@@ -10,9 +10,10 @@ import {
   PageContent,
   Wrapper,
 } from "../../../components";
-import { UserTable } from "../../../components/tables/Table/User/UserTable";
+import { UserTable } from "../../../components/tables/User/UserTable";
 import hide from "../../../assets/iconButtonPassword/hide.png";
 import show from "../../../assets/iconButtonPassword/show.png";
+import { motion } from "framer-motion";
 
 export const CadastroUser = () => {
   // const { isAuthenticated } = useContext(AuthContext);
@@ -171,151 +172,166 @@ export const CadastroUser = () => {
   //   navigate("/");
   // }
 
+  const containerMotion = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        delayChildren: 0.5,
+        staggerDirection: -1,
+      },
+    },
+  };
+
   return (
     <PageContent>
       <NaveBar />
-      <Main>
-        <Wrapper>
-          <div className="containerCadastro">
-            <h1>CADASTRO DE USUÁRIOS</h1>
-            <Form onSubmit={(e) => handleSubmit(e)} method={"post"}>
-              <label htmlFor="name">NOME DO USUÁRIO</label>
-              <ContainerField className="inputName">
-                <input
-                  autoFocus
-                  className="block"
-                  autoComplete="nope"
-                  type="text"
-                  id="name"
-                  placeholder="nome"
-                  maxLength={30}
-                  value={name.toLowerCase()}
-                  onChange={(event) => setName(event.target.value)}
-                  required
-                  title="aaaaa"
-                />
-              </ContainerField>
-              <label htmlFor="mat">MATRÍCULA DO USUÁRIO</label>
-              <ContainerField>
-                <input
-                  className="block"
-                  autoComplete="nope"
-                  type="text"
-                  id="mat"
-                  placeholder="matrícula"
-                  maxLength={20}
-                  value={mat.toLowerCase().replace(/\s+/g, "")}
-                  onChange={(event) => setMat(event.target.value)}
-                  required
-                />
-              </ContainerField>
-              <ContainerField className="inputMat">
-                <input
-                  className="block"
-                  autoComplete="nope"
-                  type="text"
-                  id="confirmarMat"
-                  placeholder="confirmar matrícula"
-                  maxLength={20}
-                  value={confirmMat.toLowerCase().replace(/\s+/g, "")}
-                  onChange={(event) => setConfirmMat(event.target.value)}
-                  required
-                />
-              </ContainerField>
-              <label htmlFor="CPF">CPF</label>
-              <ContainerField className="inputCPF">
-                <input
-                  className="block"
-                  autoComplete="off"
-                  type="text"
-                  id="CPF"
-                  placeholder="CPF"
-                  maxLength={14}
-                  value={CPF}
-                  onChange={(event) => handleChangeCPF(event)}
-                  required
-                />
-              </ContainerField>
-              <label htmlFor="password">SENHA DO USUÁRIO</label>
-              <ContainerField>
-                <div
-                  style={{
-                    maxWidth: "310px",
-                    maxHeight: "39.2px",
-                  }}
-                >
+      <motion.div variants={containerMotion} initial="hidden" animate="show">
+        <Main>
+          <Wrapper>
+            <div className="containerCadastro">
+              <h1>CADASTRO DE USUÁRIOS</h1>
+              <Form onSubmit={(e) => handleSubmit(e)} method={"post"}>
+                <label htmlFor="name">NOME DO USUÁRIO</label>
+                <ContainerField className="inputName">
+                  <input
+                    autoFocus
+                    className="block"
+                    autoComplete="nope"
+                    type="text"
+                    id="name"
+                    placeholder="nome"
+                    maxLength={30}
+                    value={name.toLowerCase()}
+                    onChange={(event) => setName(event.target.value)}
+                    required
+                    title="aaaaa"
+                  />
+                </ContainerField>
+                <label htmlFor="mat">MATRÍCULA DO USUÁRIO</label>
+                <ContainerField>
                   <input
                     className="block"
-                    type={mostrarSenha1 ? "text" : "password"}
-                    name="password"
-                    id="password"
-                    value={password}
+                    autoComplete="nope"
+                    type="text"
+                    id="mat"
+                    placeholder="matrícula"
                     maxLength={20}
-                    placeholder="senha"
-                    onChange={(event) => setPassword(event.target.value)}
+                    value={mat.toLowerCase().replace(/\s+/g, "")}
+                    onChange={(event) => setMat(event.target.value)}
                     required
                   />
-                  <button
-                    className="btnViewPassword"
-                    type="button"
-                    onClick={() => handleToggleSenha("btn1")}
-                  >
-                    {mostrarSenha1 ? (
-                      <img src={hide} alt="Ocultar Senha" />
-                    ) : (
-                      <img src={show} alt="Mostrar Senha" />
-                    )}
-                  </button>
-                </div>
-              </ContainerField>
-              <ContainerField className="inputPass">
-                <div
-                  style={{
-                    maxWidth: "310px",
-                    maxHeight: "39.2px",
-                  }}
-                >
+                </ContainerField>
+                <ContainerField className="inputMat">
                   <input
                     className="block"
-                    type={mostrarSenha2 ? "text" : "password"}
-                    name="confirmarPassword"
-                    id="confirmarPassword"
-                    value={confirmPassword}
+                    autoComplete="nope"
+                    type="text"
+                    id="confirmarMat"
+                    placeholder="confirmar matrícula"
                     maxLength={20}
-                    onChange={(event) => setConfirmPassword(event.target.value)}
-                    placeholder="confirmar senha"
+                    value={confirmMat.toLowerCase().replace(/\s+/g, "")}
+                    onChange={(event) => setConfirmMat(event.target.value)}
                     required
                   />
-                  <button
-                    className="btnViewPassword"
-                    type="button"
-                    onClick={() => handleToggleSenha("btn2")}
+                </ContainerField>
+                <label htmlFor="CPF">CPF</label>
+                <ContainerField className="inputCPF">
+                  <input
+                    className="block"
+                    autoComplete="off"
+                    type="text"
+                    id="CPF"
+                    placeholder="CPF"
+                    maxLength={14}
+                    value={CPF}
+                    onChange={(event) => handleChangeCPF(event)}
+                    required
+                  />
+                </ContainerField>
+                <label htmlFor="password">SENHA DO USUÁRIO</label>
+                <ContainerField>
+                  <div
+                    style={{
+                      maxWidth: "310px",
+                      maxHeight: "39.2px",
+                    }}
                   >
-                    {mostrarSenha2 ? (
-                      <img src={hide} alt="Ocultar Senha" />
-                    ) : (
-                      <img src={show} alt="Mostrar Senha" />
-                    )}
-                  </button>
-                </div>
-              </ContainerField>
+                    <input
+                      className="block"
+                      type={mostrarSenha1 ? "text" : "password"}
+                      name="password"
+                      id="password"
+                      value={password}
+                      maxLength={20}
+                      placeholder="senha"
+                      onChange={(event) => setPassword(event.target.value)}
+                      required
+                    />
+                    <button
+                      className="btnViewPassword"
+                      type="button"
+                      onClick={() => handleToggleSenha("btn1")}
+                    >
+                      {mostrarSenha1 ? (
+                        <img src={hide} alt="Ocultar Senha" />
+                      ) : (
+                        <img src={show} alt="Mostrar Senha" />
+                      )}
+                    </button>
+                  </div>
+                </ContainerField>
+                <ContainerField className="inputPass">
+                  <div
+                    style={{
+                      maxWidth: "310px",
+                      maxHeight: "39.2px",
+                    }}
+                  >
+                    <input
+                      className="block"
+                      type={mostrarSenha2 ? "text" : "password"}
+                      name="confirmarPassword"
+                      id="confirmarPassword"
+                      value={confirmPassword}
+                      maxLength={20}
+                      onChange={(event) =>
+                        setConfirmPassword(event.target.value)
+                      }
+                      placeholder="confirmar senha"
+                      required
+                    />
+                    <button
+                      className="btnViewPassword"
+                      type="button"
+                      onClick={() => handleToggleSenha("btn2")}
+                    >
+                      {mostrarSenha2 ? (
+                        <img src={hide} alt="Ocultar Senha" />
+                      ) : (
+                        <img src={show} alt="Mostrar Senha" />
+                      )}
+                    </button>
+                  </div>
+                </ContainerField>
 
-              <Button
-                backgroundcolor="var(--successfully)"
-                type={"submit"}
-                id={"btnSubmit"}
-                name={"btnSubmit"}
-                value={"Cadastrar"}
-                onClick={atualizarUseEffectFilho}
-              />
-            </Form>
-            <p id="warning" className="warning-null">
-              {error?.msg || "null"}
-            </p>
-          </div>
-          <UserTable atualizar={atualizarFilho} />
-        </Wrapper>
-      </Main>
+                <Button
+                  backgroundcolor="var(--successfully)"
+                  type={"submit"}
+                  id={"btnSubmit"}
+                  name={"btnSubmit"}
+                  value={"Cadastrar"}
+                  onClick={atualizarUseEffectFilho}
+                />
+              </Form>
+              <p id="warning" className="warning-null">
+                {error?.msg || "null"}
+              </p>
+            </div>
+            <UserTable atualizar={atualizarFilho} />
+          </Wrapper>
+        </Main>
+      </motion.div>
     </PageContent>
   );
 };
