@@ -79,8 +79,6 @@ export const StyledContainerField = styled.div`
   & input:focus {
     background-color: var(--secondary);
   }
-  
-
 
   & .btnViewPassword {
     background-color:transparent;

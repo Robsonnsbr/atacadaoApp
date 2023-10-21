@@ -88,6 +88,7 @@ export const UserTableStyle = styled.table`
   td {
     border: 1px solid #ccc;
     padding: 0px 10px;
+    justify-content: center;
   }
 
   tr:nth-child(even) td {
@@ -112,6 +113,12 @@ export const UserTableStyle = styled.table`
 
   & .info-sn-collector {
     min-width: 220px;
+  }
+  & .info-activeUser {
+    min-width: 200px;
+    p {
+      margin: 3px;
+    }
   }
 
   & .actions {

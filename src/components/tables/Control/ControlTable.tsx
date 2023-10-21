@@ -8,6 +8,7 @@ import {
 } from "../Table.style";
 // import { AuthContext } from "../../../contexts/AuthContext";
 import { Button } from "../../inputs/button/Button";
+import { EnumWorkShift } from "../../../@types/Enums";
 // import { Modal } from "../../modal/modal";
 
 interface TabelaColaboradoresProps {
@@ -18,20 +19,35 @@ export const ControlTable: React.FC<TabelaColaboradoresProps> = ({
   atualizar,
 }) => {
   // const { deleteUserMat } = useContext(AuthContext);
-  const [usuarios, setUsuarios] = useState<Activated[] | null>([]);
+  const [activeUsers, setUsuarios] = useState<Activated[] | null>([]);
   const [atualizarInterno, setAtualizarInterno] = useState(atualizar);
   // const [isModalOpen, setIsModalOpen] = useState(false);
   // const [usuario, setUserToDelete] = useState<Activated | undefined>();
   // const [msgModal, setMsgModal] = useState<string>("");
   // const [isButtonOff, setIsButtonOff] = useState(false);
 
-  const ActiveUser: Activated = {
-    collector: "65\t65 12345678901234567",
-    employee: "Robson monteiro\t646469797\tnão informado",
-    status: "ATIVO",
-  };
+  const activeUsersTest: Activated[] = [
+    {
+      collector: { num: "65", sn: "10012931023910239", status: true },
+      employee: {
+        name: "Robson Monteiro",
+        mat: "50505011",
+        workShift: EnumWorkShift.HIBRIDO,
+        status: true,
+      },
+    },
+    {
+      collector: { num: "40", sn: "515151511023910239", status: true },
+      employee: {
+        name: "Teste@teste",
+        mat: "44555151",
+        workShift: EnumWorkShift.HIBRIDO,
+        status: true,
+      },
+    },
+  ];
   useEffect(() => {
-    setUsuarios([ActiveUser]);
+    setUsuarios(activeUsersTest);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -167,6 +183,11 @@ export const ControlTable: React.FC<TabelaColaboradoresProps> = ({
       container.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  const handleActiveUser = (activeUser: Activated, value: boolean) => {
+    console.log("Setar o usuário como:", value);
+    console.log(`${activeUser.employee?.name} DESATIVADO!`);
+  };
   return (
     <div className="tabelaContainer">
       {/* <Modal
@@ -196,15 +217,22 @@ export const ControlTable: React.FC<TabelaColaboradoresProps> = ({
             </tr>
           </thead>
           <tbody>
-            {usuarios?.map((user: Activated, index: number) => (
+            {activeUsers?.map((activeUser: Activated, index: number) => (
               <tr key={index}>
-                <td className="info">{user.employee}</td>
-                <td className="info">{user.collector}</td>
+                <td className="info info-activeUser">
+                  <p>Name: {activeUser.employee?.name}</p>
+                  <p>Mat: {activeUser.employee?.mat}</p>
+                  <p>Turno: {activeUser.employee?.workShift}</p>
+                </td>
+                <td className="info info-activeUser">
+                  <p>Número: {activeUser.collector?.num}</p>
+                  <p>SN: {activeUser.collector?.sn}</p>
+                </td>
                 <td
                   className="info"
                   style={{ textAlign: "center", color: "var(--successfully)" }}
                 >
-                  {user.status}
+                  {activeUser.collector?.status ? "Ativado" : "Inativo"}
                 </td>
                 <td>
                   <Button
@@ -212,7 +240,7 @@ export const ControlTable: React.FC<TabelaColaboradoresProps> = ({
                     type="button"
                     id="btnDeleteUser"
                     value="Desativar"
-                    // onClick={() => handleExcluirUsuario(user)}
+                    onClick={() => handleActiveUser(activeUser, false)}
                   ></Button>
                 </td>
               </tr>
@@ -221,7 +249,7 @@ export const ControlTable: React.FC<TabelaColaboradoresProps> = ({
         </UserTableStyle>
       </UserTableStyleContainer>
       <ShadowBottom />
-      {!usuarios?.length && (
+      {!activeUsers?.length && (
         <p className="warningTable">Nenhum colaborador ativo no momento.</p>
       )}
     </div>
