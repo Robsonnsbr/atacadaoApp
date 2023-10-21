@@ -37,11 +37,47 @@ export const ControlTable: React.FC<TabelaColaboradoresProps> = ({
       },
     },
     {
-      collector: { num: "40", sn: "515151511023910239", status: true },
+      collector: { num: "30", sn: "1231231511023910239", status: true },
       employee: {
         name: "Teste@teste",
         mat: "44555151",
+        workShift: EnumWorkShift.MANHA,
+        status: true,
+      },
+    },
+    {
+      collector: { num: "41", sn: "515166111023910239", status: true },
+      employee: {
+        name: "Teste@teste2",
+        mat: "83512151",
+        workShift: EnumWorkShift.NOITE,
+        status: true,
+      },
+    },
+    {
+      collector: { num: "44", sn: "45718883323910239", status: true },
+      employee: {
+        name: "Teste@teste3",
+        mat: "616165151",
         workShift: EnumWorkShift.HIBRIDO,
+        status: true,
+      },
+    },
+    {
+      collector: { num: "47", sn: "51515566615114242", status: true },
+      employee: {
+        name: "Teste@teste4",
+        mat: "88765151",
+        workShift: EnumWorkShift.TARDE,
+        status: true,
+      },
+    },
+    {
+      collector: { num: "33", sn: "012390006615114242", status: true },
+      employee: {
+        name: "Teste@teste5",
+        mat: "99995151",
+        workShift: EnumWorkShift.MANHA,
         status: true,
       },
     },
