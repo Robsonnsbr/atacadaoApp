@@ -1,6 +1,6 @@
 import { LoginPages } from "./loginPage/LoginPage";
 import { HomePage } from "./homePage/HomePage";
-import { ControlPage } from "./cadastro";
+import { ControlPage } from "./controlPage/ControlPage";
 import { UserPage } from "./cadastro";
 import { EmployeePage } from "./cadastro";
 import { CollectorPage } from "./cadastro";

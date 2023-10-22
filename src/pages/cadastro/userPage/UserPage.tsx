@@ -11,9 +11,8 @@ import {
   Wrapper,
 } from "../../../components";
 import { UserTable } from "../../../components/tables";
-import hide from "../../../assets/iconButtonPassword/hide.png";
-import show from "../../../assets/iconButtonPassword/show.png";
 import { motion } from "framer-motion";
+import { BsEye, BsEyeSlash } from "react-icons/bs";
 
 export const UserPage = () => {
   // const { isAuthenticated } = useContext(AuthContext);
@@ -273,11 +272,7 @@ export const UserPage = () => {
                       type="button"
                       onClick={() => handleToggleSenha("btn1")}
                     >
-                      {mostrarSenha1 ? (
-                        <img src={hide} alt="Ocultar Senha" />
-                      ) : (
-                        <img src={show} alt="Mostrar Senha" />
-                      )}
+                      {mostrarSenha1 ? <BsEyeSlash /> : <BsEye />}
                     </button>
                   </div>
                 </ContainerField>
@@ -306,11 +301,7 @@ export const UserPage = () => {
                       type="button"
                       onClick={() => handleToggleSenha("btn2")}
                     >
-                      {mostrarSenha2 ? (
-                        <img src={hide} alt="Ocultar Senha" />
-                      ) : (
-                        <img src={show} alt="Mostrar Senha" />
-                      )}
+                      {mostrarSenha2 ? <BsEyeSlash /> : <BsEye />}
                     </button>
                   </div>
                 </ContainerField>

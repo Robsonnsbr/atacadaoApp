@@ -22,7 +22,7 @@ export const StyledForm = styled.form`
 
 
 
-  & input#confirmarPassword, #password{
+  & input#confirmarPassword, #password, #SearchSN, #SearchNum {
     min-width: 280px;
   }
 
