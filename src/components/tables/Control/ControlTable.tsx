@@ -248,7 +248,7 @@ export const ControlTable: React.FC<TabelaColaboradoresProps> = ({
             <tr>
               <th className="info">COLABORADOR</th>
               <th className="info">COLETOR</th>
-              <th className="info">STATUS</th>
+              <th className="actions">STATUS</th>
               <th className="actions">AÇÕES</th>
             </tr>
           </thead>
@@ -265,7 +265,7 @@ export const ControlTable: React.FC<TabelaColaboradoresProps> = ({
                   <p>SN: {activeUser.collector?.sn}</p>
                 </td>
                 <td
-                  className="info"
+                  className="actions"
                   style={{ textAlign: "center", color: "var(--successfully)" }}
                 >
                   {activeUser.collector?.status ? "ATIVO" : "INATIVO"}
