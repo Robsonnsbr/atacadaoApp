@@ -150,7 +150,7 @@ export const UserTable: React.FC<TabelaColaboradoresProps> = ({
         onCancel={fecharModal}
       />
       <h3>USUÁRIOS CADASTRADOS</h3>
-      <ShadowTop />
+      <ShadowTop className="ShadowTop" />
       <UserTableStyleContainer className="UserTableStyleContainer">
         <UserTableStyle className="tableContent">
           <thead>
@@ -186,7 +186,7 @@ export const UserTable: React.FC<TabelaColaboradoresProps> = ({
           </tbody>
         </UserTableStyle>
       </UserTableStyleContainer>
-      <ShadowBottom />
+      <ShadowBottom className="ShadowBottom" />
       {!usuarios?.length && (
         <p className="warningTable">Nenhum usuário cadastrado!</p>
       )}

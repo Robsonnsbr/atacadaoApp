@@ -186,7 +186,7 @@ export const CollectorTable: React.FC<TabelaColaboradoresProps> = ({
         onCancel={fecharModal}
       />
       <h3>COLETORES CADASTRADOS</h3>
-      <ShadowTop />
+      <ShadowTop className="ShadowTop" />
       <UserTableStyleContainer className="UserTableStyleContainer">
         <UserTableStyle className="tableContent">
           <thead>

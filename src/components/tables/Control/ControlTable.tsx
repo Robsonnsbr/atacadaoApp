@@ -241,7 +241,7 @@ export const ControlTable: React.FC<TabelaColaboradoresProps> = ({
         onCancel={fecharModal}
       /> */}
       <h3>COLABORADORES ATIVOS</h3>
-      <ShadowTop />
+      <ShadowTop className="ShadowTop" />
       <UserTableStyleContainer className="UserTableStyleContainer">
         <UserTableStyle className="tableContent">
           <thead>
@@ -284,7 +284,7 @@ export const ControlTable: React.FC<TabelaColaboradoresProps> = ({
           </tbody>
         </UserTableStyle>
       </UserTableStyleContainer>
-      <ShadowBottom />
+      <ShadowBottom className="ShadowBottom" />
       {!activeUsers?.length && (
         <p className="warningTable">Nenhum colaborador ativo no momento.</p>
       )}

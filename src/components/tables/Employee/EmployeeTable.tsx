@@ -152,7 +152,7 @@ export const EmployeeTable: React.FC<TabelaColaboradoresProps> = ({
         onCancel={fecharModal}
       />
       <h3>COLABORADORES CADASTRADOS</h3>
-      <ShadowTop />
+      <ShadowTop className="ShadowTop" />
       <UserTableStyleContainer className="UserTableStyleContainer">
         <UserTableStyle className="tableContent">
           <thead>
