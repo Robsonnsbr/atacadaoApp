@@ -10,7 +10,7 @@ interface CustomError {
 
 interface IPropsCadastro {
   error: CustomError | null;
-  cadastro: (numero: string, sn: string, confirmMat: string) => void;
+  cadastro: (numero: number, sn: string, confirmSN: string) => void;
   deleteCollector: (sn: string) => void;
 }
 
@@ -49,14 +49,14 @@ export const CadastroColleProvider = ({ children }: CadastroProviderProps) => {
         // const currentUser: Collector = collectors[index];
         collectors.splice(index, 1);
         localStorage.setItem("collector_db", JSON.stringify(collectors));
+        localStorage.setItem("collector_db", JSON.stringify(collectors));
         // alert(`Usuário ${currentUser.sn} Excluído com sucesso!`);
       }
     }
   };
 
-  const cadastro = async (numero: string, sn: string, confirmMat: string) => {
-    console.log("entrei aqui");
-    if (sn === confirmMat) {
+  const cadastro = async (numero: number, sn: string, confirmSN: string) => {
+    if (sn === confirmSN) {
       setError(null);
       const recoveredUsers = localStorage.getItem("collector_db");
 
@@ -70,6 +70,19 @@ export const CadastroColleProvider = ({ children }: CadastroProviderProps) => {
           return setError({
             hasError: true,
             msg: "Ops, parece que esse número de série já está cadastrado.",
+          });
+        }
+      }
+      if (recoveredUsers) {
+        const hasRecoveredUsers = JSON.parse(recoveredUsers);
+        const hasUser = hasRecoveredUsers.filter(
+          (collector: Collector) => collector.numero === numero
+        );
+
+        if (hasUser.length > 0) {
+          return setError({
+            hasError: true,
+            msg: "Ops, parece que esse número de já está cadastrado.",
           });
         }
       }

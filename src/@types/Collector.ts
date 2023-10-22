@@ -1,5 +1,5 @@
 export type Collector = {
   id?: string;
-  numero?: string;
+  numero: number;
   sn?: string;
 };

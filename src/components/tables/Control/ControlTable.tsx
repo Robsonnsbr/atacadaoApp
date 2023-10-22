@@ -268,7 +268,7 @@ export const ControlTable: React.FC<TabelaColaboradoresProps> = ({
                   className="info"
                   style={{ textAlign: "center", color: "var(--successfully)" }}
                 >
-                  {activeUser.collector?.status ? "Ativado" : "Inativo"}
+                  {activeUser.collector?.status ? "ATIVO" : "INATIVO"}
                 </td>
                 <td>
                   <Button
@@ -284,7 +284,7 @@ export const ControlTable: React.FC<TabelaColaboradoresProps> = ({
           </tbody>
         </UserTableStyle>
       </UserTableStyleContainer>
-      <ShadowBottom className="ShadowBottom" />
+      <ShadowBottom style={{ bottom: "45px" }} className="ShadowBottom" />
       {!activeUsers?.length && (
         <p className="warningTable">Nenhum colaborador ativo no momento.</p>
       )}

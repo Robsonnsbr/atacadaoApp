@@ -186,7 +186,7 @@ export const EmployeeTable: React.FC<TabelaColaboradoresProps> = ({
           </tbody>
         </UserTableStyle>
       </UserTableStyleContainer>
-      <ShadowBottom className="ShadowBottom" />
+      <ShadowBottom style={{ bottom: "45px" }} className="ShadowBottom" />
       {!employees?.length && (
         <p className="warningTable">Nenhum funcionário cadastrado!</p>
       )}

@@ -41,8 +41,8 @@ export const ShadowTop = styled.div`
   height: 10px;
   margin-left: 40px;
   margin-right: 40px;
-  box-shadow: inset 0 10px 10px -10px rgba(0, 0, 0, 0.2);
-  top: 49px;
+  box-shadow: inset 0 10px 10px -10px rgba(0, 0, 0, 0.5);
+  top: 47px;
   border-radius: 10px 10px 0px 0px;
   z-index: 1;
   @media (max-width: 855px) {
@@ -59,7 +59,7 @@ export const ShadowBottom = styled.div`
   height: 10px;
   margin-left: 40px;
   margin-right: 40px;
-  box-shadow: inset 0 -10px 10px -10px rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0 -10px 10px -10px rgba(0, 0, 0, 0.5);
   bottom: 124px;
   border-radius: 0px 0px 10px 10px;
   @media (max-width: 855px) {
