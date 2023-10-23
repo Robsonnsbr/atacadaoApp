@@ -20,12 +20,11 @@ export const ControlPage = () => {
   const { cadastro, error } = useContext(ControlContext);
 
   // const navigate = useNavigate();
-  const [numero, setNumero] = useState("");
+  const [mat, setMat] = useState("");
   const [sn, setSN] = useState("");
-  const [confirmMat, setConfirmMat] = useState("");
   const [atualizarFilho, setAtualizarFilho] = useState(false);
   const [collectors, setCollectors] = useState<Collector[] | null>([]);
-  const [employees, setEmployee] = useState<Employee[] | null>([]);
+  const [employees, setEmployees] = useState<Employee[] | null>([]);
 
   //TODO: analisar e/ou remover todos as function and commits
   //TODO: ativar tratamento dos inputs
@@ -40,7 +39,7 @@ export const ControlPage = () => {
   // });
 
   const handleSubmit = (event: React.FormEvent) => {
-    event.preventDefault(), cadastro(numero, sn, confirmMat, sn, sn, sn);
+    event.preventDefault(), cadastro(mat, sn);
   };
   //TODO: fix CustomValidity for React obs:(após o 2 elemento ele persiste o erro)
   // useEffect(() => {
@@ -133,24 +132,38 @@ export const ControlPage = () => {
       const recoveredUsers = localStorage.getItem("employee_db");
       if (recoveredUsers) {
         const hasRecoveredUsers = JSON.parse(recoveredUsers);
-        setEmployee(hasRecoveredUsers.reverse());
+        setEmployees(hasRecoveredUsers.reverse());
       }
     };
     recuperarUsers();
   }, []);
+
+  // useEffect(() => {
+  //   const recuperarUsers = () => {
+  //     const recoveredActiveUser = localStorage.getItem("activeUsers_db");
+  //     if (recoveredActiveUser) {
+  //       const hasRecoveredActiveUser = JSON.parse(recoveredActiveUser);
+  //       const orderHasRecoveredUsers = hasRecoveredUsers.sort(
+  //         (a: Collector, b: Collector) => a.numero - b.numero
+  //       );
+  //       if (hasRecoveredUsers && hasRecoveredUsers)
+  //         setCollectors(orderHasRecoveredUsers);
+  //     }
+  //   };
+  //   recuperarUsers();
+  // }, []);
 
   const atualizarUseEffectFilho = () => {
     setAtualizarFilho(!atualizarFilho);
   };
 
   const handleClearInput = () => {
-    setNumero("");
+    setMat("");
     setSN("");
-    setConfirmMat("");
-    document.getElementById("name")?.focus();
+    document.getElementById("#SearchSN")?.focus();
   };
 
-  function getFirstName(name: string = "") {
+  const getFirstName = (name: string = "") => {
     // Divida o nome completo em palavras
     const words = name.split(" ");
 
@@ -161,7 +174,7 @@ export const ControlPage = () => {
 
     // Se o nome não tiver nenhuma palavra, retorne uma string vazia
     return "";
-  }
+  };
 
   // const handleToggleSearch = (sn: string) => {
   //   console.log("Buscar Item! sn: ", sn);
@@ -194,7 +207,7 @@ export const ControlPage = () => {
               <Form onSubmit={(e) => handleSubmit(e)} method={"post"}>
                 {/* TODO: add icon/imagem buscador nos inputs  e add logica*/}
                 {/* TODO: FIX add icon do react-icons aqui  e alterar o da pagina cadastro usuários que está com um ícone externo */}
-                <label htmlFor="numero">NÚMERO OU SERIAL DO COLETOR</label>
+                <label htmlFor="SearchSN">NÚMERO OU SERIAL DO COLETOR</label>
                 <ContainerField className="inputSN">
                   <div
                     style={{
@@ -206,7 +219,7 @@ export const ControlPage = () => {
                       autoFocus
                       className="block"
                       id="SearchSN"
-                      value={sn}
+                      // value={sn}
                       // placeholder="número | serial"
                       onChange={(event) => setSN(event.target.value)}
                       required
@@ -230,7 +243,9 @@ export const ControlPage = () => {
                     </button> */}
                   </div>
                 </ContainerField>
-                <label htmlFor="sn">MATRÍCULA OU NOME DO COLABORADOR</label>
+                <label htmlFor="SearchNum">
+                  MATRÍCULA OU NOME DO COLABORADOR
+                </label>
                 <ContainerField className="inputSN">
                   <div
                     style={{
@@ -242,9 +257,9 @@ export const ControlPage = () => {
                       autoFocus
                       className="block"
                       id="SearchNum"
-                      value={numero}
+                      // value={numero}
                       // placeholder="número | serial"
-                      onChange={(event) => setNumero(event.target.value)}
+                      onChange={(event) => setMat(event.target.value)}
                       required
                       title="aaaaa"
                       style={{ maxWidth: "308px" }}

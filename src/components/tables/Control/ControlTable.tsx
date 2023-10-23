@@ -82,10 +82,22 @@ export const ControlTable: React.FC<TabelaColaboradoresProps> = ({
       },
     },
   ];
+
   useEffect(() => {
     setUsuarios(activeUsersTest);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  // useEffect(() => {
+  //   const recuperarUsers = () => {
+  //     const recoveredActiveUsers = localStorage.getItem("activeUsers_db");
+  //     if (recoveredActiveUsers) {
+  //       const hasRecoveredUsers = JSON.parse(recoveredActiveUsers);
+  //       setActiveUsers(hasRecoveredUsers.reverse());
+  //     }
+  //   };
+  //   recuperarUsers();
+  // }, []);
 
   useEffect(() => {
     setAtualizarInterno(atualizar);
