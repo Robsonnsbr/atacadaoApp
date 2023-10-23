@@ -12,6 +12,11 @@ export const StyledWrapper = styled.section`
   box-shadow: 0 0 2px 1px #00000086;
   flex-direction: row;
 
+  & .warningLogin {
+    text-align: center;
+    }
+  
+
   & .containerCadastro {
   min-width: 310px;
   margin: 20px 0px;
@@ -33,8 +38,8 @@ export const StyledWrapper = styled.section`
     .tabelaContainer {
       margin: 0px;
   }
+}
   
-  }
 
   & p#warning {
     text-align: center;
@@ -52,7 +57,6 @@ export const StyledWrapper = styled.section`
 
   }
  
-
 
   & .warning-null {
     color: transparent;

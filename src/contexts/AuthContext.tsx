@@ -68,7 +68,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         );
         if (hasUser) {
           setToken(recoveredToken);
-          // navigate("/AppCollector");
+          // navigate("/AppCollector/Controls");
         }
       }
     })();
@@ -114,7 +114,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
           return;
         }
       } else {
-        setError("Usuário não cadastrado");
+        setError("Usuário não cadastrado. Se for 1º Acesso, logar com Master");
         setTimeout(() => {
           setError(null);
         }, 5000);

@@ -15,6 +15,8 @@ import { motion } from "framer-motion";
 // import { BiSearchAlt2 } from "react-icons/bi";
 import { Collector } from "../../@types/Collector";
 import { Employee } from "../../@types/Employee";
+import { Activated } from "../../@types/Activated";
+import { EnumWorkShift } from "../../@types/Enums";
 export const ControlPage = () => {
   // const { isAuthenticated } = useContext(AuthContext);
   const { cadastro, error } = useContext(ControlContext);
@@ -25,6 +27,7 @@ export const ControlPage = () => {
   const [atualizarFilho, setAtualizarFilho] = useState(false);
   const [collectors, setCollectors] = useState<Collector[] | null>([]);
   const [employees, setEmployees] = useState<Employee[] | null>([]);
+  const [activeUsers, setUsuarios] = useState<Activated[] | null>([]);
 
   //TODO: analisar e/ou remover todos as function and commits
   //TODO: ativar tratamento dos inputs
@@ -136,6 +139,68 @@ export const ControlPage = () => {
       }
     };
     recuperarUsers();
+  }, []);
+
+  const activeUsersTest: Activated[] = [
+    {
+      collector: { num: "65", sn: "10012931023910239", status: true },
+      employee: {
+        name: "Robson Monteiro",
+        mat: "50505011",
+        workShift: EnumWorkShift.HIBRIDO,
+        status: true,
+      },
+    },
+    {
+      collector: { num: "30", sn: "1231231511023910239", status: true },
+      employee: {
+        name: "Teste@teste",
+        mat: "44555151",
+        workShift: EnumWorkShift.MANHA,
+        status: true,
+      },
+    },
+    {
+      collector: { num: "41", sn: "515166111023910239", status: true },
+      employee: {
+        name: "Teste@teste2",
+        mat: "83512151",
+        workShift: EnumWorkShift.NOITE,
+        status: true,
+      },
+    },
+    {
+      collector: { num: "44", sn: "45718883323910239", status: true },
+      employee: {
+        name: "Teste@teste3",
+        mat: "616165151",
+        workShift: EnumWorkShift.HIBRIDO,
+        status: true,
+      },
+    },
+    {
+      collector: { num: "47", sn: "51515566615114242", status: true },
+      employee: {
+        name: "Teste@teste4",
+        mat: "88765151",
+        workShift: EnumWorkShift.TARDE,
+        status: true,
+      },
+    },
+    {
+      collector: { num: "33", sn: "012390006615114242", status: true },
+      employee: {
+        name: "Teste@teste5",
+        mat: "99995151",
+        workShift: EnumWorkShift.MANHA,
+        status: true,
+      },
+    },
+  ];
+
+  useEffect(() => {
+    setUsuarios(activeUsersTest);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // useEffect(() => {
@@ -294,7 +359,19 @@ export const ControlPage = () => {
                 {error?.msg || "null"}
               </p>
             </div>
-            <ControlTable atualizar={atualizarFilho} />
+            <div>
+              <ControlTable
+                atualizar={atualizarFilho}
+                activeUsers={activeUsers}
+              />
+              {activeUsers && (
+                <div style={{ textAlign: "center", margin: "5px" }}>
+                  <span>Total ativos: {activeUsers?.length}</span>
+                  <span> colaboradores offline: 4</span>
+                  <span> Coletores offline: 15</span>
+                </div>
+              )}
+            </div>
           </Wrapper>
         </Main>
       </motion.div>

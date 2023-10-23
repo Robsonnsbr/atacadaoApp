@@ -26,22 +26,6 @@ export const HomePage = () => {
           <ul>
             <RowCollector />
           </ul>
-          {/* <StyledButtonRow>
-            <Button
-              backgroundcolor="var(--buttonDelete)"
-              type={"button"}
-              id={"btnLogout"}
-              value={"Logout"}
-              onClick={handleLogout}
-            ></Button>
-            <Button
-              backgroundcolor="var(--buttonDelete)"
-              type={"button"}
-              id={"btnDeleteUser"}
-              value={"delete"}
-              onClick={handleDeleteUser}
-            ></Button>
-          </StyledButtonRow> */}
         </Wrapper>
       </Main>
     </PageContent>

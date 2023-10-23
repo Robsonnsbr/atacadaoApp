@@ -16,7 +16,7 @@ export const StyledForm = styled.form`
   & label {
     color:  var(--on-secondary);
     text-shadow: var(--text-shadow-style);
-    font-size: 12px;
+    font-size: 13px;
 
   }
 

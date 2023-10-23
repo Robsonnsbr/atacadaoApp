@@ -8,85 +8,87 @@ import {
 } from "../Table.style";
 // import { AuthContext } from "../../../contexts/AuthContext";
 import { Button } from "../../inputs/button/Button";
-import { EnumWorkShift } from "../../../@types/Enums";
+// import { EnumWorkShift } from "../../../@types/Enums";
 // import { Modal } from "../../modal/modal";
 
 interface TabelaColaboradoresProps {
   atualizar: boolean;
+  activeUsers: Activated[] | null;
 }
 
 export const ControlTable: React.FC<TabelaColaboradoresProps> = ({
   atualizar,
+  activeUsers,
 }) => {
   // const { deleteUserMat } = useContext(AuthContext);
-  const [activeUsers, setUsuarios] = useState<Activated[] | null>([]);
+  // const [activeUsers, setUsuarios] = useState<Activated[] | null>([]);
   const [atualizarInterno, setAtualizarInterno] = useState(atualizar);
   // const [isModalOpen, setIsModalOpen] = useState(false);
   // const [usuario, setUserToDelete] = useState<Activated | undefined>();
   // const [msgModal, setMsgModal] = useState<string>("");
   // const [isButtonOff, setIsButtonOff] = useState(false);
 
-  const activeUsersTest: Activated[] = [
-    {
-      collector: { num: "65", sn: "10012931023910239", status: true },
-      employee: {
-        name: "Robson Monteiro",
-        mat: "50505011",
-        workShift: EnumWorkShift.HIBRIDO,
-        status: true,
-      },
-    },
-    {
-      collector: { num: "30", sn: "1231231511023910239", status: true },
-      employee: {
-        name: "Teste@teste",
-        mat: "44555151",
-        workShift: EnumWorkShift.MANHA,
-        status: true,
-      },
-    },
-    {
-      collector: { num: "41", sn: "515166111023910239", status: true },
-      employee: {
-        name: "Teste@teste2",
-        mat: "83512151",
-        workShift: EnumWorkShift.NOITE,
-        status: true,
-      },
-    },
-    {
-      collector: { num: "44", sn: "45718883323910239", status: true },
-      employee: {
-        name: "Teste@teste3",
-        mat: "616165151",
-        workShift: EnumWorkShift.HIBRIDO,
-        status: true,
-      },
-    },
-    {
-      collector: { num: "47", sn: "51515566615114242", status: true },
-      employee: {
-        name: "Teste@teste4",
-        mat: "88765151",
-        workShift: EnumWorkShift.TARDE,
-        status: true,
-      },
-    },
-    {
-      collector: { num: "33", sn: "012390006615114242", status: true },
-      employee: {
-        name: "Teste@teste5",
-        mat: "99995151",
-        workShift: EnumWorkShift.MANHA,
-        status: true,
-      },
-    },
-  ];
+  // const activeUsersTest: Activated[] = [
+  //   {
+  //     collector: { num: "65", sn: "10012931023910239", status: true },
+  //     employee: {
+  //       name: "Robson Monteiro",
+  //       mat: "50505011",
+  //       workShift: EnumWorkShift.HIBRIDO,
+  //       status: true,
+  //     },
+  //   },
+  //   {
+  //     collector: { num: "30", sn: "1231231511023910239", status: true },
+  //     employee: {
+  //       name: "Teste@teste",
+  //       mat: "44555151",
+  //       workShift: EnumWorkShift.MANHA,
+  //       status: true,
+  //     },
+  //   },
+  //   {
+  //     collector: { num: "41", sn: "515166111023910239", status: true },
+  //     employee: {
+  //       name: "Teste@teste2",
+  //       mat: "83512151",
+  //       workShift: EnumWorkShift.NOITE,
+  //       status: true,
+  //     },
+  //   },
+  //   {
+  //     collector: { num: "44", sn: "45718883323910239", status: true },
+  //     employee: {
+  //       name: "Teste@teste3",
+  //       mat: "616165151",
+  //       workShift: EnumWorkShift.HIBRIDO,
+  //       status: true,
+  //     },
+  //   },
+  //   {
+  //     collector: { num: "47", sn: "51515566615114242", status: true },
+  //     employee: {
+  //       name: "Teste@teste4",
+  //       mat: "88765151",
+  //       workShift: EnumWorkShift.TARDE,
+  //       status: true,
+  //     },
+  //   },
+  //   {
+  //     collector: { num: "33", sn: "012390006615114242", status: true },
+  //     employee: {
+  //       name: "Teste@teste5",
+  //       mat: "99995151",
+  //       workShift: EnumWorkShift.MANHA,
+  //       status: true,
+  //     },
+  //   },
+  // ];
 
-  useEffect(() => {
-    setUsuarios(activeUsersTest);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  // useEffect(() => {
+  //   setUsuarios(activeUsersTest);
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
 
   // useEffect(() => {
   //   const recuperarUsers = () => {
@@ -253,7 +255,7 @@ export const ControlTable: React.FC<TabelaColaboradoresProps> = ({
         onCancel={fecharModal}
       /> */}
       <h3>COLABORADORES ATIVOS</h3>
-      <ShadowTop className="ShadowTop" />
+      <ShadowTop className="ShadowTop" style={{ top: "41px" }} />
       <UserTableStyleContainer className="UserTableStyleContainer">
         <UserTableStyle className="tableContent">
           <thead>
@@ -296,7 +298,7 @@ export const ControlTable: React.FC<TabelaColaboradoresProps> = ({
           </tbody>
         </UserTableStyle>
       </UserTableStyleContainer>
-      <ShadowBottom style={{ bottom: "45px" }} className="ShadowBottom" />
+      <ShadowBottom style={{ bottom: "0px" }} className="ShadowBottom" />
       {!activeUsers?.length && (
         <p className="warningTable">Nenhum colaborador ativo no momento.</p>
       )}
