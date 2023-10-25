@@ -12,8 +12,10 @@ import {
 } from "../../../components";
 import { CollectorTable } from "../../../components/tables";
 import { motion } from "framer-motion";
+// import { AuthContext } from "../../../contexts/AuthContext";
 
 export const CollectorPage = () => {
+  // const { user } = useContext(AuthContext);
   // const { isAuthenticated } = useContext(AuthContext);
   const { cadastro, error } = useContext(CadastroColleContext);
 

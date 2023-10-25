@@ -12,6 +12,7 @@ interface CustomError {
 interface IPropsCadastro {
   error: CustomError | null;
   cadastro: (numero: string, sn: string) => void;
+  setError: any;
 }
 
 interface CadastroProviderProps {
@@ -24,6 +25,9 @@ const initialProps: IPropsCadastro = {
     msg: "",
   },
   cadastro: () => {
+    throw new Error("Function not implemented.");
+  },
+  setError: () => {
     throw new Error("Function not implemented.");
   },
 };
@@ -61,17 +65,17 @@ export const ControlProvider = ({ children }: CadastroProviderProps) => {
     // TODO: a ideia está correta, esta buscando o valor  correto, porem preciso mudar do valor
     // que está vindo corretamente => teste MAT: 1441141213 T: NOITE para => 1441141213
     // estamos trabalhando apenas na tela control. importante!!!
-    console.log(mat);
-    console.log(isValid);
+    // console.log(mat);
+    // console.log(isValid);
     if (isValid) {
       const recoveredUsers = localStorage.getItem("employee_db");
       if (recoveredUsers) {
-        const convertRecoveredUsers = JSON.parse(recoveredUsers);
-        console.log(convertRecoveredUsers);
-        const activeEmployee = convertRecoveredUsers?.find(
-          (employee: Employee) => mat === employee.mat
-        );
-        console.log("Cadastrado", activeEmployee);
+        // const convertRecoveredUsers = JSON.parse(recoveredUsers);
+        // console.log(convertRecoveredUsers);
+        // const activeEmployee = convertRecoveredUsers?.find(
+        //   (employee: Employee) => mat === employee.mat
+        // );
+        // console.log("Cadastrado", activeEmployee);
       }
     }
   };
@@ -84,6 +88,7 @@ export const ControlProvider = ({ children }: CadastroProviderProps) => {
     <ControlContext.Provider
       value={{
         error,
+        setError,
         cadastro,
       }}
     >

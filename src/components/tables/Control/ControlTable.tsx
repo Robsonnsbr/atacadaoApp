@@ -18,11 +18,11 @@ interface TabelaColaboradoresProps {
 
 export const ControlTable: React.FC<TabelaColaboradoresProps> = ({
   atualizar,
-  activeUsers,
 }) => {
   // const { deleteUserMat } = useContext(AuthContext);
   // const [activeUsers, setUsuarios] = useState<Activated[] | null>([]);
   const [atualizarInterno, setAtualizarInterno] = useState(atualizar);
+  const [activeUsers, setUsuarios] = useState<Activated[] | null>(null);
   // const [isModalOpen, setIsModalOpen] = useState(false);
   // const [usuario, setUserToDelete] = useState<Activated | undefined>();
   // const [msgModal, setMsgModal] = useState<string>("");
@@ -102,8 +102,17 @@ export const ControlTable: React.FC<TabelaColaboradoresProps> = ({
   // }, []);
 
   useEffect(() => {
+    const recoveredActivated = localStorage.getItem("activeUsers_db");
+    if (recoveredActivated) {
+      const recoveredActivatedConvert = JSON.parse(recoveredActivated);
+      setUsuarios(recoveredActivatedConvert);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [atualizarInterno]);
+
+  useEffect(() => {
     setAtualizarInterno(atualizar);
-  }, [atualizar, atualizarInterno]);
+  }, [atualizar, atualizarInterno, activeUsers]);
 
   // const abrirModal = (usuario: Activated | undefined) => {
   //   if (!isButtonOff) {
@@ -234,9 +243,19 @@ export const ControlTable: React.FC<TabelaColaboradoresProps> = ({
     };
   }, []);
 
-  const handleActiveUser = (activeUser: Activated, value: boolean) => {
-    console.log("Setar o usuário como:", value);
-    console.log(`${activeUser.employee?.name} DESATIVADO!`);
+  const handleOffUser = (activeUser: Activated) => {
+    const hasIsActivated = localStorage.getItem("activeUsers_db");
+    if (hasIsActivated) {
+      const hasIsActivatedConvert = JSON.parse(hasIsActivated);
+      const filterHas: Activated[] = hasIsActivatedConvert.filter(
+        (activated: Activated) =>
+          activated.collector?.sn !== activeUser.collector?.sn
+      );
+      if (filterHas) {
+        localStorage.setItem("activeUsers_db", JSON.stringify(filterHas));
+      }
+      setAtualizarInterno(!atualizarInterno);
+    }
   };
   return (
     <div className="tabelaContainer">
@@ -275,7 +294,7 @@ export const ControlTable: React.FC<TabelaColaboradoresProps> = ({
                   <p>Período: {activeUser.employee?.workShift}</p>
                 </td>
                 <td className="info info-activeUser">
-                  <p>Número: {activeUser.collector?.num}</p>
+                  <p>Número: {activeUser.collector?.numero}</p>
                   <p>SN: {activeUser.collector?.sn}</p>
                 </td>
                 <td
@@ -290,7 +309,7 @@ export const ControlTable: React.FC<TabelaColaboradoresProps> = ({
                     type="button"
                     id="btnDeleteUser"
                     value="Desativar"
-                    onClick={() => handleActiveUser(activeUser, false)}
+                    onClick={() => handleOffUser(activeUser)}
                   ></Button>
                 </td>
               </tr>

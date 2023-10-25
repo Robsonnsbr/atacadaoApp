@@ -2,6 +2,14 @@ import {EnumWorkShiftType } from './Enums';
 
 export type Activated = {
   id?: string;
-  collector?: { num: string; sn: string; status: boolean };
-   employee?: { name: string; mat: string; workShift: EnumWorkShiftType; status: boolean };
+  collector?: {   id?: string;
+    numero: number;
+    status?: boolean
+    sn?: string};
+   employee?: {     id?: string;
+    name?: string;
+    mat?: string;
+    status?: boolean
+    confirmMat?: EnumWorkShiftType;
+    workShift?: string};
 };

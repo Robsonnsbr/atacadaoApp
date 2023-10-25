@@ -20,11 +20,33 @@ export const StyledForm = styled.form`
 
   }
 
+  /* Estilo para a div que contém os checkboxes */
+div.checkBox {
+  display: flex;
+  align-items: center;
+  /* gap: 10px; */
+
+  /* Estilo para os rótulos */
+label {
+  margin: 10px; /* Espaço entre o rótulo e o checkbox */
+  font-weight: bold; /* Texto em negrito */
+  cursor: pointer;
+}
+
+/* Estilo para os checkboxes */
+input[type="checkbox"] {
+  cursor: pointer;
+  margin-right: 5px; //Espaço entre os checkboxes
+  transform: scale(1.5); /* Aumenta o tamanho dos checkboxes */
+}
+}
 
 
-  & input#confirmarPassword, #password, #SearchSN, #SearchNum {
+  & input#confirmarPassword, #password {
     min-width: 280px;
   }
+
+
 
   .inputName {
   margin-bottom: 20px;
@@ -38,6 +60,7 @@ export const StyledForm = styled.form`
   .inputPass {
     margin-bottom: 20px;
   }
+
 
 `;
 
@@ -79,6 +102,9 @@ export const StyledContainerField = styled.div`
   & input:focus {
     background-color: var(--secondary);
   }
+  
+
+
 
   & .btnViewPassword {
     background-color:transparent;

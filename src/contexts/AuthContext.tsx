@@ -53,7 +53,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [error, setError] = useState<null | string>(null);
   // const [loading, setLoading] = useState(true);
   const [user, setUser] = useState<null | User>(null);
-
   useEffect(() => {
     //O await aqui não tem necessidade, mas caso haja uma
     //chamada da api é assim que conseguimos utilizar o await
@@ -67,8 +66,10 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
           (user: User) => user.mat === JSON.parse(recoveredToken).mat
         );
         if (hasUser) {
-          setToken(recoveredToken);
-          // navigate("/AppCollector/Controls");
+          const { token } = JSON.parse(recoveredToken);
+          setToken(token);
+          console.log("corrigir toda a autenticação");
+          return;
         }
       }
     })();
@@ -147,7 +148,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       setError("Token/Users not found");
     }
 
-    navigate("/AppCollector/*");
+    console.log("Logout");
+    navigate("/AppCollector/login");
   };
 
   const deleteUser = () => {

@@ -29,13 +29,14 @@ interface PrivateProps {
 export const AppRoutes = () => {
   const Private = ({ children }: PrivateProps) => {
     const { isAuthenticated } = useContext(AuthContext);
-
+    console.log(isAuthenticated);
     // if (loading) {
     //   //TODO: corrigir loading na pasta AuthContext..
     //   return <div>Em Carregamento...</div>;
     // }
 
     if (!isAuthenticated) {
+      console.log("entrei aquui antes");
       return <Navigate to="/AppCollector/Login" />;
     }
     return children;
@@ -66,7 +67,11 @@ export const AppRoutes = () => {
                   />
                   <Route
                     path="AppCollector/ReportPage"
-                    element={<ReportPage />}
+                    element={
+                      <Private>
+                        <ReportPage />
+                      </Private>
+                    }
                   />
                   <Route
                     path="AppCollector/"

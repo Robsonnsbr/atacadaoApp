@@ -16,18 +16,30 @@ import { motion } from "framer-motion";
 import { Collector } from "../../@types/Collector";
 import { Employee } from "../../@types/Employee";
 import { Activated } from "../../@types/Activated";
-import { EnumWorkShift } from "../../@types/Enums";
+// import { EnumWorkShift } from "../../@types/Enums";
+
+interface CustomError {
+  hasError: boolean;
+  msg: string;
+}
 export const ControlPage = () => {
   // const { isAuthenticated } = useContext(AuthContext);
-  const { cadastro, error } = useContext(ControlContext);
+  const { cadastro } = useContext(ControlContext);
 
   // const navigate = useNavigate();
-  const [mat, setMat] = useState("");
-  const [sn, setSN] = useState("");
+  const [emp, setEmp] = useState("");
+  const [coll, setColl] = useState("");
   const [atualizarFilho, setAtualizarFilho] = useState(false);
+  const [atualizar, setAtualizar] = useState(false);
   const [collectors, setCollectors] = useState<Collector[] | null>([]);
   const [employees, setEmployees] = useState<Employee[] | null>([]);
   const [activeUsers, setUsuarios] = useState<Activated[] | null>([]);
+  const [error, setError] = useState<CustomError | null>(null);
+
+  const [selectedCheckboxEmployee, setSelectedCheckboxEmployee] =
+    useState<string>("mat");
+  const [selectedCheckboxCollector, setSelectedCheckboxCollector] =
+    useState<string>("numero");
 
   //TODO: analisar e/ou remover todos as function and commits
   //TODO: ativar tratamento dos inputs
@@ -42,7 +54,7 @@ export const ControlPage = () => {
   // });
 
   const handleSubmit = (event: React.FormEvent) => {
-    event.preventDefault(), cadastro(mat, sn);
+    event.preventDefault(), cadastro(emp, coll);
   };
   //TODO: fix CustomValidity for React obs:(após o 2 elemento ele persiste o erro)
   // useEffect(() => {
@@ -74,6 +86,24 @@ export const ControlPage = () => {
 
   const warningElement = document.getElementById("warning")!;
 
+  // useEffect(() => {
+  //   const recuperarUsers = () => {
+  //     const EmpTeste = {
+  //       employee: "robson monteiro	646469797	não informado",
+  //       collector: "65	65 12345678901234567",
+  //       status: "ATIVO",
+  //     };
+  //     localStorage.setItem("activeUsers_db", JSON.stringify(EmpTeste));
+  //   };
+  //   console.log("entrei aqui2");
+  //   recuperarUsers();
+  // }, []);
+
+  // useEffect(() => {
+  //   setAtualizarFilho(!atualizarFilho); // TODO: apagar
+  //   console.log("entrei aqui1");
+  // }, []);
+
   useEffect(() => {
     const handleWarning = () => {
       if (error !== null) {
@@ -97,22 +127,21 @@ export const ControlPage = () => {
     handleWarning();
   }, [warningElement, error]);
 
-  // useEffect(() => {
   //   const recuperarUsers = () => {
-  //     const EmpTeste = {
-  //       employee: "robson monteiro	646469797	não informado",
-  //       collector: "65	65 12345678901234567",
-  //       status: "ATIVO",
-  //     };
-  //     localStorage.setItem("activeUsers_db", JSON.stringify(EmpTeste));
+  //     const recoveredUsers = localStorage.setItem(
+  //       "activeUsers_db",
+  //       JSON.stringify(employee, collector)
+  //     );
+  //     if (recoveredUsers) {
+  //       const hasRecoveredUsers = JSON.parse(recoveredUsers);
+  //       const orderHasRecoveredUsers = hasRecoveredUsers.sort(
+  //         (a: Collector, b: Collector) => a.numero - b.numero
+  //       );
+  //       if (hasRecoveredUsers && hasRecoveredUsers)
+  //         setCollectors(orderHasRecoveredUsers);
+  //     }
   //   };
-  //   console.log("entrei aqui2");
   //   recuperarUsers();
-  // }, []);
-
-  // useEffect(() => {
-  //   setAtualizarFilho(!atualizarFilho); // TODO: apagar
-  //   console.log("entrei aqui1");
   // }, []);
 
   useEffect(() => {
@@ -135,74 +164,90 @@ export const ControlPage = () => {
       const recoveredUsers = localStorage.getItem("employee_db");
       if (recoveredUsers) {
         const hasRecoveredUsers = JSON.parse(recoveredUsers);
-        setEmployees(hasRecoveredUsers.reverse());
+
+        // Ordenar hasRecoveredUsers com base na propriedade 'name'
+        hasRecoveredUsers.sort((a: Employee, b: Employee) => {
+          if (a.name && b.name) {
+            return a.name.localeCompare(b.name);
+          }
+          return 0; // Ou outra lógica de tratamento se algum deles não tiver name
+        });
+
+        setEmployees(hasRecoveredUsers);
       }
     };
     recuperarUsers();
   }, []);
 
-  const activeUsersTest: Activated[] = [
-    {
-      collector: { num: "65", sn: "10012931023910239", status: true },
-      employee: {
-        name: "Robson Monteiro",
-        mat: "50505011",
-        workShift: EnumWorkShift.HIBRIDO,
-        status: true,
-      },
-    },
-    {
-      collector: { num: "30", sn: "1231231511023910239", status: true },
-      employee: {
-        name: "Teste@teste",
-        mat: "44555151",
-        workShift: EnumWorkShift.MANHA,
-        status: true,
-      },
-    },
-    {
-      collector: { num: "41", sn: "515166111023910239", status: true },
-      employee: {
-        name: "Teste@teste2",
-        mat: "83512151",
-        workShift: EnumWorkShift.NOITE,
-        status: true,
-      },
-    },
-    {
-      collector: { num: "44", sn: "45718883323910239", status: true },
-      employee: {
-        name: "Teste@teste3",
-        mat: "616165151",
-        workShift: EnumWorkShift.HIBRIDO,
-        status: true,
-      },
-    },
-    {
-      collector: { num: "47", sn: "51515566615114242", status: true },
-      employee: {
-        name: "Teste@teste4",
-        mat: "88765151",
-        workShift: EnumWorkShift.TARDE,
-        status: true,
-      },
-    },
-    {
-      collector: { num: "33", sn: "012390006615114242", status: true },
-      employee: {
-        name: "Teste@teste5",
-        mat: "99995151",
-        workShift: EnumWorkShift.MANHA,
-        status: true,
-      },
-    },
-  ];
+  // const activeUsersTest: Activated[] = [
+  //   {
+  //     collector: { num: "65", sn: "10012931023910239", status: true },
+  //     employee: {
+  //       name: "Robson Monteiro",
+  //       mat: "50505011",
+  //       workShift: EnumWorkShift.HIBRIDO,
+  //       status: true,
+  //     },
+  //   },
+  //   {
+  //     collector: { num: "30", sn: "1231231511023910239", status: true },
+  //     employee: {
+  //       name: "Teste@teste",
+  //       mat: "44555151",
+  //       workShift: EnumWorkShift.MANHA,
+  //       status: true,
+  //     },
+  //   },
+  //   {
+  //     collector: { num: "41", sn: "515166111023910239", status: true },
+  //     employee: {
+  //       name: "Teste@teste2",
+  //       mat: "83512151",
+  //       workShift: EnumWorkShift.NOITE,
+  //       status: true,
+  //     },
+  //   },
+  //   {
+  //     collector: { num: "44", sn: "45718883323910239", status: true },
+  //     employee: {
+  //       name: "Teste@teste3",
+  //       mat: "616165151",
+  //       workShift: EnumWorkShift.HIBRIDO,
+  //       status: true,
+  //     },
+  //   },
+  //   {
+  //     collector: { num: "47", sn: "51515566615114242", status: true },
+  //     employee: {
+  //       name: "Teste@teste4",
+  //       mat: "88765151",
+  //       workShift: EnumWorkShift.TARDE,
+  //       status: true,
+  //     },
+  //   },
+  //   {
+  //     collector: { num: "33", sn: "012390006615114242", status: true },
+  //     employee: {
+  //       name: "Teste@teste5",
+  //       mat: "99995151",
+  //       workShift: EnumWorkShift.MANHA,
+  //       status: true,
+  //     },
+  //   },
+  // ];
 
   useEffect(() => {
-    setUsuarios(activeUsersTest);
+    const recoveredActivated = localStorage.getItem("activeUsers_db");
+    if (recoveredActivated) {
+      const recoveredActivatedConvert = JSON.parse(recoveredActivated);
+      setUsuarios(recoveredActivatedConvert);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  useEffect(() => {
+    setAtualizar(!atualizar);
+  }, []);
   // useEffect(() => {
   //   const recuperarUsers = () => {
   //     const recoveredActiveUser = localStorage.getItem("activeUsers_db");
@@ -222,23 +267,128 @@ export const ControlPage = () => {
     setAtualizarFilho(!atualizarFilho);
   };
 
+  const activatedDB = (found: Activated) => {
+    const activated: Activated[] = [];
+    const activateDB = localStorage.getItem("activeUsers_db");
+    if (found) {
+      if (activateDB) {
+        const activateDBConvert = JSON.parse(activateDB);
+        activated.push(...activateDBConvert, found);
+        localStorage.setItem("activeUsers_db", JSON.stringify(activated));
+      } else {
+        activated.push(found);
+        localStorage.setItem("activeUsers_db", JSON.stringify(activated));
+      }
+    }
+  };
+
+  const isActivated = (coll: string, Emp: string) => {
+    // console.log("entrei aqui");
+    const hasIsActivated = localStorage.getItem("activeUsers_db");
+    if (hasIsActivated) {
+      const hasIsActivatedConvert = JSON.parse(hasIsActivated);
+      const hasActivated = hasIsActivatedConvert.find(
+        (activated: Activated) => {
+          if (
+            activated.collector?.sn === coll ||
+            activated.collector?.numero === Number(coll) ||
+            activated.employee?.mat === Emp ||
+            activated.employee?.name === Emp
+          ) {
+            return true;
+          } else {
+            return false;
+          }
+        }
+      );
+      console.log(hasActivated);
+      return hasActivated;
+    }
+  };
+
+  const findActivate = (coll: string, Emp: string) => {
+    if (coll && Emp) {
+      // console.log(isActivated(coll, Emp));
+      if (isActivated(coll, Emp)) {
+        setError({
+          hasError: true,
+          msg: "Usuário ou coletor já ativo, verifique novamente!",
+        });
+        return;
+      }
+
+      const found: Activated = {};
+
+      const findCollector = localStorage.getItem("collector_db");
+      const findEmployee = localStorage.getItem("employee_db");
+
+      if (findCollector) {
+        // const findCollectorConverter = JSON.parse(findCollector);
+        const hasFindCollector = JSON.parse(findCollector);
+        const wasFoundCollector: Collector = hasFindCollector.find(
+          (collector: Collector) => {
+            if (collector.numero === Number(coll) || collector.sn === coll) {
+              collector.status = true;
+              return collector;
+            }
+          }
+        );
+        found.collector = wasFoundCollector;
+        // const hasFindCollectorStatus = hasFindCollector.filter(
+        //   (wasFoundCollector: Collector) => {
+        //     wasFoundCollector.sn !== wasFoundCollector.sn;
+        //   }
+        // );
+        // console.log(hasFindCollectorStatus);
+        // findCollectorConverter.push(hasFindCollectorStatus, "teste");
+
+        //   let _ = localStorage.setItem(
+        //     "collector_db",
+        //     JSON.stringify(findCollectorConverter)
+        //   );
+      }
+
+      if (findEmployee) {
+        // const findEmployeeConverter = JSON.parse(findEmployee);
+        const hasFindEmployee = JSON.parse(findEmployee);
+        const wasFoundEmployee = hasFindEmployee.find((employee: Employee) => {
+          if (employee.mat === Emp || employee.name === Emp) {
+            employee.status = true;
+            return employee;
+          }
+        });
+        found.employee = wasFoundEmployee;
+        // const hasFindEmployeeStatus = hasFindEmployee.filter(
+        //   (wasFoundEmployee: Employee) => {
+        //     wasFoundEmployee !== wasFoundEmployee;
+        //   }
+        // );
+        // console.log(hasFindEmployeeStatus);
+        //   findEmployeeConverter.push(hasFindEmployeeStatus, wasFoundEmployee);
+
+        //   let _ = localStorage.setItem(
+        //     "employee_db",
+        //     JSON.stringify(findEmployeeConverter)
+        //   );
+      }
+
+      activatedDB(found);
+      atualizarUseEffectFilho();
+    }
+  };
+
   const handleClearInput = () => {
-    setMat("");
-    setSN("");
+    setEmp("");
+    setColl("");
     document.getElementById("#SearchSN")?.focus();
   };
 
-  const getFirstName = (name: string = "") => {
-    // Divida o nome completo em palavras
-    const words = name.split(" ");
+  const handleCheckboxChangeCollector = (value: string = "numero") => {
+    setSelectedCheckboxCollector(value);
+  };
 
-    // Pegue a primeira palavra (primeiro nome)
-    if (words.length > 0) {
-      return words[0];
-    }
-
-    // Se o nome não tiver nenhuma palavra, retorne uma string vazia
-    return "";
+  const handleCheckboxChangeEmployee = (value: string = "mat") => {
+    setSelectedCheckboxEmployee(value);
   };
 
   // const handleToggleSearch = (sn: string) => {
@@ -272,7 +422,31 @@ export const ControlPage = () => {
               <Form onSubmit={(e) => handleSubmit(e)} method={"post"}>
                 {/* TODO: add icon/imagem buscador nos inputs  e add logica*/}
                 {/* TODO: FIX add icon do react-icons aqui  e alterar o da pagina cadastro usuários que está com um ícone externo */}
-                <label htmlFor="SearchSN">NÚMERO OU SERIAL DO COLETOR</label>
+
+                <label htmlFor="SearchSN">
+                  BUSCAR POR NÚMERO OU SERIAL DO COLETOR
+                </label>
+                <div className="checkBox">
+                  <label htmlFor="numeroCheckbox">Número:</label>
+                  <input
+                    style={{ background: "red" }}
+                    type="checkbox"
+                    id="numeroCheckbox"
+                    name="opcao"
+                    value="numero"
+                    onChange={() => handleCheckboxChangeCollector("numero")}
+                    checked={selectedCheckboxCollector === "numero"}
+                  />
+                  <label htmlFor="snCheckbox">SN:</label>
+                  <input
+                    type="checkbox"
+                    id="snCheckbox"
+                    name="opcao"
+                    value="sn"
+                    onChange={() => handleCheckboxChangeCollector("sn")}
+                    checked={selectedCheckboxCollector === "sn"}
+                  />
+                </div>
                 <ContainerField className="inputSN">
                   <div
                     style={{
@@ -286,17 +460,21 @@ export const ControlPage = () => {
                       id="SearchSN"
                       // value={sn}
                       // placeholder="número | serial"
-                      onChange={(event) => setSN(event.target.value)}
+                      onChange={(event) => setColl(event.target.value)}
                       required
                       title="aaaaa"
                     >
                       <option value="">selecione um coletor</option>
-                      {collectors?.map((collector, index) => (
-                        <option
-                          key={index}
-                        >{`Num: ${collector.numero} SN:${collector.sn}
+                      {selectedCheckboxCollector === "numero" &&
+                        collectors?.map((collector, index) => (
+                          <option key={index}>{`${collector.numero}
                         `}</option>
-                      ))}
+                        ))}
+                      {selectedCheckboxCollector === "sn" &&
+                        collectors?.map((collector, index) => (
+                          <option key={index}>{`${collector.sn}
+                        `}</option>
+                        ))}
                     </select>
                     {/* 
                     <button
@@ -308,9 +486,32 @@ export const ControlPage = () => {
                     </button> */}
                   </div>
                 </ContainerField>
+
                 <label htmlFor="SearchNum">
-                  MATRÍCULA OU NOME DO COLABORADOR
+                  BUSCAR POR MATRÍCULA OU NOME DO COLABORADOR
                 </label>
+                <div className="checkBox">
+                  <label htmlFor="numeroCheckbox">Matrícula:</label>
+                  <input
+                    className="inputsControls"
+                    type="checkbox"
+                    id="numeroCheckbox"
+                    name="opcao"
+                    value="mat"
+                    onChange={() => handleCheckboxChangeEmployee("mat")}
+                    checked={selectedCheckboxEmployee === "mat"}
+                  />
+                  <label htmlFor="snCheckbox">Nome:</label>
+                  <input
+                    className="inputsControls"
+                    type="checkbox"
+                    id="snCheckbox"
+                    name="opcao"
+                    value="name"
+                    onChange={() => handleCheckboxChangeEmployee("name")}
+                    checked={selectedCheckboxEmployee === "name"}
+                  />
+                </div>
                 <ContainerField className="inputSN">
                   <div
                     style={{
@@ -324,18 +525,22 @@ export const ControlPage = () => {
                       id="SearchNum"
                       // value={numero}
                       // placeholder="número | serial"
-                      onChange={(event) => setMat(event.target.value)}
+                      onChange={(event) => setEmp(event.target.value)}
                       required
                       title="aaaaa"
                       style={{ maxWidth: "308px" }}
                     >
                       <option value="">selecione um colaborador</option>
-                      {employees?.map((employee, index) => (
-                        <option key={index}>{`${getFirstName(
-                          employee.name
-                        )} MAT: ${employee.mat} T: ${employee.workShift}
+                      {selectedCheckboxEmployee === "mat" &&
+                        employees?.map((employee, index) => (
+                          <option key={index}>{`${employee.mat}
                         `}</option>
-                      ))}
+                        ))}
+                      {selectedCheckboxEmployee === "name" &&
+                        employees?.map((employee, index) => (
+                          <option key={index}>{`${employee.name} 
+                        `}</option>
+                        ))}
                     </select>
                     {/* <button
                       className="btnViewPassword"
@@ -352,7 +557,7 @@ export const ControlPage = () => {
                   id={"btnSubmit"}
                   name={"btnSubmit"}
                   value={"ATIVAR"}
-                  onClick={atualizarUseEffectFilho}
+                  onClick={() => findActivate(coll, emp)}
                 />
               </Form>
               <p id="warning" className="warning-null">
@@ -364,11 +569,26 @@ export const ControlPage = () => {
                 atualizar={atualizarFilho}
                 activeUsers={activeUsers}
               />
+
               {activeUsers && (
                 <div style={{ textAlign: "center", margin: "5px" }}>
-                  <span>Total ativos: {activeUsers?.length}</span>
-                  <span> colaboradores offline: 4</span>
-                  <span> Coletores offline: 15</span>
+                  {employees && (
+                    <span>
+                      Colaboradores offline:{" "}
+                      {employees?.length - activeUsers?.length}
+                    </span>
+                  )}
+                  {collectors && (
+                    <span>
+                      {" "}
+                      Coletores offline:{" "}
+                      {collectors?.length - activeUsers?.length}
+                    </span>
+                  )}
+
+                  {activeUsers && (
+                    <span> Total ativos: {activeUsers?.length}</span>
+                  )}
                 </div>
               )}
             </div>
