@@ -5,6 +5,7 @@ import { Main } from "./main/Main";
 import { PageContent } from "./pageContent/PageContent";
 import { NaveBar } from "./navebar/NaveBar";
 import { Wrapper } from "./wrapper/Wrapper";
+import { CountSystem } from "./countSystem/CountSystem";
 
 export {
   PageContent,
@@ -15,4 +16,5 @@ export {
   ContainerField,
   Form,
   Wrapper,
+  CountSystem,
 };

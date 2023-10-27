@@ -67,11 +67,7 @@ export const AppRoutes = () => {
                   />
                   <Route
                     path="AppCollector/ReportPage"
-                    element={
-                      <Private>
-                        <ReportPage />
-                      </Private>
-                    }
+                    element={<ReportPage />}
                   />
                   <Route
                     path="AppCollector/"

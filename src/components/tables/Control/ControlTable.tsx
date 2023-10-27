@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Activated } from "../../../@types/Activated";
 import {
   ShadowBottom,
@@ -8,6 +8,7 @@ import {
 } from "../Table.style";
 // import { AuthContext } from "../../../contexts/AuthContext";
 import { Button } from "../../inputs/button/Button";
+import { ControlContext } from "../../../contexts/ControlContext";
 // import { EnumWorkShift } from "../../../@types/Enums";
 // import { Modal } from "../../modal/modal";
 
@@ -23,6 +24,7 @@ export const ControlTable: React.FC<TabelaColaboradoresProps> = ({
   // const [activeUsers, setUsuarios] = useState<Activated[] | null>([]);
   const [atualizarInterno, setAtualizarInterno] = useState(atualizar);
   const [activeUsers, setUsuarios] = useState<Activated[] | null>(null);
+  const { atualizarWithBrother, atualizarIrmao } = useContext(ControlContext);
   // const [isModalOpen, setIsModalOpen] = useState(false);
   // const [usuario, setUserToDelete] = useState<Activated | undefined>();
   // const [msgModal, setMsgModal] = useState<string>("");
@@ -255,6 +257,7 @@ export const ControlTable: React.FC<TabelaColaboradoresProps> = ({
         localStorage.setItem("activeUsers_db", JSON.stringify(filterHas));
       }
       setAtualizarInterno(!atualizarInterno);
+      atualizarIrmao(!atualizarWithBrother);
     }
   };
   return (
