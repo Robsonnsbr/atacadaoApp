@@ -89,7 +89,7 @@ export const LoginPages = () => {
               )}
             </div>
             {/* 
-            <Link to={"/AppCollector/Users"} style={{ textDecoration: "none" }}>
+            <Link to={"/atacadaoApp/Users"} style={{ textDecoration: "none" }}>
               <Slink value="Sign up" />
             </Link> */}
           </div>

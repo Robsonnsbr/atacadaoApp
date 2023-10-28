@@ -190,7 +190,7 @@ export const CadastroUserProvider = ({ children }: CadastroProviderProps) => {
         });
       }
 
-      // return navigate("/AppCollector/login");
+      // return navigate("/atacadaoApp/login");
     } else {
       return setError({
         hasError: true,

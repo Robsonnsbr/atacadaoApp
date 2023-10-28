@@ -37,7 +37,7 @@ export const AppRoutes = () => {
 
     if (!isAuthenticated) {
       console.log("entrei aquui antes");
-      return <Navigate to="/AppCollector/Login" />;
+      return <Navigate to="/atacadaoApp/Login" />;
     }
     return children;
   };
@@ -50,27 +50,27 @@ export const AppRoutes = () => {
             <CadastroEmpProvider>
               <CadastroColleProvider>
                 <Routes>
-                  <Route path="AppCollector/login" element={<LoginPages />} />
+                  <Route path="atacadaoApp/login" element={<LoginPages />} />
 
-                  <Route path="AppCollector/Users" element={<UserPage />} />
+                  <Route path="atacadaoApp/Users" element={<UserPage />} />
                   <Route
-                    path="AppCollector/Controls"
+                    path="atacadaoApp/Controls"
                     element={<ControlPage />}
                   />
                   <Route
-                    path="AppCollector/Employees"
+                    path="atacadaoApp/Employees"
                     element={<EmployeePage />}
                   />
                   <Route
-                    path="AppCollector/Collectors"
+                    path="atacadaoApp/Collectors"
                     element={<CollectorPage />}
                   />
                   <Route
-                    path="AppCollector/ReportPage"
+                    path="atacadaoApp/ReportPage"
                     element={<ReportPage />}
                   />
                   <Route
-                    path="AppCollector/"
+                    path="atacadaoApp/"
                     element={
                       <Private>
                         <HomePage />

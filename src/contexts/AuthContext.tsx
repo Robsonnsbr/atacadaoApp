@@ -92,6 +92,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   };
 
   const login = async (mat: string, password: string) => {
+    console.log("loguei");
     const recoveredUsers = localStorage.getItem("users_db");
     if (recoveredUsers) {
       const hasRecoveredUsers = JSON.parse(recoveredUsers);
@@ -105,7 +106,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
           const currentUser: User = hasUser[0];
           setUser(currentUser);
           setToken(token);
-          navigate("/AppCollector");
+          navigate("/atacadaoApp");
           return;
         } else {
           setError("Matrícula ou Senha incorretos");
@@ -149,7 +150,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     }
 
     console.log("Logout");
-    navigate("/AppCollector/login");
+    navigate("/atacadaoApp/login");
   };
 
   const deleteUser = () => {
@@ -172,7 +173,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       return setError("Token/Users not found");
     }
 
-    navigate("/AppCollector/*");
+    navigate("/atacadaoApp/*");
   };
   const deleteUserMat = (mat?: string) => {
     const recoveredUser = localStorage.getItem("users_db");

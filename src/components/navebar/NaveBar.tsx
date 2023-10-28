@@ -23,14 +23,14 @@ export const NaveBar = ({ children }: MainProps) => {
           <img src={iconAtacadaoSvg} alt="Logo da sua empresa" />
         </div>
 
-        {/* <a href="/AppCollector">Home</a> */}
-        <a href="/AppCollector/Controls">Controle</a>
-        <a href="/AppCollector/Collectors">Coletores</a>
-        <a href="/AppCollector/Employees">Colaboradores</a>
-        <a href="/AppCollector/Users">Usuários</a>
-        <a href="/AppCollector/ReportPage">Relatório</a>
+        {/* <a href="/atacadaoApp">Home</a> */}
+        <a href="/atacadaoApp/Controls">Controle</a>
+        <a href="/atacadaoApp/Collectors">Coletores</a>
+        <a href="/atacadaoApp/Employees">Colaboradores</a>
+        <a href="/atacadaoApp/Users">Usuários</a>
+        <a href="/atacadaoApp/ReportPage">Relatório</a>
         <button onClick={handleLogout}>
-          <a href="/AppCollector/Login">Sair</a>
+          <a href="/atacadaoApp/Login">Sair</a>
         </button>
         {user && <span>Usuário: {user.name}</span>}
       </div>

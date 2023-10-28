@@ -89,7 +89,7 @@ export const CadastroEmpProvider = ({ children }: CadastroProviderProps) => {
         msg: "Seu cadastro foi concluído com sucesso.",
       });
 
-      // return navigate("/AppCollector/login");
+      // return navigate("/atacadaoApp/login");
     } else {
       return setError({
         hasError: true,
