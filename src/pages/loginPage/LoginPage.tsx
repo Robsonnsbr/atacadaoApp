@@ -1,6 +1,6 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
-
+import userTest from "../../contexts/userTestMaster.json";
 import {
   Button,
   ContainerField,
@@ -10,17 +10,28 @@ import {
   // Slink,
   Wrapper,
 } from "../../components";
+import { BsEye, BsEyeSlash } from "react-icons/bs";
 // import { Link } from "react-router-dom";
 // import { createSession } from "../../services/api";
 
 export const LoginPages = () => {
   const { isAuthenticated, login, error } = useContext(AuthContext);
+  const [mostrarSenha, setMostrarSenha] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  useEffect(() => {
+    const usersTestConvert = JSON.stringify(userTest);
+    localStorage.setItem("users_db", usersTestConvert);
+  }, []);
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault(), login(email, password);
     // createSession(email, password);
+  };
+
+  const handleToggleSenha = () => {
+    setMostrarSenha(!mostrarSenha);
   };
 
   return (
@@ -39,7 +50,7 @@ export const LoginPages = () => {
                   autoComplete="true"
                   type="text"
                   id="mat"
-                  placeholder="matricula"
+                  placeholder="matricula | master@123"
                   maxLength={15}
                   value={email.toLowerCase()}
                   onChange={(event) => setEmail(event.target.value)}
@@ -49,17 +60,30 @@ export const LoginPages = () => {
               <label style={{ fontSize: "15px" }} htmlFor="password">
                 Password:
               </label>
-              <ContainerField>
-                <input
-                  style={{ minWidth: "300px" }}
-                  type="password"
-                  name="password"
-                  id="password"
-                  value={password}
-                  onChange={(event) => setPassword(event.target.value)}
-                  placeholder="password"
-                  required
-                />
+              <ContainerField className="inputPass">
+                <div
+                  style={{
+                    maxWidth: "310px",
+                    maxHeight: "39.2px",
+                  }}
+                >
+                  <input
+                    name="password"
+                    id="password"
+                    value={password}
+                    type={mostrarSenha ? "text" : "password"}
+                    onChange={(event) => setPassword(event.target.value)}
+                    placeholder="password | Master@123"
+                    required
+                  />
+                  <button
+                    className="btnViewPassword"
+                    type="button"
+                    onClick={() => handleToggleSenha()}
+                  >
+                    {mostrarSenha ? <BsEyeSlash /> : <BsEye />}
+                  </button>
+                </div>
               </ContainerField>
               <Button
                 backgroundcolor="var(--successfully)"

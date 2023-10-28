@@ -34,9 +34,9 @@ export const AppRoutes = () => {
     //   //TODO: corrigir loading na pasta AuthContext..
     //   return <div>Em Carregamento...</div>;
     // }
-
+    // const tempIsAuthenticated = true; //TODO: remover...
     if (!isAuthenticated) {
-      console.log("entrei aquui antes");
+      console.log("entrei aqui antes");
       return <Navigate to="/atacadaoApp/Login" />;
     }
     return children;
@@ -50,7 +50,7 @@ export const AppRoutes = () => {
             <CadastroEmpProvider>
               <CadastroColleProvider>
                 <Routes>
-                  <Route path="atacadaoApp/login" element={<LoginPages />} />
+                  <Route path="atacadaoApp/Login" element={<LoginPages />} />
 
                   <Route path="atacadaoApp/Users" element={<UserPage />} />
                   <Route

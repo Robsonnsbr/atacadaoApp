@@ -3,7 +3,6 @@ import { createContext, useState } from "react";
 import { Employee } from "../@types/Employee";
 import { Collector } from "../@types/Collector";
 import { Activated } from "../@types/Activated";
-// import userTest from "./userTest.json";
 
 interface CustomError {
   hasError: boolean;

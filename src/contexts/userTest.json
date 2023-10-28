@@ -1,5 +1,11 @@
 [
   {
+    "name": "master@123",
+    "mat": "master@123",
+    "password": "MAster@123",
+    "cpf": "0000000000"
+  },
+  {
     "name": "Isabella Fernandes",
     "mat": "if1234",
     "password": "IsabellaPass",

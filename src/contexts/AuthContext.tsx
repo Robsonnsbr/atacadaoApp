@@ -92,7 +92,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   };
 
   const login = async (mat: string, password: string) => {
-    console.log("loguei");
     const recoveredUsers = localStorage.getItem("users_db");
     if (recoveredUsers) {
       const hasRecoveredUsers = JSON.parse(recoveredUsers);
@@ -150,7 +149,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     }
 
     console.log("Logout");
-    navigate("/atacadaoApp/login");
+    navigate("/atacadaoApp/Login");
   };
 
   const deleteUser = () => {

@@ -1,7 +1,7 @@
 import { createContext, useState } from "react";
 // import { useNavigate } from "react-router-dom";
 import { User } from "../@types/User";
-// import userTest from "./userTest.json";
+import userTest from "./userTest.json";
 
 interface CustomError {
   hasError: boolean;
@@ -182,8 +182,8 @@ export const CadastroUserProvider = ({ children }: CadastroProviderProps) => {
             JSON.stringify([{ name, mat, password, cpf }])
           );
         }
-        // const usersTestConvert = JSON.stringify(userTest);
-        // localStorage.setItem("users_db", usersTestConvert);
+        const usersTestConvert = JSON.stringify(userTest);
+        localStorage.setItem("users_db", usersTestConvert);
         setError({
           hasError: false,
           msg: "Seu cadastro foi concluído com sucesso.",
