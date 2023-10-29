@@ -415,7 +415,7 @@ input[type="checkbox"] {
   }
 
   
-`,vC="/atacadaoApp/assets/logo-atacadao-marketplace2-aca36c39.png",go=({children:e})=>{const{logout:t,user:n}=C.useContext(Ni),r=()=>{t()};return y.jsx(yC,{children:y.jsxs("div",{className:"navbar",children:[e,y.jsx("div",{className:"logo",children:y.jsx("img",{src:vC,alt:"Logo da sua empresa"})}),y.jsx("a",{href:"/Controls",children:"Controle"}),y.jsx("a",{href:"/Collectors",children:"Coletores"}),y.jsx("a",{href:"/Employees",children:"Colaboradores"}),y.jsx("a",{href:"/Users",children:"Usuários"}),y.jsx("a",{href:"/ReportPage",children:"Relatório"}),y.jsx("button",{onClick:r,children:y.jsx("a",{href:"/Login",children:"Sair"})}),n&&y.jsxs("span",{children:["Usuário: ",n.name]})]})})},xC=Xe.section`
+`,vC="/atacadaoApp/assets/logo-atacadao-marketplace2-aca36c39.png",go=({children:e})=>{const{logout:t,user:n}=C.useContext(Ni),r=()=>{t()};return y.jsx(yC,{children:y.jsxs("div",{className:"navbar",children:[e,y.jsx("div",{className:"logo",children:y.jsx("img",{src:vC,alt:"Logo da sua empresa"})}),y.jsx("a",{href:"/atacadaoApp/Controls",children:"Controle"}),y.jsx("a",{href:"/atacadaoApp/Collectors",children:"Coletores"}),y.jsx("a",{href:"/atacadaoApp/Employees",children:"Colaboradores"}),y.jsx("a",{href:"/atacadaoApp/Users",children:"Usuários"}),y.jsx("a",{href:"/atacadaoApp/ReportPage",children:"Relatório"}),y.jsx("button",{onClick:r,children:y.jsx("a",{href:"/Login",children:"Sair"})}),n&&y.jsxs("span",{children:["Usuário: ",n.name]})]})})},xC=Xe.section`
   border-radius: 6px;
   display: flex;
   justify-content: center;
