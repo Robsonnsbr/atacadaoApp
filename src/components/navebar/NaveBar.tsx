@@ -1,4 +1,5 @@
 import { ReactNode, useContext } from "react";
+import { Link } from "react-router-dom";
 import * as S from "./NaveBar.Style";
 import { AuthContext } from "../../contexts/AuthContext";
 import iconAtacadaoSvg from "../../assets/logo-atacadao-marketplace2.png";
@@ -23,14 +24,14 @@ export const NaveBar = ({ children }: MainProps) => {
           <img src={iconAtacadaoSvg} alt="Logo da sua empresa" />
         </div>
 
-        {/* <a href="/atacadaoApp">Home</a> */}
-        <a href="/atacadaoApp/Controls">Controle</a>
-        <a href="/atacadaoApp/Collectors">Coletores</a>
-        <a href="/atacadaoApp/Employees">Colaboradores</a>
-        <a href="/atacadaoApp/Users">Usuários</a>
-        <a href="/atacadaoApp/ReportPage">Relatório</a>
+        {/* <a to="/atacadaoApp">Home</a> */}
+        <Link to="/Controls">Controle</Link>
+        <Link to="/Collectors">Coletores</Link>
+        <Link to="/Employees">Colaboradores</Link>
+        <Link to="/Users">Usuários</Link>
+        <Link to="/ReportPage">Relatório</Link>
         <button onClick={handleLogout}>
-          <a href="/atacadaoApp/Login">Sair</a>
+          <Link to="/Login">Sair</Link>
         </button>
         {user && <span>Usuário: {user.name}</span>}
       </div>

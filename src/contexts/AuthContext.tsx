@@ -105,7 +105,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
           const currentUser: User = hasUser[0];
           setUser(currentUser);
           setToken(token);
-          navigate("/atacadaoApp");
+          navigate("/");
           return;
         } else {
           setError("Matrícula ou Senha incorretos");
@@ -149,7 +149,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     }
 
     console.log("Logout");
-    navigate("/atacadaoApp/Login");
+    // navigate("/");
   };
 
   const deleteUser = () => {
@@ -172,7 +172,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       return setError("Token/Users not found");
     }
 
-    navigate("/atacadaoApp/*");
+    navigate("/*");
   };
   const deleteUserMat = (mat?: string) => {
     const recoveredUser = localStorage.getItem("users_db");

@@ -37,7 +37,7 @@ export const AppRoutes = () => {
     // const tempIsAuthenticated = true; //TODO: remover...
     if (!isAuthenticated) {
       console.log("entrei aqui antes");
-      return <Navigate to="/atacadaoApp/Login" />;
+      return <Navigate to="/Login" />;
     }
     return children;
   };
@@ -50,27 +50,15 @@ export const AppRoutes = () => {
             <CadastroEmpProvider>
               <CadastroColleProvider>
                 <Routes>
-                  <Route path="atacadaoApp/Login" element={<LoginPages />} />
+                  <Route path="/Login" element={<LoginPages />} />
 
-                  <Route path="atacadaoApp/Users" element={<UserPage />} />
+                  <Route path="/Users" element={<UserPage />} />
+                  <Route path="/Controls" element={<ControlPage />} />
+                  <Route path="/Employees" element={<EmployeePage />} />
+                  <Route path="/Collectors" element={<CollectorPage />} />
+                  <Route path="/ReportPage" element={<ReportPage />} />
                   <Route
-                    path="atacadaoApp/Controls"
-                    element={<ControlPage />}
-                  />
-                  <Route
-                    path="atacadaoApp/Employees"
-                    element={<EmployeePage />}
-                  />
-                  <Route
-                    path="atacadaoApp/Collectors"
-                    element={<CollectorPage />}
-                  />
-                  <Route
-                    path="atacadaoApp/ReportPage"
-                    element={<ReportPage />}
-                  />
-                  <Route
-                    path="atacadaoApp/"
+                    path="/"
                     element={
                       <Private>
                         <HomePage />
