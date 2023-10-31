@@ -54,24 +54,12 @@ export const NaveBar = ({ children }: MainProps) => {
           value={paginaSelected}
           onChange={(event) => handleSelectChange(event.target.value)}
         >
-          <option value="">
-            <span>&#8595;</span> Menu Páginas
-          </option>
-          <option value="/Controls">
-            <span>&#8595;</span> Controls
-          </option>
-          <option value="/Collectors">
-            <span>&#8595;</span> Collectors
-          </option>
-          <option value="/Users">
-            <span>&#8595;</span> Users
-          </option>
-          <option value="/ReportPage">
-            <span>&#8595;</span> ReportPage
-          </option>
-          <option value="/Login">
-            <span>&#10799;</span> Sair
-          </option>
+          <option value="">Menu Páginas</option>
+          <option value="/Controls">&#8595; Controls</option>
+          <option value="/Collectors">&#8595; Collectors</option>
+          <option value="/Users">&#8595; Users</option>
+          <option value="/ReportPage">&#8595; ReportPage</option>
+          <option value="/Login">&#10799; Sair</option>
         </select>
       </div>
     </S.StyledNaveBar>

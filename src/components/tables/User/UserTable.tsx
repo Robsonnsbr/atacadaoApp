@@ -19,9 +19,9 @@ export const UserTable: React.FC<TabelaColaboradoresProps> = ({
 }) => {
   const { deleteUserMat } = useContext(AuthContext);
   const [usuarios, setUsuarios] = useState<User[] | null>([]);
+  const [usuario, setUserToDelete] = useState<User | undefined>();
   const [atualizarInterno, setAtualizarInterno] = useState(atualizar);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [usuario, setUserToDelete] = useState<User | undefined>();
   const [msgModal, setMsgModal] = useState<string>("");
   const [isButtonOff, setIsButtonOff] = useState(false);
 
