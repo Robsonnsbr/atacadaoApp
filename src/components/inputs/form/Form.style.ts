@@ -43,7 +43,8 @@ input[type="checkbox"] {
 
 
   & input#confirmarPassword, #password {
-    min-width: 280px;
+    align-items: center;
+    min-width: 275px;
   }
 
 

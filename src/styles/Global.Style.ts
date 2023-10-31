@@ -5,7 +5,7 @@ export const GlobalStyle = createGlobalStyle`
     --primary: #fafafa;
     --primary-transparent: rgb(250,250,250, 0.5);
     --secondary:  #ebebeb;
-    --third: #f63;
+    --third: #F06F00;
     --third-transparent: rgb(255,102,51, 0.3);
     --on-primary: #fff;
     --on-secondary: #000;

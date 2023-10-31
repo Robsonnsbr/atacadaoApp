@@ -69,4 +69,26 @@ export const StyledWrapper = styled.section`
     color: var(--successfully);
   }
 
+  .logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  padding: 5px;
+}
+
+.logo img {
+  max-width: 500px;
+}
+.logo img {
+  max-width: 500px;
+}
+
+@media (max-width: 855px) {
+  .logo img {
+  max-width: 300px;
+}
+}
+
+
 `;

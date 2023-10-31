@@ -4,6 +4,7 @@ import { AuthContext } from "../../contexts/AuthContext";
 import { Main, Wrapper, NaveBar, PageContent } from "../../components";
 // import { StyledButtonRow } from "../../components/inputs/button/Button.style";
 import { RowCollector } from "../../components/inputs/rowCollector/rowCollector";
+import { motion } from "framer-motion";
 
 export const HomePage = () => {
   // const { logout, deleteUser, user } = useContext(AuthContext);
@@ -15,19 +16,30 @@ export const HomePage = () => {
   // const handleLogout = () => {
   //   logout();
   // };
-
+  const containerMotion = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        delayChildren: 0.5,
+        staggerDirection: -1,
+      },
+    },
+  };
   return (
-    <PageContent>
-      <NaveBar />
-      <h1>Bem-vindo!</h1>
-      <p>{user?.name}</p>
-      <Main>
-        <Wrapper>
-          <ul>
-            <RowCollector />
-          </ul>
-        </Wrapper>
-      </Main>
-    </PageContent>
+    <motion.div variants={containerMotion} initial="hidden" animate="show">
+      <PageContent>
+        <NaveBar />
+        <h1>Bem-vindo!</h1>
+        <p>{user?.name}</p>
+        <Main>
+          <Wrapper>
+            <ul>
+              <RowCollector />
+            </ul>
+          </Wrapper>
+        </Main>
+      </PageContent>
+    </motion.div>
   );
 };
