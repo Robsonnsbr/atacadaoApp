@@ -1,6 +1,5 @@
 import { useState, useContext, useEffect } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
-import userTest from "../../contexts/userTestMaster.json";
 import atacadaologo2 from "../../assets/atacadaologo2.png";
 import {
   Button,
@@ -16,6 +15,11 @@ import { motion } from "framer-motion";
 // import { Link } from "react-router-dom";
 // import { createSession } from "../../services/api";
 
+import userTest from "../../../server/usersTest.json";
+import employeeTest from "../../../server/employeeTest.json";
+import collectorTest from "../../../server/collectorTest.json";
+import activeTest from "../../../server/activeTest.json";
+
 export const LoginPages = () => {
   const { isAuthenticated, login, error } = useContext(AuthContext);
   const [mostrarSenha, setMostrarSenha] = useState(false);
@@ -25,6 +29,12 @@ export const LoginPages = () => {
   useEffect(() => {
     const usersTestConvert = JSON.stringify(userTest);
     localStorage.setItem("users_db", usersTestConvert);
+    const employeeTestConvert = JSON.stringify(employeeTest);
+    localStorage.setItem("employee_db", employeeTestConvert);
+    const collectorTestConvert = JSON.stringify(collectorTest);
+    localStorage.setItem("collector_db", collectorTestConvert);
+    const activeTestConvert = JSON.stringify(activeTest);
+    localStorage.setItem("activeUsers_db", activeTestConvert);
   }, []);
 
   const handleSubmit = (event: React.FormEvent) => {

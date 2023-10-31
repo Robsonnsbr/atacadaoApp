@@ -1,0 +1,42 @@
+[
+  {
+    "collector": { "numero": 1, "sn": "6509823059820923", "status": true },
+    "employee": { "name": "Alex", "mat": "alex060606", "workShift": "TARDE", "status": true }
+  },
+  {
+    "collector": { "numero": 2, "sn": "7512475325634789", "status": true },
+    "employee": { "name": "Alice", "mat": "alice070707", "workShift": "MANHÃ", "status": true }
+  },
+  {
+    "collector": { "numero": 3, "sn": "8523698741256987", "status": true },
+    "employee": { "name": "Bob", "mat": "bob080808", "workShift": "NOITE", "status": true }
+  },
+  {
+    "collector": { "numero": 4, "sn": "9534875123645872", "status": true },
+    "employee": { "name": "Charlie", "mat": "charlie090909", "workShift": "TARDE", "status": true }
+  },
+  {
+    "collector": { "numero": 5, "sn": "10542698732569874", "status": true },
+    "employee": { "name": "David", "mat": "david101010", "workShift": "MANHÃ", "status": true }
+  },
+  {
+    "collector": { "numero": 6, "sn": "11542698751236547", "status": true },
+    "employee": { "name": "Eva", "mat": "eva111111", "workShift": "TARDE", "status": true }
+  },
+  {
+    "collector": { "numero": 7, "sn": "12548795321489657", "status": true },
+    "employee": { "name": "Frank", "mat": "frank121212", "workShift": "NOITE", "status": true }
+  },
+  {
+    "collector": { "numero": 8, "sn": "13548796235789621", "status": true },
+    "employee": { "name": "Grace", "mat": "grace131313", "workShift": "MANHÃ", "status": true }
+  },
+  {
+    "collector": { "numero": 9, "sn": "14548796235789452", "status": true },
+    "employee": { "name": "Hannah", "mat": "hannah141414", "workShift": "TARDE", "status": true }
+  },
+  {
+    "collector": { "numero": 10, "sn": "15548795321489547", "status": true },
+    "employee": { "name": "Ian", "mat": "ian151515", "workShift": "NOITE", "status": true }
+  }
+]
