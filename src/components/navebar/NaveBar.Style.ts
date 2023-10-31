@@ -1,8 +1,10 @@
 import styled from "styled-components";
 
+// import 'bootstrap/dist/css/bootstrap.min.css'
+
 //TODO: Ajustar tamanho mínimo do navBar após definição de atalhos
 export const StyledNaveBar = styled.nav`
-  overflow: hidden;
+    overflow: visible;
   position: fixed;
   top: 0;
   width: 100%;
@@ -18,6 +20,11 @@ export const StyledNaveBar = styled.nav`
   gap: 20px; /* Espaçamento horizontal entre os links */
   box-shadow: 0 0 2px 1px #00000086;
 
+.dropdown {
+  align-items: center;
+  justify-content: center;
+}
+
   & button {
 
     font: inherit;
@@ -30,6 +37,12 @@ export const StyledNaveBar = styled.nav`
     text-shadow: var(--text-shadow-style);
     color: var(--on-secondary);
     margin-left: 40px;
+    @media(max-width: 1000px) {
+      margin-left: 30px;
+    }
+    @media(max-width: 950px) {
+      margin-left: 20px;
+    }
   }
   & a:hover {
     color: var(--third);
@@ -63,8 +76,50 @@ export const StyledNaveBar = styled.nav`
     top: 50%;
     transform: translateY(-50%);
 
-
+    @media (max-width: 850px) {
+      left: 170px;
+    }
   }
+
+
+  .linksNavbar {
+    display: block;
+    @media (max-width: 850px) {
+      display: none;
+    }
+  }
+  
+
+/* Estilos para o SelectNavbar */
+.SelectNavbar {
+  display: none;
+  @media (max-width: 850px) {
+    display: block;
+  }
+}
+
+/* Estilos para o Select */
+.SelectNavbar select {
+  width: 100%;
+  padding: 10px;
+  margin: 0px;
+  font-size: 16px;
+  box-shadow: 0 0 2px 1px #00000086;
+  border-radius: 6px;
+  background-color: var(--third);
+  appearance: none;
+}
+
+/* Estilos para as opções do Select */
+.SelectNavbar select option {
+  background-color: var(--on-primary);
+}
+
+/* Estilo para a opção padrão */
+.SelectNavbar select option[value=""] {
+  font-style: italic;
+}
+
 
   
 `;

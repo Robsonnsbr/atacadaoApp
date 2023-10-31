@@ -1,4 +1,5 @@
 import { AppRoutes } from "./router/AppRoutes";
+
 import { GlobalStyle } from "./styles/Global.Style";
 
 function App() {
