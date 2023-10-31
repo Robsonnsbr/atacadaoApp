@@ -17,7 +17,6 @@ export const NaveBar = ({ children }: MainProps) => {
   const location = useLocation();
 
   useEffect(() => {
-    // Atualiza o valor de paginaSelected sempre que a localização (URL) muda
     setPaginaSelected(location.pathname);
   }, [location]);
 
@@ -55,12 +54,24 @@ export const NaveBar = ({ children }: MainProps) => {
           value={paginaSelected}
           onChange={(event) => handleSelectChange(event.target.value)}
         >
-          <option value="">Menu Páginas</option>
-          <option value="/Controls">Controls</option>
-          <option value="/Collectors">Collectors</option>
-          <option value="/Users">Users</option>
-          <option value="/ReportPage">ReportPage</option>
-          <option value="/Login">Sair</option>
+          <option value="">
+            <span>&#8595;</span> Menu Páginas
+          </option>
+          <option value="/Controls">
+            <span>&#8595;</span> Controls
+          </option>
+          <option value="/Collectors">
+            <span>&#8595;</span> Collectors
+          </option>
+          <option value="/Users">
+            <span>&#8595;</span> Users
+          </option>
+          <option value="/ReportPage">
+            <span>&#8595;</span> ReportPage
+          </option>
+          <option value="/Login">
+            <span>&#10799;</span> Sair
+          </option>
         </select>
       </div>
     </S.StyledNaveBar>
