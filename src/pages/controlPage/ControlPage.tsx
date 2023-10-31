@@ -25,7 +25,7 @@ import { Activated } from "../../@types/Activated";
 // }
 export const ControlPage = () => {
   // const { isAuthenticated } = useContext(AuthContext);
-  const { cadastro, error } = useContext(ControlContext);
+  const { cadastro, setError, error } = useContext(ControlContext);
 
   // const navigate = useNavigate();
   const [emp, setEmp] = useState("");
@@ -82,6 +82,7 @@ export const ControlPage = () => {
   useEffect(() => {
     // Atualize o estado atualizarInterno quando a prop atualizar mudar
     setAtualizarInterno(atualizar);
+    setError(null);
   }, [atualizar]);
 
   useEffect(() => {

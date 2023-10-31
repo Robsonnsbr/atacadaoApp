@@ -6,13 +6,13 @@ import { Activated } from "../@types/Activated";
 
 interface CustomError {
   hasError: boolean;
-  msg: string;
+  msg?: string;
 }
 
 interface IPropsCadastro {
   error: CustomError | null;
   cadastro: (numero: string, sn: string) => void;
-  setError: unknown;
+  setError: (value: CustomError | null) => void;
   atualizarIrmao: (atualizarWithBrother: boolean) => void;
   atualizarWithBrother: boolean;
 }
