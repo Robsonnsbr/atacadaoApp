@@ -33,11 +33,14 @@ export const StyledNaveBar = styled.nav`
     text-shadow: var(--text-shadow-style);
     color: var(--on-secondary);
     margin-left: 40px;
-    @media(max-width: 1000px) {
+    @media(max-width: 1020px) {
       margin-left: 30px;
     }
     @media(max-width: 950px) {
       margin-left: 20px;
+    }
+    @media(max-width: 900px) {
+      margin-left: 10px;
     }
   }
   & a:hover {
