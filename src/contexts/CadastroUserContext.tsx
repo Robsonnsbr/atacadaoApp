@@ -40,6 +40,7 @@ export const CadastroUserProvider = ({ children }: CadastroProviderProps) => {
   // const navigate = useNavigate();
   const [error, setError] = useState<CustomError | null>(null);
 
+  //TODO: ajustar validador de CPF
   const validityCPF = (cpf: string) => {
     cpf = cpf.replace(/[^\d]/g, ""); // Remove caracteres não numéricos
 

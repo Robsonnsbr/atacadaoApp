@@ -338,9 +338,11 @@ export const ControlPage = () => {
                   onClick={atualizarUseEffectFilho}
                 />
               </Form>
-              <p id="warning" className="warning-null">
-                {error?.msg || "null"}
-              </p>
+              <div>
+                <p id="warning" className="warning-null">
+                  {error?.msg || "null"}
+                </p>
+              </div>
             </div>
             <div>
               <ControlTable

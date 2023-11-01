@@ -41,14 +41,16 @@ export const StyledWrapper = styled.section`
 }
   
 
-  & p#warning {
+  & #warning {
     text-align: center;
-    margin: 0;
+    margin: auto;
     margin-Bottom: 5px;
     padding: 0px;
     width: 472px;
     height: 37px;
   }
+
+
 
   & .warningTable {
     color: var(--error);
