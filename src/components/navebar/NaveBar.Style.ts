@@ -20,22 +20,17 @@ export const StyledNaveBar = styled.nav`
   gap: 20px; /* Espaçamento horizontal entre os links */
   box-shadow: 0 0 2px 1px #00000086;
 
-.dropdown {
-  align-items: center;
-  justify-content: center;
-}
-
   & button {
-
     font: inherit;
     background-color: var(--secondary);
   }
+
   & a {
     text-decoration: none;
     font-size: 14px;
     font-weight: 500;
     text-shadow: var(--text-shadow-style);
-    color: var(--on-secondary);
+    /* color: var(--on-secondary); */
     margin-left: 40px;
     @media(max-width: 1000px) {
       margin-left: 30px;
