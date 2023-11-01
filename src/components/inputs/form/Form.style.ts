@@ -92,7 +92,6 @@ export const StyledContainerField = styled.div`
     border-radius: 3px 3px 0px 0px;
     /* box-shadow: inset 0 0 1px 1px #00000086; */
     border-bottom: 1px solid var(--on-secondary);
-    outline: none;
   }
 
   & select {

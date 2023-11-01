@@ -4,10 +4,11 @@ import styled from "styled-components";
 
 //TODO: Ajustar tamanho mínimo do navBar após definição de atalhos
 export const StyledNaveBar = styled.nav`
-    overflow: visible;
+  width: 100%;
+  height: 55px;
+  overflow: visible;
   position: fixed;
   top: 0;
-  width: 100%;
   justify-content: center;
   margin: auto;
   background-color: var(--secondary); /* Cor de fundo da navbar */
@@ -30,7 +31,7 @@ export const StyledNaveBar = styled.nav`
     font-size: 14px;
     font-weight: 500;
     text-shadow: var(--text-shadow-style);
-    /* color: var(--on-secondary); */
+    color: var(--on-secondary);
     margin-left: 40px;
     @media(max-width: 1000px) {
       margin-left: 30px;
@@ -57,7 +58,7 @@ export const StyledNaveBar = styled.nav`
   }
 
   & span {
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 500;
     margin-right: 10px;
     overflow-y: hidden;
@@ -68,9 +69,6 @@ export const StyledNaveBar = styled.nav`
     color: var(--successfully);
     position: absolute;
     right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-
     @media (max-width: 850px) {
       left: 170px;
     }
@@ -95,6 +93,11 @@ export const StyledNaveBar = styled.nav`
 
 /* Estilos para o Select */
 .SelectNavbar select {
+  position:relative;
+  top: -6px;
+  left: 60px;
+  outline: none;
+  appearance: none;
   width: 100%;
   padding: 10px;
   margin: 0px;
@@ -102,9 +105,10 @@ export const StyledNaveBar = styled.nav`
   box-shadow: 0 0 2px 1px #00000086;
   border-radius: 6px;
   background-color: var(--third);
-  appearance: none;
+  &:hover {
+  border: 1px solid #000;
 }
-
+}
 /* Estilos para as opções do Select */
 .SelectNavbar select option {
   background-color: var(--on-primary);
